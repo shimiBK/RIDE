@@ -1,0 +1,29 @@
+.tophome{
+    /* height: calc(100vh - 60px); */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../../../public/assests/tomorrowland.jpg");
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+    
+}
+
+
+h1 {
+    color: white;
+    font-size: 100px;
+}
+
+h3{
+    color: white;
+    font-size: 70px;
+    margin-top: 20px;
+}
+
+
+
+

@@ -1,0 +1,181 @@
+.ridesContainer{
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background-color: rgb(36, 38, 43); */
+    margin:0;
+    position: relative;
+    
+}
+
+ .ridesWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 0px 200px;
+    margin-top: 100px;
+    
+
+}
+
+.previousPage{
+    position: absolute;
+    width: 80px;
+    margin-top: 21px;
+    margin-left: 15px;
+    top:0;
+}
+.rides{
+    position: relative;
+    background-color: rgb(36, 38, 43);
+} 
+
+  .filtersWrapper{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 20px;
+    color: white;
+}  
+
+.ridesTitle{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    margin: 0;
+    padding-top: 2%;
+    
+}
+.ridesTitle:after{
+    content: "";
+    position: absolute;
+    height: 0px;
+    border-bottom: 4px solid #3498db;;
+    width: 200px;
+    top: 13%;
+    bottom: 0px;
+    right: 48%;
+    margin-right: -65px;
+}
+
+
+
+ .rideItem{
+    width: 300px;
+    height: 300px;
+    /* color: black; */
+    background-color: rgb(36, 38, 43,0.9);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    margin-right: 60px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 65%);
+    /* border: 1px solid #3498db; */
+  
+}
+/* span{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    color: white;
+    align-items: center;
+} */
+
+
+.boxTitle
+{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    color: white;
+
+
+}
+.boxTitle:after{
+    content: "";
+    position: absolute;
+    height: 0px;
+    border-bottom: 4px solid #3498db;;
+    width: 100px;
+    top: 60px;
+    bottom: 0px;
+    right: 55%;
+    margin-right: -65px;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    position: relative;
+    
+}
+
+.material-icons{
+    font-size: 24px;
+    position: absolute;
+    right:0;
+}
+
+.infoItem{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 60px;
+    margin-right: 55px;
+    color: white;
+    position: relative;
+}
+span{
+    margin-right: 10px;
+    
+    
+    
+}
+.infoText{
+    position: absolute;
+    
+}
+
+
+
+.sendMessage{
+    position: absolute;
+    width: 200px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
+    background-color: #3498db;
+    color: white;
+    border: none;
+    bottom: 50px;
+    right: 20%;
+    cursor:pointer;
+    border-radius: 5px;
+    
+}
+
+.emptyRides{
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
