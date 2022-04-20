@@ -25,3 +25,26 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+@media screen and (max-width:480px) {
+
+    .bottomhome{
+        overflow: scroll;
+    }
+
+
+  .eventsTitle{
+      font-size: 30px;
+      top:5%;
+      left: 50%;
+      white-space: nowrap;
+
+  }
+  .eventsTitle:after{
+    width: 120px;
+
+  }
+    
+    
+}

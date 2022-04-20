@@ -35,8 +35,7 @@
     flex-direction: column; 
     border: 1px solid rgb(34, 34, 34);
     flex: 0 0 13%;
-    transition: transform .2s;
-    
+    transition: transform .2s;   
 }
 
 .eventItem:hover{
@@ -83,6 +82,34 @@
 }
 .arrowIcons.right{
     right: -20px;
+}
+
+
+@media screen and (max-width:480px) {
+
+    .arrowIcons{
+        display: none;
+    }
+
+    .eventsContainer{
+        flex-direction: column;
+        
+    }
+    .eventItem{
+
+        margin-top: 50px;
+        flex:none;
+        width: auto;
+        height: auto;
+
+
+    }
+    .eventDate{
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    
 }
 
 

@@ -24,6 +24,20 @@ h3{
     margin-top: 20px;
 }
 
+@media screen and (max-width:480px) {
+
+    h1{
+        font-size: 80px;
+    }
+
+    h3{
+        font-size: 50px;
+
+    }
+
+    
+}
+
 
 
 
