@@ -3,9 +3,9 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    /* background-color: rgb(36, 38, 43); */
     margin:0;
     position: relative;
+    
     
 }
 
@@ -13,7 +13,6 @@
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
-    /* align-items: center; */
     justify-content: center;
     padding: 0px 200px;
     margin-top: 100px;
@@ -21,13 +20,7 @@
 
 }
 
-.previousPage{
-    position: absolute;
-    width: 80px;
-    margin-top: 21px;
-    margin-left: 15px;
-    top:0;
-}
+
 .rides{
     position: relative;
     background-color: rgb(36, 38, 43);
@@ -60,8 +53,8 @@
     width: 200px;
     top: 13%;
     bottom: 0px;
-    right: 48%;
-    margin-right: -65px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -69,7 +62,6 @@
  .rideItem{
     width: 300px;
     height: 300px;
-    /* color: black; */
     background-color: rgb(36, 38, 43,0.9);
     border-radius: 15px;
     display: flex;
@@ -79,40 +71,7 @@
     position: relative;
     margin-right: 60px;
     box-shadow: 0 0 6px rgb(0 0 0 / 65%);
-    /* border: 1px solid #3498db; */
   
-}
-/* span{
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    background-color: none;
-    color: white;
-    align-items: center;
-} */
-
-
-.boxTitle
-{
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 20px;
-    color: white;
-
-
-}
-.boxTitle:after{
-    content: "";
-    position: absolute;
-    height: 0px;
-    border-bottom: 4px solid #3498db;;
-    width: 100px;
-    top: 60px;
-    bottom: 0px;
-    right: 55%;
-    margin-right: -65px;
 }
 
 .infoContainer{
@@ -150,6 +109,14 @@ span{
     
 }
 
+.previousPage{
+    position: absolute;
+    width: 80px;
+    margin-top: 21px;
+    margin-left: 15px;
+    top:0;
+}
+
 
 
 .sendMessage{
@@ -175,6 +142,59 @@ span{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+@media screen and (max-width:480px) {
+
+    .ridesTitle{
+        font-size: 23px;
+        white-space: nowrap;
+        padding-top: 4%;
+        
+    }
+    .ridesTitle:after{
+        top:4%;
+    }
+    .previousPage{
+        display: none;
+        
+    }
+    .rideItem{
+        margin-right: auto;
+
+    }
+
+    .ridesContainer{
+        height: auto;
+    }
+    
+    
+}
+
+
+@media screen and (min-width:481px) and (max-width:1024px) {
+
+
+    .previousPage{
+        display: none;
+    }
+    .ridesContainer{
+        height: auto;
+    }
+    .rideItem{
+        margin-right: auto;
+        flex: 0 0 13%;
+
+    }
+    .ridesTitle:after{
+        top:6%;
+    }
+    
+
+
+
+}
+
 
 
 

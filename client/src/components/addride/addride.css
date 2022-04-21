@@ -39,10 +39,9 @@
     z-index: 99;
     background-color: rgb(36, 38, 43);
     position: absolute;
-    top:100;
-    bottom:0;
-    left:0;
-    right: 0;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-100%);
     margin: auto;
     padding: 10px 50px;
     display: flex;
@@ -69,11 +68,10 @@
     position: absolute;
     height: 0px;
     border-bottom: 4px solid #3498db;;
-    width: 110px;
-    top: 70px;
-    bottom: 0px;
-    right: 52%;
-    margin-right: -65px;
+    width: 115px;
+    top: 11%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
 label{
     display: flex;
@@ -112,11 +110,8 @@ label{
 }
 
 .close{
-    /* width : 25px;
-    height: 25px; */
     font-size: 20px;
     position: absolute;
-    /* background-color: lightgray; */
     color:#3498db;
     background:none;
     top:20px;
@@ -142,4 +137,17 @@ label{
 
 
     
+}
+
+
+@media screen and (min-width:481px) and (max-width:1024px) {
+
+    .rideModal{
+        width: 400x;
+        height: 600px;
+        transform: translate(-50%,-80%);
+    }
+
+
+
 }

@@ -35,7 +35,7 @@
 
 
   .eventsTitle{
-      font-size: 30px;
+      font-size: 28px;
       top:5%;
       left: 50%;
       white-space: nowrap;
@@ -46,5 +46,25 @@
 
   }
     
+    
+}
+
+@media screen and (min-width:481px) and (max-width:1024px) {
+
+    .eventsTitle{
+        font-size: 40px;
+        top:4%;
+        left: 51%;
+        white-space: nowrap;
+        transform: translate(-50%, -50%);
+  
+    }
+    .eventsTitle::after{
+        top: 135%;
+
+    }
+
+    
+
     
 }

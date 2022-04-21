@@ -93,7 +93,7 @@
 
     .eventsContainer{
         flex-direction: column;
-        
+        overflow: scroll;
     }
     .eventItem{
 
@@ -109,7 +109,16 @@
         margin-bottom: 10px;
     }
 
+
+
     
+}
+
+@media screen and (min-width:481px) and (max-width:1024px) {
+    .eventItem{
+        flex: 0 0 10%;
+    }
+
 }
 
 
