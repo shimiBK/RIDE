@@ -24,7 +24,6 @@ function Addride() {
           };
           try {
             await axios.post("/rides", ride);
-            console.log("A ride was successfully created");
             setOpenModal(false);
 
           } catch (err) {

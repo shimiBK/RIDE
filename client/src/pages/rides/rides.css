@@ -1,10 +1,10 @@
 .ridesContainer{
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg");
-    background-repeat: no-repeat;
     background-size: 100% 100%;
     margin:0;
     position: relative;
+    
     
     
 }
@@ -16,24 +16,9 @@
     justify-content: center;
     padding: 0px 200px;
     margin-top: 100px;
-    
 
 }
 
-
-.rides{
-    position: relative;
-    background-color: rgb(36, 38, 43);
-} 
-
-  .filtersWrapper{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    margin-top: 20px;
-    color: white;
-}  
 
 .ridesTitle{
     color: white;
@@ -50,63 +35,109 @@
     position: absolute;
     height: 0px;
     border-bottom: 4px solid #3498db;;
-    width: 200px;
+    border-radius: 100px;
+    width: 1024px;
     top: 13%;
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -50%);
+
 }
 
 
 
  .rideItem{
     width: 300px;
-    height: 300px;
+    height: 350px;
     background-color: rgb(36, 38, 43,0.9);
+    border: 3px solid transparent;
+    cursor: pointer;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
     margin-bottom: 15px;
     position: relative;
-    margin-right: 60px;
+    margin-right: 50px;
     box-shadow: 0 0 6px rgb(0 0 0 / 65%);
   
+}
+
+.rideItem:hover{
+    border: 3px solid #3498db;
 }
 
 .infoContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 25px;
-    position: relative;
-    
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.profileImg{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.infoTitle{
+    color: white;
+    display: inline;
+    font-weight: bold;
+    position: absolute;
+    top: 30px;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.infoTitle:after{
+    content: "";
+    position: absolute;
+    height: 0px;
+    border-bottom: 4px solid #3498db;;
+    width: 180px;
+    border-radius: 100px;
+    top: 35px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .material-icons{
     font-size: 24px;
     position: absolute;
-    right:0;
+    left:20px;
 }
 
 .infoItem{
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-bottom: 60px;
-    margin-right: 55px;
+    margin-bottom: 12px;
+    
+}
+
+.fixedText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color:gray;
+    
+}
+
+
+.userInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     color: white;
-    position: relative;
-}
-span{
-    margin-right: 10px;
-    
-    
-    
-}
-.infoText{
-    position: absolute;
-    
+
 }
 
 .previousPage{
@@ -117,22 +148,46 @@ span{
     top:0;
 }
 
+.deleteRide{
+    font-size: 17px;
+    position: absolute;
+    color:#3498db;
+    background:none;
+    top:20px;
+    right:20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.deleteRide:hover{
+    transform: scale(1.1);
+}
 
 
-.sendMessage{
+
+.facebookBtn{
     position: absolute;
     width: 200px;
-    padding: 15px;
-    -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
+    padding: 15px 20px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
     background-color: #3498db;
     color: white;
     border: none;
-    bottom: 50px;
-    right: 20%;
     cursor:pointer;
-    border-radius: 5px;
-    
+    border-radius: 50px;
+    bottom:25px;
+    left:50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-out;
+  
+}
+.facebookBtn:hover{
+    background-color: white;
+    color: #3498db;
 }
 
 .emptyRides{
@@ -141,59 +196,80 @@ span{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: white;
+}
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
-@media screen and (max-width:480px) {
+/* DELETE MODAL*/
 
-    .ridesTitle{
-        font-size: 23px;
-        white-space: nowrap;
-        padding-top: 4%;
-        
-    }
-    .ridesTitle:after{
-        top:4%;
-    }
-    .previousPage{
-        display: none;
-        
-    }
-    .rideItem{
-        margin-right: auto;
+.confirmDel{
+    display: flex;
+    justify-content: center;
+}
 
-    }
+.delModal{
+    width: 550px;
+    height: 200px;
+    background-color:  rgb(36, 38, 43,1);
+    z-index: 99;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 13px 2px rgba(184, 181, 181, 0.3);
 
-    .ridesContainer{
-        height: auto;
-    }
+}
+.confirmTitle{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 22px;
+
+}
+.delBtns{
+    position: absolute;
+    display: flex;
+    bottom:15%;
+    left:50%;
+    transform: translate(-50%,-50%);
     
+
+}
+
+.deletelBtn , .cancelBtn{
+    width: 150px;
+    padding: 15px 20px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor:pointer;
+    border-radius: 50px;
+    margin-right: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease-out;
     
+
+}
+
+.deletelBtn:hover , .cancelBtn:hover{
+    background-color: white;
+    color: #3498db;
+
 }
 
 
-@media screen and (min-width:481px) and (max-width:1024px) {
-
-
-    .previousPage{
-        display: none;
-    }
-    .ridesContainer{
-        height: auto;
-    }
-    .rideItem{
-        margin-right: auto;
-        flex: 0 0 13%;
-
-    }
-    .ridesTitle:after{
-        top:6%;
-    }
-    
-
-
-
-}
 
 
 

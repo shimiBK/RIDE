@@ -8,6 +8,8 @@ const RideSchema = new mongoose.Schema(
     city:{type: String , required:true},
     facebook:{type: String , required:true},
     time:{type: String , required:true},
+    userID:{type:String, required:true},
+    userImg:{type:String},
 
 },
 {timestamps:true}

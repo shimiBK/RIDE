@@ -26,7 +26,7 @@ const Events = () =>{
 <>
 <div className="events">
     <div className="eventsWrapper">
-      <img src="assests/chevron_left.png" alt="" className="arrowIcons left" onClick={()=> handleClick("left")}/>
+      {/* <img src="assests/chevron_left.png" alt="" className="arrowIcons left" onClick={()=> handleClick("left")}/> */}
         <div className="eventsContainer" ref={eventsRef}>
           <div className="eventItem">
               <Link to="/rides/armin-van-buuren">
@@ -37,14 +37,6 @@ const Events = () =>{
                 <h3 className="eventDate">16.03.22</h3>
           </div>
           <div className="eventItem">
-              <Link to="/rides/david-guetta">
-              <img src="assests/david-guetta.jpg" alt="" className="showImg"/>
-              </Link>
-              <h1 className="eventName">David Guetta</h1>
-              <h3 className="eventLocation">לייב פארק | ראשון לציון</h3>
-              <h3 className="eventDate">30.07.22</h3>
-          </div>
-          <div className="eventItem">
               <Link to="rides/martin-garrix">
               <img src="assests/martin-garrix.jpg" alt="" className="showImg"/>
               </Link>
@@ -53,6 +45,14 @@ const Events = () =>{
               <h3 className="eventDate">24.05.22</h3>
           </div>
           <div className="eventItem">
+              <Link to="/rides/david-guetta">
+              <img src="assests/david-guetta.jpg" alt="" className="showImg"/>
+              </Link>
+              <h1 className="eventName">David Guetta</h1>
+              <h3 className="eventLocation">לייב פארק | ראשון לציון</h3>
+              <h3 className="eventDate">30.07.22</h3>
+          </div>
+          {/* <div className="eventItem">
               <Link to="rides/hardwell">
               <img src="assests/hardwell.jpg" alt="" className="showImg"/>
               </Link>
@@ -75,9 +75,9 @@ const Events = () =>{
               <h1 className="eventName">ILLENIUM</h1>
               <h3 className="eventLocation">האנגר 11 | תל אביב</h3>
               <h3 className="eventDate">30.06.22</h3>
+          </div> */}
           </div>
-          </div>
-          <img src="assests/chevron_right.png" alt="" className="arrowIcons right" onClick={()=> handleClick("right")}/>
+          {/* <img src="assests/chevron_right.png" alt="" className="arrowIcons right" onClick={()=> handleClick("right")}/> */}
       </div>
 </div>
 </>
