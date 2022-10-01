@@ -2,8 +2,13 @@ const router = require("express").Router();
 const passport = require("passport");
 
 const CLIENT_URL = "http://localhost:3000/";
+const INFO_URL = "http://localhost:3000/addinfo";
+
+
+//google
 
 router.get("/login/success", (req, res) => {
+
   if (req.user) {
     res.status(200).json({
       success: true,
@@ -12,6 +17,8 @@ router.get("/login/success", (req, res) => {
       cookies: req.cookies
     });
   }
+  
+
 });
 
 router.get("/login/failed", (req, res) => {
@@ -36,6 +43,8 @@ router.get(
   })
 );
 
+
+//facebook
 
 router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
 

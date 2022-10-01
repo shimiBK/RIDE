@@ -4,16 +4,24 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 import Partners from "./pages/partners/Partners";
 import { useEffect, useState } from "react";
+import AddInfo from "./pages/addinfo/AddInfo"
 
 
 
 function App() {
 
   const [user,setUser] = useState(null);
+  let flag=false;
 
+  if(user)
+  {
+    if(user.loginFlag)
+      flag = true;
+  }
 
 
   useEffect(() => {
@@ -45,13 +53,16 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home user={user}/>
+         {flag ? <AddInfo user={user}/> : <Home user={user}/>}
         </Route>
         <Route path="/rides" >
           <Rides user={user}/>
         </Route>
         <Route path="/partners">
           <Partners user={user}/>
+        </Route>
+        <Route path="/addinfo">
+          <AddInfo user={user}/>
         </Route>
       </Switch>
     </Router>

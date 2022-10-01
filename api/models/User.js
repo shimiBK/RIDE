@@ -24,6 +24,19 @@ const UserSchema = new mongoose.Schema({
   type:String,
   required: true,
   },
+  gender:{
+    type:String,
+    },
+  city:{
+    type:String,
+    },
+  loginFlag:{
+    type:Boolean,
+    default:true
+  },
+  sendMails:{
+    type:Array
+  },
   createdAt: {
     type: Date,
     default: Date.now,

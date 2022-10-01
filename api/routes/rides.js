@@ -10,7 +10,6 @@ router.get("/" , async (req,res) => {
     try {
         const Rides = await Ride.find(artist);
   
-        
       res.status(200).json(Rides);
     } catch (err) {
       res.status(500).json(err);

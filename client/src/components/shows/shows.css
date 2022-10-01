@@ -2,13 +2,7 @@
     height: 85vh;
     display: flex;
     justify-content: center;
-    /* background-color: black; */
     background-color: rgb(36, 38, 43);
-    /* background-image: url("../../../public/assests/gray-background.jpg"); */
-    /* background-repeat: no-repeat;
-    background-size: 100% 100%; */
-
-    
 }
 .showsContainer{
     display: flex;
@@ -74,6 +68,16 @@
 
 }
 
+.subscribe{
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    right:5px;
+    top:5px;
+    cursor: pointer;
+
+}
+
 .showImg{
     width: 100%;
     object-fit: cover;
@@ -123,6 +127,8 @@
     margin-top: 20px;
     font-size: 20px;
 }
+
+
 
 
 /* ADD RIDE SECTION */

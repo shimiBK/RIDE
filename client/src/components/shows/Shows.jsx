@@ -18,6 +18,7 @@ const Shows = ({user}) => {
     const [martinGarrix,setMartinGarrix] = useState(false);
     const [armin,setArmin] = useState(false);
     const [cities, setCities] = useState(null);
+    const [users,setUsers] = useState({});
 
 
     const ename = useRef();
@@ -31,6 +32,51 @@ const Shows = ({user}) => {
     const userId = user ? user._id : "";
     const userImg = user? user.image : "";
 
+    const handleEmails = async (ride) => {
+
+      for(let user of users){
+        if(user.city === ride.city && user.sendMails.includes(ride.ename)){
+          const email = {
+            to: user.email,
+            subject: `New ride for ${ride.ename} was uploaded`,
+            message:`${ride.fname} is riding to ${ride.ename} at ${ride.time}`
+          }
+          try {
+            await axios.post('/email', email);
+            
+          } catch (error) {
+            console.log(error);  
+          }
+        };
+
+      }
+    };
+
+    const handleFollow = async (eventName) =>{
+      
+      const list = user.sendMails;
+      if(!list.includes(eventName))
+      {
+        list.push(eventName);
+        const addEvent = {
+          sendMails:list
+        }
+        try {
+          await axios.put(`/user/${user._id}`,addEvent);
+          setPopupMessage("Event was successfully added to your followings");
+          setAuthModal(true);
+          
+          
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }else{
+        setPopupMessage("You already follow this event");
+        setAuthModal(true);
+
+      }
+    };
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -47,16 +93,14 @@ const Shows = ({user}) => {
           try {
             await axios.post("/rides", ride);
             setOpenModal(false);
-
-
-          } catch (err) {
-            console.log(err);
-          }finally
-          {
+            handleEmails(ride);
             setPopupMessage("RIDE WAS SUCCESSFULLY UPLOADED");
             setAuthModal(true);
 
+          } catch (err) {
+            console.log(err);
           }
+
         
       };
 
@@ -70,9 +114,7 @@ const Shows = ({user}) => {
            setAuthModal(true);
         }}
         
-      
-
-
+        
       useEffect(() =>{
         const getCities = async () => {
             
@@ -88,6 +130,27 @@ const Shows = ({user}) => {
     },[]);
 
 
+    useEffect(() =>{
+
+      const getUsers = async () =>{
+        try {
+          const res = await axios.get('http://localhost:8800/api/user')
+            setUsers(res.data);
+          
+        } catch (err) {
+          console.log(err);
+          
+        }
+      };
+
+      getUsers();
+
+    },[])
+
+
+
+
+
   return (
     <div className="shows">
     <div className="showsContainer">
@@ -95,10 +158,13 @@ const Shows = ({user}) => {
         <div className="eventItems" ref={eventsRef}>
             <div className="eventItem" onMouseOver={() => setArmin(true)} onMouseLeave={() => setArmin(false)}>
                 <Link to="/rides/armin-van-buuren">
-                <img src="assests/armin-van-buuren3.jpg" alt="" className="showImg"/>
+                  <img src="assests/armin-van-buuren3.jpg" alt="" className="showImg"/>
                 </Link>
                 <div className="eventTitle">
                 {!armin && <h1 className="eventName">Armin Van Buuren</h1>}
+              </div>
+              <div className="subscribe">
+                <h1 onClick={ () => handleFollow("armin-van-buuren")}>+</h1>
               </div>
               {armin &&
                <div className="eventTitleHover">
@@ -113,6 +179,9 @@ const Shows = ({user}) => {
                 </Link>
                 <div className="eventTitle">
                 {!martinGarrix && <h1 className="eventName">Martin Garrix</h1>}
+              </div>
+              <div className="subscribe">
+                <h1 onClick={ () => handleFollow("martin-garrix")}>+</h1>
               </div>
               {martinGarrix &&
                <div className="eventTitleHover">
@@ -129,6 +198,9 @@ const Shows = ({user}) => {
                 <div className="eventTitle">
                 {!davidGuetta && <h1 className="eventName">David Guetta</h1>}
               </div>
+              <div className="subscribe">
+                  <h1 onClick={ () => handleFollow("david-guetta")}>+</h1>
+              </div>
               {davidGuetta &&
                <div className="eventTitleHover">
                 <h1 className="eventNameHover">David Guetta</h1>
@@ -143,6 +215,9 @@ const Shows = ({user}) => {
               <div className="eventTitle">
                 {!hardwell && <h1 className="eventName">Hardwell</h1>}
               </div>
+              <div className="subscribe">
+                <h1 onClick={ () => handleFollow("hardwell")}>+</h1>
+              </div>
               {hardwell &&  <div className="eventTitleHover">
               <h1 className="eventNameHover">Hardwell</h1>
               <h3 className="eventLocation">גני התערוכה | תל אביב</h3>
@@ -156,6 +231,9 @@ const Shows = ({user}) => {
                 <div className="eventTitle">
                   {!tiesto && <h1 className="eventName">Tiesto</h1>}
                </div>
+               <div className="subscribe">
+                <h1 onClick={ () => handleFollow("tiesto")}>+</h1>
+              </div>
                {tiesto && <div className="eventTitleHover">
                 <h1 className="eventNameHover">Tiesto</h1>
                 <h3 className="eventLocation">האנגר 11 | תל אביב</h3>
@@ -169,6 +247,9 @@ const Shows = ({user}) => {
               </Link>
               <div className="eventTitle" >
                 {!illenium && <h1 className="eventName">Illenium</h1>}
+              </div>
+              <div className="subscribe">
+                <h1 onClick={ () => handleFollow("illenium")}>+</h1>
               </div>
               {illenium && <div className="eventTitleHover">
                 <h1 className="eventNameHover">Illenium</h1>

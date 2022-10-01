@@ -4,10 +4,10 @@ import "./login.css"
 
 const Login = ({loginmodal}) => {
 
-  console.log(loginmodal);
 
   const google = () => {
     window.open("http://localhost:8800/auth/google", "_self");
+
   };
 
   const facebook = () => {
