@@ -17,7 +17,7 @@ const Shows = ({user}) => {
     const [davidGuetta,setDavidGuetta] = useState(false);
     const [martinGarrix,setMartinGarrix] = useState(false);
     const [armin,setArmin] = useState(false);
-    const [cities, setCities] = useState(null);
+    const [cities, setCities] = useState([]);
     const [users,setUsers] = useState({});
 
 
@@ -114,7 +114,7 @@ const Shows = ({user}) => {
            setAuthModal(true);
         }}
         
-        
+
       useEffect(() =>{
         const getCities = async () => {
             
@@ -149,8 +149,6 @@ const Shows = ({user}) => {
 
 
 
-
-
   return (
     <div className="shows">
     <div className="showsContainer">
@@ -164,7 +162,7 @@ const Shows = ({user}) => {
                 {!armin && <h1 className="eventName">Armin Van Buuren</h1>}
               </div>
               <div className="subscribe">
-                <h1 onClick={ () => handleFollow("armin-van-buuren")}>+</h1>
+                {user && <h1 onClick={ () => handleFollow("armin-van-buuren")}>+</h1>}
               </div>
               {armin &&
                <div className="eventTitleHover">
@@ -181,7 +179,7 @@ const Shows = ({user}) => {
                 {!martinGarrix && <h1 className="eventName">Martin Garrix</h1>}
               </div>
               <div className="subscribe">
-                <h1 onClick={ () => handleFollow("martin-garrix")}>+</h1>
+                { user && <h1 onClick={ () => handleFollow("martin-garrix")}>+</h1>}
               </div>
               {martinGarrix &&
                <div className="eventTitleHover">
@@ -199,7 +197,7 @@ const Shows = ({user}) => {
                 {!davidGuetta && <h1 className="eventName">David Guetta</h1>}
               </div>
               <div className="subscribe">
-                  <h1 onClick={ () => handleFollow("david-guetta")}>+</h1>
+                  { user && <h1 onClick={ () => handleFollow("david-guetta")}>+</h1>}
               </div>
               {davidGuetta &&
                <div className="eventTitleHover">
@@ -216,7 +214,7 @@ const Shows = ({user}) => {
                 {!hardwell && <h1 className="eventName">Hardwell</h1>}
               </div>
               <div className="subscribe">
-                <h1 onClick={ () => handleFollow("hardwell")}>+</h1>
+                { user && <h1 onClick={ () => handleFollow("hardwell")}>+</h1>}
               </div>
               {hardwell &&  <div className="eventTitleHover">
               <h1 className="eventNameHover">Hardwell</h1>
@@ -232,7 +230,7 @@ const Shows = ({user}) => {
                   {!tiesto && <h1 className="eventName">Tiesto</h1>}
                </div>
                <div className="subscribe">
-                <h1 onClick={ () => handleFollow("tiesto")}>+</h1>
+                {user && <h1 onClick={ () => handleFollow("tiesto")}>+</h1>}
               </div>
                {tiesto && <div className="eventTitleHover">
                 <h1 className="eventNameHover">Tiesto</h1>
@@ -249,7 +247,7 @@ const Shows = ({user}) => {
                 {!illenium && <h1 className="eventName">Illenium</h1>}
               </div>
               <div className="subscribe">
-                <h1 onClick={ () => handleFollow("illenium")}>+</h1>
+                { user && <h1 onClick={ () => handleFollow("illenium")}>+</h1>}
               </div>
               {illenium && <div className="eventTitleHover">
                 <h1 className="eventNameHover">Illenium</h1>
@@ -282,12 +280,11 @@ const Shows = ({user}) => {
             <label>Ride From:</label>
             <select className="rideInput" ref={city}>
               {cities.map((city) =>
-                <option style={{direction:"ltr"}}value={city.english_name}>{city.english_name}</option>
+                <option style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
               )};
             </select>
-            {/* <input type="text" ref={city} placeholder="Tel-Aviv" class="rideInput"/> */}
             <label>Facebook Profile Link:</label>
-            <input type="text"  ref={facebook} placeholder="https://www.facebook.com/john.doe" className="rideInput"/>
+            <input type="text" ref={facebook} placeholder="https://www.facebook.com/john.doe" className="rideInput"/>
             <label>Leaving Time:</label>
             <select name="events" ref={time} className="rideInput">
             <option value="choose-event" disabled selected>Time</option>

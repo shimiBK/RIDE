@@ -15,13 +15,17 @@ import AddInfo from "./pages/addinfo/AddInfo"
 function App() {
 
   const [user,setUser] = useState(null);
-  let flag=false;
+  const [flag,setFlag] = useState(false);
+  
 
-  if(user)
-  {
-    if(user.loginFlag)
-      flag = true;
+  
+  const flagStatus = (statusFromChild) =>{
+    setFlag(statusFromChild);
   }
+
+
+
+
 
 
   useEffect(() => {
@@ -45,15 +49,23 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
+        
     };
     getUser();
   }, []);
+
+  useEffect(() =>{
+
+    if(user && user.loginFlag)
+    setFlag(true);
+
+  },[user])
 
   return(
     <Router>
       <Switch>
         <Route exact path="/">
-         {flag ? <AddInfo user={user}/> : <Home user={user}/>}
+         {!flag ? <Home user={user}/> : <AddInfo user={user} flagStatus={flagStatus}/>}
         </Route>
         <Route path="/rides" >
           <Rides user={user}/>
@@ -62,7 +74,7 @@ function App() {
           <Partners user={user}/>
         </Route>
         <Route path="/addinfo">
-          <AddInfo user={user}/>
+          {!flag ? <Redirect to="/"/> : <AddInfo user={user}/>}
         </Route>
       </Switch>
     </Router>
