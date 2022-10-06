@@ -34,10 +34,10 @@ const Shows = ({user}) => {
 
     const handleEmails = async (ride) => {
 
-      for(let user of users){
-        if(user.city === ride.city && user.sendMails.includes(ride.ename)){
+      for(let dbUser of users){
+        if(dbUser !== user && dbUser.city === ride.city && dbUser.sendMails.includes(ride.ename)){
           const email = {
-            to: user.email,
+            to: dbUser.email,
             subject: `New ride for ${ride.ename} was uploaded`,
             message:`${ride.fname} is riding to ${ride.ename} at ${ride.time}`
           }
@@ -89,6 +89,7 @@ const Shows = ({user}) => {
             time: time.current.value,
             uID: userId,
             userImg:userImg,
+            userGender:user.gender,
           };
           try {
             await axios.post("/rides", ride);
@@ -97,8 +98,8 @@ const Shows = ({user}) => {
             setPopupMessage("RIDE WAS SUCCESSFULLY UPLOADED");
             setAuthModal(true);
 
-          } catch (err) {
-            console.log(err);
+          } catch (error) {
+            console.log(error);
           }
 
         
@@ -279,8 +280,9 @@ const Shows = ({user}) => {
             <input type="text" ref={lname} placeholder="Doe" className="rideInput"/>
             <label>Ride From:</label>
             <select className="rideInput" ref={city}>
+              <option disabled selected>Choose City</option>
               {cities.map((city) =>
-                <option style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
+                <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
               )};
             </select>
             <label>Facebook Profile Link:</label>
@@ -311,7 +313,6 @@ const Shows = ({user}) => {
               </div>
             </div>
     </div>}
-        
     </div>    
 </div>
 

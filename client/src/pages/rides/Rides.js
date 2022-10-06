@@ -3,6 +3,9 @@ import axios from "axios";
 import {useState , useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
+import MaleIcon from '@mui/icons-material/Male';
+import FemaleIcon from '@mui/icons-material/Female';
+
 
 
 
@@ -83,18 +86,18 @@ export default function Rides({user}) {
                     <span className="userInfo">{ride.firstName + " " +  ride.lastName}</span>
                 </div>
                 <div className="infoItem">
-                    <span className="fixedText">From</span>
+                    <span className="fixedText">From →</span>
+                    <span className="userInfo">{ride.city}</span>
                 </div>
                 <div className="infoItem">
-                     <span className="userInfo">{ride.city}</span>
-                </div>
-                <div className="infoItem">
-                    <span className="fixedText">Time</span>
-                </div>
-                <div className="infoItem">
+                    <span className="fixedText">Time →</span>
                     <span className="userInfo">{ride.time}</span>
                 </div>
                 {ride.userID === userId && <span className="deleteRide" onClick={() => {setConfirmDel(true);setRideID(ride._id);}}>X</span>}
+                <span className="genderIcon">
+                    {ride.userGender === "Male" && <MaleIcon/>}
+                    {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
+                </span>
             </div>
             <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
         </div>)) : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>}  

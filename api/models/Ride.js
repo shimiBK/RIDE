@@ -10,7 +10,7 @@ const RideSchema = new mongoose.Schema(
     time:{type: String , required:true},
     userID:{type:String, required:true},
     userImg:{type:String},
-
+    userGender:{type:String,required:true},
 },
 {timestamps:true}
 );

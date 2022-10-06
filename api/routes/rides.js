@@ -47,6 +47,7 @@ router.post("/" , async (req,res) => {
         time:req.body.time,
         userID:req.body.uID,
         userImg:req.body.userImg,
+        userGender:req.body.userGender,
     });
 
     try{

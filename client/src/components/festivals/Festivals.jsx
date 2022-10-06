@@ -156,14 +156,14 @@ const Festivals = ({user}) => {
             </div>}
             </div>
           </div>
-        <button class="addFestivalBtn" onClick={handlePartner}>I NEED A PARTNER</button>
+        <button className="addFestivalBtn" onClick={handlePartner}>I NEED A PARTNER</button>
     {openModal &&
      (
         <form className="partnerBox" onSubmit={handleClick}>
-          <div class="partnerModal">
-              <h1 class="partnerTitle">YOUR INFORMATION</h1>
+          <div className="partnerModal">
+              <h1 className="partnerTitle">YOUR INFORMATION</h1>
               <label for="festivals">Choose festival:</label>
-              <select name="festivals" ref={festName} class="partnerInput">
+              <select name="festivals" ref={festName} className="partnerInput">
                 <option value="choose-festival" disabled selected>Festival</option>
                 <option value="tomorrowland">Tomorrowland</option>
                 <option value="ultra-miami">Ultra Miami</option>
