@@ -9,6 +9,7 @@ import {
 import Partners from "./pages/partners/Partners";
 import { useEffect, useState } from "react";
 import AddInfo from "./pages/addinfo/AddInfo"
+import Profile from "./pages/profile/Profile";
 
 
 
@@ -16,16 +17,11 @@ function App() {
 
   const [user,setUser] = useState(null);
   const [flag,setFlag] = useState(false);
-  
 
   
   const flagStatus = (statusFromChild) =>{
     setFlag(statusFromChild);
   }
-
-
-
-
 
 
   useEffect(() => {
@@ -75,6 +71,9 @@ function App() {
         </Route>
         <Route path="/addinfo">
           {!flag ? <Redirect to="/"/> : <AddInfo user={user}/>}
+        </Route>
+        <Route path="/profile">
+          {user ? <Profile user={user}/> : <Home user={user}/>}
         </Route>
       </Switch>
     </Router>

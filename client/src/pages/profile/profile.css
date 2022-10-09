@@ -1,0 +1,176 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color:  rgb(36, 38, 43,0.9);
+}
+.profilePageTitle{
+    color: white;
+}
+
+.settingsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+/* Personal Info */
+
+.personalInfo{
+    width:500px;
+    height: 350px;
+    background-color: rgb(36, 38, 43,1);
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8);
+    position: relative;
+    padding: 0 20px;
+}
+
+.personalTitle{
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 15px;
+    font-size: 25px;
+    margin-bottom: 50px;
+
+}
+
+.personalInfoContainer{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+
+}
+
+.personalField{
+    border: none;
+    border-bottom: 1px solid gray;
+    background-color: transparent;
+    color: white;
+}
+
+.personalSelectField{
+    border: none;
+    border-bottom: 1px solid gray;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
+.personalSelectField:focus{
+    background-color: transparent;
+    outline: none;
+
+}
+
+.personalField:focus{
+    background-color: transparent;
+    outline: none;
+}
+
+.personalButton{
+    cursor: pointer;
+    border-radius: 50px;
+    border: 2px solid #3498db;
+    background-color: #3498db;
+    padding: 8px 20px;
+    color: white;
+    font-size: 14px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
+    transition: transform .2s;
+    color: white;
+    border-color: #3498db;
+    position: absolute;
+    bottom: 25px;
+
+}
+
+/* Events */ 
+
+.profileEvents{
+    width:500px;
+    height: 350px;
+    background-color: rgb(36, 38, 43,1);
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8);
+    position: relative;
+    padding: 0 20px;
+}
+
+.prfEventsTitle{
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 15px;
+    font-size: 25px;
+    margin-bottom: 50px;
+
+}
+.prfEventsContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.prfEventItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 110px;
+    height: 25px;
+    border: 2px solid gray;
+}
+.prfEventName{
+
+    color: white;
+    font-size: 12px;
+    padding: 0 5px;
+
+}
+.prfRemoveEvent{
+    color: #3498db;
+    position: absolute;
+    font-size: 11px;
+    top:2px;
+    right:5px;
+    cursor: pointer;
+
+}
+
+.prfEmptyEvents{
+    width: 100%;
+    color: white;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+}
+
+
+
+.deleteUserButton{
+    border-radius: 50px;
+    border: 2px solid #3498db;
+    background-color: #3498db;
+    padding: 8px 20px;
+    color: white;
+    font-size: 14px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
+    transition: transform .2s;
+    color: white;
+    border-color: #3498db;
+    cursor: pointer;
+
+}
+
+
+

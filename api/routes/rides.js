@@ -1,8 +1,10 @@
 
 const Ride = require("../models/Ride");
+const User = require("../models/User")
 const router = require("express").Router();
 
 
+//get rides of specific event
 
 router.get("/" , async (req,res) => {
 
@@ -14,26 +16,67 @@ router.get("/" , async (req,res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-
    
 });
+
+// get rides of specific user
+
+router.get("/user/:userId", async (req,res)=> {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const userRides = await Ride.find({userID: currentUser._id});
+
+    res.status(200).json(userRides);
+
+  } catch (error) {
+    res.status(500).json(err);
+  }
+});
+
+
+router.delete("/delete/:userId", async (req,res)=>{
+
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const userRides = await Ride.find({userID: currentUser._id});
+
+
+    userRides.map((ride)=>{
+       ride.deleteOne();
+    })
+
+    res.status(200).json("the rides has been deleted");
+
+    
+  } catch (error) {
+
+    res.status(500).json(error);
+
+    
+  }
+
+
+});
+
+
+
+// get specific ride
 
 
 router.delete("/:id", async (req, res) => {
     try {
       const ride = await Ride.findById(req.params.id);
       await ride.deleteOne();
-      // if (ride.userID === req.body.uID) {
-      //   
-      //   res.status(200).json("the post has been deleted");
-      // } else {
-      //   res.status(403).json("you can delete only your post");
-      // }
+      res.status(200).json("the ride has been deleted");
+
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
+
+
+  //post ride
  
 
 router.post("/" , async (req,res) => {

@@ -16,6 +16,7 @@ const Shows = ({user}) => {
     const [hardwell,setHardwell] = useState(false);
     const [davidGuetta,setDavidGuetta] = useState(false);
     const [martinGarrix,setMartinGarrix] = useState(false);
+    const [gender, setGender] = useState("");
     const [armin,setArmin] = useState(false);
     const [cities, setCities] = useState([]);
     const [users,setUsers] = useState({});
@@ -89,8 +90,10 @@ const Shows = ({user}) => {
             time: time.current.value,
             uID: userId,
             userImg:userImg,
-            userGender:user.gender,
+            userGender:gender,
           };
+
+          console.log(ride);
           try {
             await axios.post("/rides", ride);
             setOpenModal(false);
@@ -129,6 +132,18 @@ const Shows = ({user}) => {
         getCities();
         
     },[]);
+
+    useEffect(() =>{
+      const updateGender = ()=>{
+        if(user)
+        {
+          setGender(user.gender);
+        }
+      }
+
+      updateGender();
+      
+    },[])
 
 
     useEffect(() =>{
