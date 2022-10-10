@@ -1,6 +1,8 @@
 import "./shows.css";
 import React, { useState , useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 
@@ -9,8 +11,6 @@ import axios from "axios";
 const Shows = ({user}) => {
 
     const [openModal , setOpenModal] = useState(false);
-    const [authModal,setAuthModal] = useState(false);
-    const [popupMessage,setPopupMessage] = useState("");
     const [illenium,setIllenium] = useState(false);
     const [tiesto,setTiesto] = useState(false);
     const [hardwell,setHardwell] = useState(false);
@@ -21,7 +21,8 @@ const Shows = ({user}) => {
     const [cities, setCities] = useState([]);
     const [users,setUsers] = useState({});
 
-
+    
+  
     const ename = useRef();
     const fname = useRef();
     const lname = useRef();
@@ -32,6 +33,7 @@ const Shows = ({user}) => {
 
     const userId = user ? user._id : "";
     const userImg = user? user.image : "";
+  
 
     const handleEmails = async (ride) => {
 
@@ -64,8 +66,8 @@ const Shows = ({user}) => {
         }
         try {
           await axios.put(`/user/${user._id}`,addEvent);
-          setPopupMessage("Event was successfully added to your followings");
-          setAuthModal(true);
+
+          toast.success("Event was successfully added to your followings");
           
           
         } catch (error) {
@@ -73,8 +75,7 @@ const Shows = ({user}) => {
           
         }
       }else{
-        setPopupMessage("You already follow this event");
-        setAuthModal(true);
+        toast.info("You already follow this event");
 
       }
     };
@@ -98,9 +99,7 @@ const Shows = ({user}) => {
             await axios.post("/rides", ride);
             setOpenModal(false);
             handleEmails(ride);
-            setPopupMessage("RIDE WAS SUCCESSFULLY UPLOADED");
-            setAuthModal(true);
-
+            toast.success("Ride was successfully uploaded");
           } catch (error) {
             console.log(error);
           }
@@ -114,8 +113,7 @@ const Shows = ({user}) => {
           setOpenModal(true) 
         }
         else{
-          setPopupMessage("PLEASE LOGIN IN ORDER TO SHARE A RIDE");
-           setAuthModal(true);
+          toast.info("Please login in order to add a ride")
         }}
         
 
@@ -162,8 +160,6 @@ const Shows = ({user}) => {
       getUsers();
 
     },[])
-
-
 
   return (
     <div className="shows">
@@ -319,15 +315,18 @@ const Shows = ({user}) => {
             <span className="close" onClick={() => {setOpenModal(false)}}>X</span>
         </div>
         </form>)}
-        {authModal && 
-        <div className="confirmAuth">
-        <div className="authModal">
-            <h2 className="authTitle">{popupMessage}</h2>
-            <div className="authBtns">
-            <button className="approveBtn" onClick={ () => setAuthModal(false)} >OK</button> 
-              </div>
-            </div>
-    </div>}
+        <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            />
     </div>    
 </div>
 

@@ -29,9 +29,27 @@ router.get("/user/:userId", async (req,res)=> {
     res.status(200).json(userRides);
 
   } catch (error) {
-    res.status(500).json(err);
+    res.status(500).json(error);
   }
 });
+
+//update a ride 
+
+router.put("/update/:id", async (req, res) => {
+  try {
+    await Ride.findByIdAndUpdate(req.params.id, {
+      $set: req.body,
+    });
+    res.status(200).json("Ride has been updated");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+}
+);
+
+
+
+//delete user's rides
 
 
 router.delete("/delete/:userId", async (req,res)=>{

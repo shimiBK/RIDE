@@ -239,19 +239,21 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    border-radius: 15px;
+    /* border-radius: 15px; */
     -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 13px 2px rgba(184, 181, 181, 0.3);
 
 }
-.confirmTitle{
+.confirmText{
     color: white;
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    font-size: 22px;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
 
 }
+
 .delBtns{
     position: absolute;
     display: flex;
@@ -264,7 +266,7 @@
 
 .deletelBtn , .cancelBtn{
     width: 150px;
-    padding: 15px 20px;
+    padding: 10px 20px;
     -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
     box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
     background-color: #3498db;
@@ -273,7 +275,7 @@
     cursor:pointer;
     border-radius: 50px;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 14px;
     transition: all 0.3s ease-out;
     
 

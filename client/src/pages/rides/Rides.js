@@ -5,6 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -93,7 +95,7 @@ export default function Rides({user}) {
                     <span className="fixedText">Time →</span>
                     <span className="userInfo">{ride.time}</span>
                 </div>
-                {ride.userID === userId && <span className="deleteRide" onClick={() => {setConfirmDel(true);setRideID(ride._id);}}>X</span>}
+                {ride.userID === userId && <span className="deleteRide" onClick={() => {toast("Are You sure you want to delete this ride?");setConfirmDel(true);setRideID(ride._id);}}>X</span>}
                 <span className="genderIcon">
                     {ride.userGender === "Male" && <MaleIcon/>}
                     {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
@@ -116,7 +118,7 @@ export default function Rides({user}) {
         {confirmDel &&
          <div className="confirmDel">
             <div className="delModal">
-                <h2 className="confirmTitle">ARE YOU SURE YOU WANT TO DELETE THIS RIDE?</h2>
+                    <span className="confirmText">Are you sure you want to delete your ride?</span>
                 <div className="delBtns">
                     <button className="deletelBtn" onClick={ () => {deleteRide(rideID);}} >DELETE</button>
                     <button className="cancelBtn" onClick= {() => setConfirmDel(false)}>CANCEL</button>

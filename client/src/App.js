@@ -10,6 +10,8 @@ import Partners from "./pages/partners/Partners";
 import { useEffect, useState } from "react";
 import AddInfo from "./pages/addinfo/AddInfo"
 import Profile from "./pages/profile/Profile";
+import Error from "./components/error/Error";
+import Myrides from "./pages/myrides/Myrides";
 
 
 
@@ -17,6 +19,8 @@ function App() {
 
   const [user,setUser] = useState(null);
   const [flag,setFlag] = useState(false);
+
+
 
   
   const flagStatus = (statusFromChild) =>{
@@ -61,7 +65,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-         {!flag ? <Home user={user}/> : <AddInfo user={user} flagStatus={flagStatus}/>}
+         {!flag ? <Home user={user} /> : <AddInfo user={user} flagStatus={flagStatus}/>}
         </Route>
         <Route path="/rides" >
           <Rides user={user}/>
@@ -74,6 +78,9 @@ function App() {
         </Route>
         <Route path="/profile">
           {user ? <Profile user={user}/> : <Home user={user}/>}
+        </Route>
+        <Route path="/myrides">
+          {user ? <Myrides user={user}/> : <Home user={user}/>}
         </Route>
       </Switch>
     </Router>

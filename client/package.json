@@ -20,6 +20,7 @@
     "react-slick": "^0.28.1",
     "react-spinners": "^0.13.4",
     "react-text-animations": "^1.1.10",
+    "react-toastify": "^9.0.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
