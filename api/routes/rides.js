@@ -9,6 +9,8 @@ const router = require("express").Router();
 router.get("/" , async (req,res) => {
 
     const artist = {...req.query};
+
+    console.log(artist);
     try {
         const Rides = await Ride.find(artist);
   
@@ -32,6 +34,25 @@ router.get("/user/:userId", async (req,res)=> {
     res.status(500).json(error);
   }
 });
+
+//get rides from specific city
+
+router.get("/", async (req,res) =>{
+
+  const cityName = {...req.query};
+
+  try {
+
+    const rides = await Ride.find(cityName)
+    res.status(200).json(rides);
+    
+  } catch (error) {
+    res.status(500).json(error);
+    
+  }
+
+
+})
 
 //update a ride 
 
