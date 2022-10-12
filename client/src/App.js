@@ -12,6 +12,10 @@ import AddInfo from "./pages/addinfo/AddInfo"
 import Profile from "./pages/profile/Profile";
 import Error from "./components/error/Error";
 import Myrides from "./pages/myrides/Myrides";
+import axios from "axios";
+
+
+
 
 
 
@@ -19,6 +23,22 @@ function App() {
 
   const [user,setUser] = useState(null);
   const [flag,setFlag] = useState(false);
+  const [cities,setCities] = useState([]);
+
+
+  useEffect(() =>{
+    const getCities = async () => {
+        
+        try{
+            const res = await axios.get('http://localhost:8800/api/cities');
+            setCities(res.data);                
+        }catch(error){
+            console.log(error);
+        }
+    };
+    getCities();
+    
+  },[user]);
 
 
 
@@ -29,6 +49,8 @@ function App() {
 
 
   useEffect(() => {
+
+    //to do this fetch with axios - watch https://www.youtube.com/watch?v=NZKUirTtxcg
     const getUser = () => {
       fetch("http://localhost:8800/auth/login/success", {
         method: "GET",
@@ -65,10 +87,10 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-         {!flag ? <Home user={user} /> : <AddInfo user={user} flagStatus={flagStatus}/>}
+         {!flag ? <Home user={user} cities={cities} /> : <AddInfo user={user} flagStatus={flagStatus} />}
         </Route>
         <Route path="/rides" >
-          <Rides user={user}/>
+          <Rides user={user} cities={cities}/>
         </Route>
         <Route path="/partners">
           <Partners user={user}/>

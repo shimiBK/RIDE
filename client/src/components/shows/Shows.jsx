@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import Searchbar from "../searchbar/Searchbar";
 
 
 
 
-const Shows = ({user}) => {
+const Shows = ({user,cities}) => {
 
     const [openModal , setOpenModal] = useState(false);
     const [illenium,setIllenium] = useState(false);
@@ -18,7 +19,7 @@ const Shows = ({user}) => {
     const [martinGarrix,setMartinGarrix] = useState(false);
     const [gender, setGender] = useState("");
     const [armin,setArmin] = useState(false);
-    const [cities, setCities] = useState([]);
+    const [city,setCity] = useState("");
     const [users,setUsers] = useState({});
 
     
@@ -26,13 +27,17 @@ const Shows = ({user}) => {
     const ename = useRef();
     const fname = useRef();
     const lname = useRef();
-    const city = useRef();
     const facebook = useRef();
     const time = useRef();
     const eventsRef = useRef();
 
     const userId = user ? user._id : "";
     const userImg = user? user.image : "";
+
+    const getCity = (cityFromChild)=>{
+
+      setCity(cityFromChild);
+    }
   
 
     const handleEmails = async (ride) => {
@@ -86,7 +91,7 @@ const Shows = ({user}) => {
             ename: ename.current.value,
             fname: fname.current.value,
             lname: lname.current.value,
-            city: city.current.value,
+            city: city,
             facebook: facebook.current.value,
             time: time.current.value,
             uID: userId,
@@ -116,21 +121,6 @@ const Shows = ({user}) => {
           toast.info("Please login in order to add a ride")
         }}
         
-
-      useEffect(() =>{
-        const getCities = async () => {
-            
-            try{
-                const res = await axios.get('http://localhost:8800/api/cities');
-                setCities(res.data);                
-            }catch(error){
-                console.log(error);
-            }
-        };
-        getCities();
-        
-    },[]);
-
     useEffect(() =>{
       const updateGender = ()=>{
         if(user)
@@ -290,17 +280,12 @@ const Shows = ({user}) => {
             <label>Surname:</label>
             <input type="text" ref={lname} placeholder="Doe" className="rideInput"/>
             <label>Ride From:</label>
-            <select className="rideInput" ref={city}>
-              <option disabled selected>Choose City</option>
-              {cities.map((city) =>
-                <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
-              )};
-            </select>
+            <Searchbar placeholder="Choose City" data={cities} getCity={getCity} searchType="searchAddRide" />
             <label>Facebook Profile Link:</label>
             <input type="text" ref={facebook} placeholder="https://www.facebook.com/john.doe" className="rideInput"/>
             <label>Leaving Time:</label>
             <select name="events" ref={time} className="rideInput">
-            <option value="choose-event" disabled selected>Time</option>
+            <option value="" disabled selected>Time</option>
             <option value="19:00">19:00</option>
             <option value="19:30">19:30</option>
             <option value="20:00">20:00</option>

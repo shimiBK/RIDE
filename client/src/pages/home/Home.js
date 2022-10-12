@@ -4,7 +4,8 @@ import Shows from "../../components/shows/Shows";
 import Festivals from "../../components/festivals/Festivals.jsx";
 
 
-export default function Home({user}) {
+export default function Home({user,cities}) {
+
 
 
 
@@ -12,7 +13,7 @@ export default function Home({user}) {
     <>
     <div className="homeContainer">
     <Tophome user={user}/>
-    <Shows user={user} />
+    <Shows user={user} cities={cities}/>
     <Festivals user={user}/>
     </div>
     </>
