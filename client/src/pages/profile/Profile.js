@@ -107,8 +107,9 @@ const Profile = ({user}) => {
     <>
     <div className="profile">
         <Navbar user={user} />
-        <div className="settingsContainer">
             <h1 className="profilePageTitle">Account Settings</h1>
+        <div className="settingsContainer">
+            <div className="formsWrapper">
             <div className="personalInfo">
                <h1 className="personalTitle">Personal Info</h1>
                 <form className="updatePersonal" onSubmit={handleUpdate}>
@@ -143,6 +144,7 @@ const Profile = ({user}) => {
                             <span className="prfRemoveEvent" onClick={()=> handleRemove(event)}>X</span>
                         </div>)}
                     </div> : <h2 className="prfEmptyEvents">You are not following any event</h2>}
+                </div>
                 </div>
                     <button className="deleteUserButton" onClick={()=>setConfirmDel(true)}>Delete Account</button>
             </div>

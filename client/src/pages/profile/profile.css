@@ -1,30 +1,58 @@
 .profile{
     display: flex;
     flex-direction: column;
+    position: relative;
     min-height: 100vh;
-    background-color:  rgb(36, 38, 43,0.9);
+    background-image: linear-gradient(to bottom, #24262b, #2c2e33, #34363b, #3c3e43, #44474c, #4b4e54, #51555c, #585c64, #5e636d, #646976, #6a707f, #707788);
+
 }
+
+
 .profilePageTitle{
     color: white;
+    font-size: 35px;
+    position: absolute;
+    left: 50%;
+    top:10%;
+    transform: translate(-50%,-50%);
+}
+
+.profilePageTitle:after{
+    position: absolute;
+    left: 50%;
+    top:120%;
+    content: "";
+    transform: translate(-50%,-50%);
+    height: 0px;
+    border-bottom: 2px solid #3498db;;
+    width: 300px;
+    /* margin-top: 70px; */
 }
 
 .settingsContainer{
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    position: absolute;
+    left: 50%;
+    top:40%;
+    transform: translate(-50%,-50%);
+    margin-top: 35px;
     gap: 30px;
+}
+
+.formsWrapper{
+    display: flex;
+    gap:15px;
 }
 
 /* Personal Info */
 
 .personalInfo{
-    width:500px;
-    height: 350px;
-    background-color: rgb(36, 38, 43,1);
-    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
-    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8);
+
+    width:400px;
+    height: 400px;
+    background-color: rgb(36, 38, 43,0.75);
     position: relative;
     padding: 0 20px;
 }
@@ -33,29 +61,32 @@
     display: flex;
     justify-content: center;
     color: white;
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 
 }
+
+
 
 .personalInfoContainer{
     display: flex;
     flex-direction: column;
     gap:30px;
+    padding: 0 20px;
 
 }
 
 .personalField{
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #3498db;
     background-color: transparent;
     color: white;
 }
 
 .personalSelectField{
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #3498db;
     background-color: transparent;
     color: gray;
     cursor: pointer;
@@ -69,34 +100,37 @@
 .personalField:focus{
     background-color: transparent;
     outline: none;
+
+
 }
 
 .personalButton{
+    position: absolute;
     cursor: pointer;
     border-radius: 50px;
     border: 2px solid #3498db;
     background-color: #3498db;
-    padding: 8px 20px;
+    padding: 12px 50px;
     color: white;
     font-size: 14px;
     -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
     box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
-    transition: transform .2s;
     color: white;
     border-color: #3498db;
-    position: absolute;
-    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    bottom: 7%;
 
 }
 
 /* Events */ 
 
 .profileEvents{
-    width:500px;
-    height: 350px;
-    background-color: rgb(36, 38, 43,1);
-    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
-    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8);
+    width:400px;
+    height: 400px;
+    background-color: rgb(36, 38, 43,0.75);
+    /* -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8); */
     position: relative;
     padding: 0 20px;
 }
@@ -157,20 +191,28 @@
 
 
 .deleteUserButton{
-    border-radius: 50px;
-    border: 2px solid #3498db;
+    position: absolute;
+    left:50%;
+    bottom:-40%;
+    transform: translate(-50%,-50%);
+    border: 1px solid #3498db;
     background-color: #3498db;
-    padding: 8px 20px;
+    padding: 15px 100px;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
     box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
-    transition: transform .2s;
+    transition: all 0.3s ease-out;
     color: white;
     border-color: #3498db;
     cursor: pointer;
-
 }
+.deleteUserButton:hover{
+    background-color: white;
+    color: #3498db;
+    border: 1px solid white;
+}
+
 
 
 

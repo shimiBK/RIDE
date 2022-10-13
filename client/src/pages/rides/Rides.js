@@ -8,7 +8,7 @@ import FemaleIcon from '@mui/icons-material/Female';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../../components/searchbar/Searchbar";
-import InfiniteScroll from 'react-infinite-scroller';
+
 
 
 
@@ -27,9 +27,10 @@ export default function Rides({user,cities}) {
     const [filteredRides,setfilteredRides] = useState([{}]);
     const [city,setCity] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [numOfItems,setNumOfItems] = useState(NUM_OF_ITEMS);
+    const [numOfItems,setNumOfItems] = useState(8);
 
 
+    console.log(rides);
 
 
 
@@ -61,7 +62,9 @@ export default function Rides({user,cities}) {
             window.innerHeight + document.documentElement.scrollTop + 1 >=
             document.documentElement.scrollHeight
         ) {
-            setNumOfItems((prev) => prev + 8);
+            
+                setNumOfItems((prev) => prev + NUM_OF_ITEMS);
+
         }
     };
 
@@ -102,7 +105,7 @@ export default function Rides({user,cities}) {
         };
         getRides();
         
-    },[ename]);
+    },[ename,numOfItems]);
     
     const renderRide = (
         <div className="ridesWrapper">
@@ -132,7 +135,7 @@ export default function Rides({user,cities}) {
             <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
         </div>)) : <h3 className="emptyRides">THERE ARE NO RIDES FROM {city}</h3>
          :
-    rides.length > 0 ? (rides.slice(0,numOfItems).map(ride =>
+        rides.length > 0 ? (rides.map(ride =>
         <div className="rideItem" key={ride._id}>
             <div className="infoContainer">
                 <div className="infoItem">
