@@ -41,7 +41,7 @@ const Searchbar = ({placeholder,data,getCity,searchType}) => {
       setOpenData(true);
     };
   return (
-    <div className={searchType}>
+    <div className="search">
         <input
           type="text"
           placeholder={placeholder}
