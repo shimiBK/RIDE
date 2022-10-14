@@ -24,7 +24,7 @@
     content: "";
     transform: translate(-50%,-50%);
     height: 0px;
-    border-bottom: 2px solid #3498db;;
+    border-bottom: 2px solid #3498db;
     width: 300px;
     /* margin-top: 70px; */
 }
@@ -129,8 +129,6 @@
     width:400px;
     height: 400px;
     background-color: rgb(36, 38, 43,0.75);
-    /* -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
-    box-shadow: -1px 2px 12px 0px rgba(52,152,219,0.8); */
     position: relative;
     padding: 0 20px;
 }
@@ -139,7 +137,7 @@
     display: flex;
     justify-content: center;
     color: white;
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 25px;
     margin-bottom: 50px;
 
@@ -179,7 +177,7 @@
 
 .prfEmptyEvents{
     width: 100%;
-    color: white;
+    color: #3498db;
     position: absolute;
     left:50%;
     top: 50%;

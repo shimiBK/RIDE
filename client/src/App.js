@@ -87,7 +87,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-         {!flag ? <Home user={user} cities={cities} /> : <AddInfo user={user} flagStatus={flagStatus} />}
+         {!flag ? <Home user={user} cities={cities} /> : <AddInfo user={user} flagStatus={flagStatus} cities={cities} />}
         </Route>
         <Route path="/rides" >
           <Rides user={user} cities={cities}/>
@@ -96,7 +96,7 @@ function App() {
           <Partners user={user}/>
         </Route>
         <Route path="/addinfo">
-          {!flag ? <Redirect to="/"/> : <AddInfo user={user}/>}
+          {!flag ? <Redirect to="/"/> : <AddInfo user={user}  />}
         </Route>
         <Route path="/profile">
           {user ? <Profile user={user}/> : <Home user={user}/>}

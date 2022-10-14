@@ -9,7 +9,7 @@
   .loginModal{
     width: 550px;
     height: 450px;
-    background-color: rgb(36, 38, 43,0.9);
+    background-color: rgb(36, 38, 43,0.95);
     z-index: 99;
     position: absolute;
     top:50%;
@@ -23,7 +23,7 @@
   .loginTitle{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
     color: white;
   }
 
@@ -34,7 +34,7 @@
     height: 0px;
     border-bottom: 4px solid #3498db;;
     width: 350px;
-    top: 16%;
+    top: 18%;
     left:50%;
     transform: translate(-50%,-50%);
 }
@@ -113,10 +113,11 @@
   
   .loginInput{
     width: 200px;
-    padding: 15px 0px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    background-color: transparent;
     border: none;
-    border-radius: 10px;
+    border-bottom: 1px solid #3498db;
+    color: white;
   }
   
   .loginSubmit{

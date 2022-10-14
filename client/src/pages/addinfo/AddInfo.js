@@ -3,23 +3,31 @@ import "./addinfo.css"
 import {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import Loading from "../../components/loading/Loading";
+import Searchbar from "../../components/searchbar/Searchbar";
+import Navbar from "../../components/navbar/Navbar";
 
 
-const AddInfo = ({user,flagStatus}) => {
+const AddInfo = ({user,flagStatus,cities}) => {
+
+  console.log(cities);
 
 
-  const [cities , setCities] = useState([]);
+  const [city,setCity] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const gender = useRef();
 
-    const city = useRef();
-    const gender = useRef();
-    const [isLoading, setIsLoading] = useState(false);
+
+    const getCity = (cityFromChild)=>{
+
+      setCity(cityFromChild);
+    }
 
     
 
-      const handleClick = async (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
           const addInfo = {
-            city: city.current.value,
+            city: city,
             gender: gender.current.value,
             loginFlag:false
           };
@@ -33,40 +41,15 @@ const AddInfo = ({user,flagStatus}) => {
         
       };
 
-      useEffect(() =>{
-        setIsLoading(true);
-        const getCities = async () => {
-            try{
-                const res = await axios.get('http://localhost:8800/api/cities');
-                setCities(res.data);            
-            }catch(error){
-                console.log(error);
-               
-            }finally{
-              setIsLoading(false); 
-            }
-        };
-
-        getCities();
-        
-    },[]);
-
-
-
   return (
     <>
-  <form onSubmit={handleClick}>
     <div className="addInfo">
       <div className="infoModal">
           <h1 className="addInfoTitle">One more thing...</h1>
           <div className="addInfoContainer">
-            <select className="infoLoginInput" ref={city}>
-            <option value="" disabled selected>Choose City</option>
-              {isLoading ? <Loading/> : 
-               cities.map((city) =>
-                <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
-              )};
-            </select>
+          <form onSubmit={handleSubmit}>
+           <div className="addInfoInputsContainer">
+            <Searchbar placeholder="Search city" data={cities} getCity={getCity}/>
             <select className="infoLoginInput" type="text" ref={gender} placeholder="Gender">
             <option value="" disabled selected>Choose Gender</option>
             <option value="Male">Male</option>
@@ -74,11 +57,12 @@ const AddInfo = ({user,flagStatus}) => {
             <option value="Other">Other</option>
             <option value="Refuse">Id Rather not say</option>
             </select>
+            </div> 
                 <button className="infoLoginSubmit">Submit</button>
+         </form>
           </div>
         </div>
     </div>
-  </form>
   </>
   );
 };

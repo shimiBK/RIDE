@@ -30,8 +30,6 @@ export default function Rides({user,cities}) {
     const [numOfItems,setNumOfItems] = useState(8);
 
 
-    console.log(rides);
-
 
 
 
@@ -170,7 +168,7 @@ export default function Rides({user,cities}) {
     <div className="ridesContainer">
         <h1 className="ridesTitle">RIDES FOR {title}</h1>
         <div className="searchFilter">
-            <Searchbar placeholder="Filter by city" data={cities} searchType="searchAddRide" getCity={getCity}/>
+            <Searchbar placeholder="Filter by city" data={cities} getCity={getCity}/>
         </div>
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>

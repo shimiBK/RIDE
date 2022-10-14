@@ -6,7 +6,8 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
-const Searchbar = ({placeholder,data,getCity,searchType}) => {
+const Searchbar = ({placeholder,data,getCity}) => {
+
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [openData , setOpenData] = useState(true);
