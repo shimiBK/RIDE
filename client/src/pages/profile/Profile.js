@@ -110,30 +110,30 @@ const Profile = ({user}) => {
             <h1 className="profilePageTitle">Account Settings</h1>
         <div className="settingsContainer">
             <div className="formsWrapper">
-            <div className="personalInfo">
-               <h1 className="personalTitle">Personal Info</h1>
-                <form className="updatePersonal" onSubmit={handleUpdate}>
-                    <div className="personalInfoContainer">
-                        <input type="text" className="personalField" placeholder="First Name" ref={fname} />
-                        <input type="text" className="personalField" placeholder="Last Name" ref={lname} />
-                        <select className="personalSelectField" ref={city}>
-                            <option value="" disabled selected>Choose City</option>
-                                {cities.map((city) =>
-                                    <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
-                                )};
-                        </select>
-                        <select className="personalSelectField" type="text" ref={gender} placeholder="Gender">
-                            <option value="" disabled selected>Choose Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                            <option value="Refuse">Id Rather not say</option>
-                        </select>
+                <div className="personalInfo">
+                    <h1 className="personalTitle">Personal Info</h1>
+                    <form className="updatePersonal" onSubmit={handleUpdate}>
+                        <div className="personalInfoContainer">
+                            <input type="text" className="personalField" placeholder="First Name" ref={fname} />
+                            <input type="text" className="personalField" placeholder="Last Name" ref={lname} />
+                            <select className="personalSelectField" ref={city}>
+                                <option value="" disabled selected>Choose City</option>
+                                    {cities.map((city) =>
+                                        <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
+                                    )};
+                            </select>
+                            <select className="personalSelectField" type="text" ref={gender} placeholder="Gender">
+                                <option value="" disabled selected>Choose Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                                <option value="Refuse">Id Rather not say</option>
+                            </select>
+                        </div>
+                            {!isLoading && <button className="personalButton" type="submit">Update</button>}
+                            {isLoading && <button className="personalButton" type="submit"><Loading/></button>}
+                    </form>
                     </div>
-                        {!isLoading && <button className="personalButton" type="submit">Update</button>}
-                        {isLoading && <button className="personalButton" type="submit"><Loading/></button>}
-                </form>
-                </div>
                 <div className="profileEvents">
                     <h1 className="prfEventsTitle">My Events</h1>
                     {events.length > 0 ?
