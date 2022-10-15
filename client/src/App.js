@@ -16,9 +16,6 @@ import axios from "axios";
 
 
 
-
-
-
 function App() {
 
   const [user,setUser] = useState(null);
@@ -102,7 +99,7 @@ function App() {
           {user ? <Profile user={user} cities={cities}/> : <Home user={user}/>}
         </Route>
         <Route path="/myrides">
-          {user ? <Myrides user={user}/> : <Home user={user}/>}
+          {user ? <Myrides user={user} cities={cities} /> : <Home user={user}/>}
         </Route>
       </Switch>
     </Router>

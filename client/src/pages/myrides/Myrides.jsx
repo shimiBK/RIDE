@@ -9,9 +9,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from "react";
+import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
+import Searchbar from "../../components/searchbar/Searchbar";
 
 
-const Myrides = ({user}) => {
+const Myrides = ({user,cities}) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [rides,setRides] = useState([{}]);
@@ -19,16 +21,27 @@ const Myrides = ({user}) => {
     const [confirmDel,setConfirmDel] = useState(false);
     const [editRide,setEditRide] = useState(false);
     const [ride,setRide] = useState("");
-    const [cities , setCities] = useState([]);
+    const [city,setCity] = useState("");
+
 
     const userId = user ? user._id : "";
     const rideId = ride ? ride._id : "";
     
     const fname = useRef();
     const lname = useRef();
-    const city = useRef();
     const facebook = useRef();
     const time = useRef();
+
+    
+    const cancelDel = (childValue) =>{
+        setConfirmDel(childValue);
+    }
+
+    const getCity = (cityFromChild)=>{
+
+        setCity(cityFromChild);
+      }
+
 
 
 
@@ -60,7 +73,7 @@ const Myrides = ({user}) => {
             const updatedInfo = {
                 firstName: fname.current.value ? fname.current.value : ride.firstName,
                 lastName: lname.current.value ? lname.current.value : ride.lastName,
-                city: city.current.value ? city.current.value : ride.city,
+                city: city ? city : ride.city,
                 time: time.current.value ? time.current.value : ride.time,
             }
 
@@ -79,29 +92,19 @@ const Myrides = ({user}) => {
             }
         }
 
-    useEffect(() =>{
-        const getCities = async () => {
-            try{
-                const res = await axios.get('http://localhost:8800/api/cities');
-                setCities(res.data);                
-            }catch(error){
-                console.log(error);
-            }
-        };
-        getCities();
-    },[]);
-
-
     const deleteRide = async (rideID) => {
+
+        console.log("lol");
 
             setIsLoading(true)
         try { 
             await axios.delete(`/rides/${rideID}`);
             setIsLoading(false);
             toast.success("Ride has been deleted successfully");
+            setConfirmDel(false);
             setTimeout(()=>{
                 window.location.reload();
-            },2000);
+            },1000);
 
         }catch (error) {
             console.log(error)
@@ -164,15 +167,7 @@ const Myrides = ({user}) => {
         </Link>
             {isLoading ? <Loading/> : renderRide }
         {confirmDel &&
-            <div className="confirmDel">
-                <div className="delModal">
-                        <span className="confirmText">Are you sure you want to delete your ride?</span>
-                    <div className="delBtns">
-                        <button className="deletelBtn" onClick={ () => {deleteRide(ride._id);setConfirmDel(false)}} >DELETE</button>
-                        <button className="cancelBtn" onClick= {() => setConfirmDel(false)}>CANCEL</button>
-                    </div>
-                </div>
-            </div>}
+            <ConfirmDelete message="Are you sure you want to delete this ride?" handleDelete={()=> deleteRide(ride._id)} cancelDel={cancelDel} />}
             {editRide && 
             <div className="editRide">
                 <h1 className="editRideTitle">Edit Ride Info</h1>
@@ -180,12 +175,7 @@ const Myrides = ({user}) => {
                     <div className="editRideContainer">
                     <input type="text" className="editRideField" placeholder="First Name" ref={fname}/>
                         <input type="text" className="editRideField" placeholder="Last Name" ref={lname} />
-                        <select ref={city} className="editRideSelectField">
-                            <option value="" disabled selected>Choose City</option>
-                                {cities.map((city) =>
-                                    <option key={city._id} style={{direction:"ltr"}} value={city.english_name}>{city.english_name}</option>
-                                )};
-                        </select>
+                        <Searchbar placeholder="Choose City" data={cities} getCity={getCity} required=""/>
                         <input type="text" ref={facebook} className="editRideField" placeholder="Facebook Profile"/>
                         <select  name="events" ref={time} className="editRideSelectField">
                             <option value="" disabled selected>Time</option>

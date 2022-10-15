@@ -13,8 +13,6 @@ const Searchbar = ({placeholder,data,getCity,required}) => {
     const [openData , setOpenData] = useState(true);
 
 
-    console.log(required);
-
 
 
     useEffect(()=>{

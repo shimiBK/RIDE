@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useRef, useState } from "react";
 import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
+import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 
 const Profile = ({user,cities}) => {
 
@@ -13,6 +14,9 @@ const Profile = ({user,cities}) => {
     const [isLoading,setIsLoading] = useState(false);
     const [confirmDel,setConfirmDel] = useState(false);
     const [city,setCity] = useState("");
+
+
+
 
     const fname = useRef();
     const lname = useRef();
@@ -22,12 +26,15 @@ const Profile = ({user,cities}) => {
 
         setCity(cityFromChild);
       }
+
+      const cancelDel = (childValue) =>{
+        setConfirmDel(childValue);
+    }
     
 
     const handleUpdate = async (e) => {
 
         setIsLoading(true);
-
 
         e.preventDefault();
           const updateInfo = {
@@ -59,7 +66,6 @@ const Profile = ({user,cities}) => {
         }finally{
             window.location.reload();
         }
-        
       }
 
       const handleRemove = async (event) =>{
@@ -145,16 +151,7 @@ const Profile = ({user,cities}) => {
                 </div>
                     <button className="deleteUserButton" onClick={()=>setConfirmDel(true)}>Delete Account</button>
             </div>}
-            {confirmDel &&
-         <div className="confirmDel">
-            <div className="delModal">
-                    <span className="confirmText">Are you sure you want to delete your ride?</span>
-                <div className="delBtns">
-                    <button className="deletelBtn" onClick={handleDelete} >DELETE</button>
-                    <button className="cancelBtn" onClick= {() => setConfirmDel(false)}>CANCEL</button>
-                </div>
-            </div>
-        </div>}
+            {confirmDel && <ConfirmDelete message="Are you sure you want to delete your account?" handleDelete={handleDelete} cancelDel={cancelDel}/>}
         </div>
         <ToastContainer
             position="top-center"
