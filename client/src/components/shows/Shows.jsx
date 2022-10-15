@@ -7,6 +7,7 @@ import axios from "axios";
 import Searchbar from "../searchbar/Searchbar";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Event from "../event/Event";
 
 
 
@@ -14,12 +15,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const Shows = ({user,cities}) => {
 
     const [openModal , setOpenModal] = useState(false);
-    const [illenium,setIllenium] = useState(false);
-    const [tiesto,setTiesto] = useState(false);
-    const [hardwell,setHardwell] = useState(false);
-    const [davidGuetta,setDavidGuetta] = useState(false);
-    const [martinGarrix,setMartinGarrix] = useState(false);
-    const [armin,setArmin] = useState(false);
     const [city,setCity] = useState("");
     const [users,setUsers] = useState({});
     
@@ -60,26 +55,7 @@ const Shows = ({user,cities}) => {
       }
     };
 
-    const handleFollow = async (eventName) =>{
-      
-      const list = user.sendMails;
-      if(!list.includes(eventName))
-      {
-        list.push(eventName);
-        const addEvent = {
-          sendMails:list
-        }
-        try {
-          await axios.put(`/user/${user._id}`,addEvent);
-          toast.success("Event was successfully added to your followings");
-          
-        } catch (error) {
-          console.log(error);
-        }
-      }else{
-        toast.info("You already follow this event");
-      }
-    };
+
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -141,115 +117,19 @@ const Shows = ({user,cities}) => {
     <div className="showsContainer">
         <h1 className="showsTitle">UPCOMING EVENTS</h1>
         <div className="eventItems" ref={eventsRef}>
-            <div className="eventItem" onMouseOver={() => setArmin(true)} onMouseLeave={() => setArmin(false)}>
-                <Link to="/rides/armin-van-buuren">
-                  <img src="assests/armin-van-buuren3.jpg" alt="" className="showImg"/>
-                </Link>
-                <div className="eventTitle">
-                {!armin && <h1 className="eventName">Armin Van Buuren</h1>}
-              </div>
-              <div className="subscribe">
-                {user && <h1 onClick={ () => handleFollow("armin-van-buuren")}>+</h1>}
-              </div>
-              {armin &&
-               <div className="eventTitleHover">
-                    <h1 className="eventName">Armin Van Buuren</h1>
-                    <h3 className="eventLocation">סלינה | אילת</h3>
-                    <h3 className="eventDate">16.03.22</h3>
-              </div>}
-            </div>
-            <div className="eventItem" onMouseOver={() => setMartinGarrix(true)} onMouseLeave={() => setMartinGarrix(false)}>
-                <Link to="rides/martin-garrix">
-                <img src="assests/martin-garrix3.jpg" alt="" className="showImg"/>
-                </Link>
-                <div className="eventTitle">
-                {!martinGarrix && <h1 className="eventName">Martin Garrix</h1>}
-              </div>
-              <div className="subscribe">
-                { user && <h1 onClick={ () => handleFollow("martin-garrix")}>+</h1>}
-              </div>
-              {martinGarrix &&
-               <div className="eventTitleHover">
-                <h1 className="eventName">Martin Garrix</h1>
-                <h3 className="eventLocation">לייב פארק | ראשון לציון</h3>
-                <h3 className="eventDate">24.05.22</h3>
-              </div>}
-        
-            </div>
-            <div className="eventItem" onMouseOver={() => setDavidGuetta(true)} onMouseLeave={() => setDavidGuetta(false)}>
-                <Link to="/rides/david-guetta">
-                <img src="assests/david-guetta3.jpg" alt="" className="showImg"/>
-                </Link>
-                <div className="eventTitle">
-                {!davidGuetta && <h1 className="eventName">David Guetta</h1>}
-              </div>
-              <div className="subscribe">
-                  { user && <h1 onClick={ () => handleFollow("david-guetta")}>+</h1>}
-              </div>
-              {davidGuetta &&
-               <div className="eventTitleHover">
-                <h1 className="eventNameHover">David Guetta</h1>
-                <h3 className="eventLocation">לייב פארק | ראשון לציון</h3>
-                <h3 className="eventDate">30.07.22</h3> 
-                </div>}
-            </div>
-            <div className="eventItem" onMouseOver={() => setHardwell(true)} onMouseLeave={() => setHardwell(false)}>
-              <Link to="rides/hardwell">
-              <img src="assests/hardwell.jpg" alt="" className="showImg"/>
-              </Link>
-              <div className="eventTitle">
-                {!hardwell && <h1 className="eventName">Hardwell</h1>}
-              </div>
-              <div className="subscribe">
-                { user && <h1 onClick={ () => handleFollow("hardwell")}>+</h1>}
-              </div>
-              {hardwell &&  <div className="eventTitleHover">
-              <h1 className="eventNameHover">Hardwell</h1>
-              <h3 className="eventLocation">גני התערוכה | תל אביב</h3>
-              <h3 className="eventDate">26.05.22</h3>
-              </div>}
-            </div>
-            <div className="eventItem" onMouseOver={() => setTiesto(true)} onMouseLeave={() => setTiesto(false)}>
-                <Link to="rides/tiesto">
-                <img src="assests/tiesto3.jpg" alt="" className="showImg"/>
-                </Link>
-                <div className="eventTitle">
-                  {!tiesto && <h1 className="eventName">Tiesto</h1>}
-               </div>
-               <div className="subscribe">
-                {user && <h1 onClick={ () => handleFollow("tiesto")}>+</h1>}
-              </div>
-               {tiesto && <div className="eventTitleHover">
-                <h1 className="eventNameHover">Tiesto</h1>
-                <h3 className="eventLocation">האנגר 11 | תל אביב</h3>
-                <h3 className="eventDate">30.06.22</h3>
-              </div>}
-
-            </div>
-            <div className="eventItem"   onMouseOver={() => setIllenium(true)} onMouseLeave={() => setIllenium(false)}>
-              <Link to="rides/illenium">
-              <img src="assests/illenium.jpg" alt="" className="showImg"/>
-              </Link>
-              <div className="eventTitle" >
-                {!illenium && <h1 className="eventName">Illenium</h1>}
-              </div>
-              <div className="subscribe">
-                { user && <h1 onClick={ () => handleFollow("illenium")}>+</h1>}
-              </div>
-              {illenium && <div className="eventTitleHover">
-                <h1 className="eventNameHover">Illenium</h1>
-                <h3 className="eventLocation">האנגר 11 | תל אביב</h3>
-                <h3 className="eventDate">30.06.22</h3>
-              </div>}
-          </div>
+            <Event user={user} eventName="armin-van-buuren" eventTitle="Armin Van Buuren" eventLocation="סלינה | אילת" eventDate="16.03.22" ToastContainer={ToastContainer}/>
+            <Event user={user} eventName="martin-garrix" eventTitle="Martin Garrix" eventLocation="לייב פארק | ראשון לציון" eventDate="24.05.22"/>
+            <Event user={user} eventName="david-guetta" eventTitle="David Guetta" eventLocation="לייב פארק | ראשון לציון" eventDate="30.07.22"/>
+            <Event user={user} eventName="hardwell" eventTitle="Hardwell" eventLocation="גני התערוכה | תל אביב" eventDate="26.08.22"/>
+            <Event user={user} eventName="tiesto" eventTitle="Tiesto" eventLocation="האנגר 11 | תל אביב" eventDate="20.10.22"/>
+            <Event user={user} eventName="illenium" eventTitle="Illenium" eventLocation="האנגר 11 | תל אביב" eventDate="30.10.22"/>
           </div>
           {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>
           <ArrowForwardIosIcon style={{fontSize:"40px"}} className="rightChevron"/> */}
           <button className="addRideBtn" onClick={handleRide}>I WANT TO SHARE A RIDE</button>
-
-    {openModal &&
-     (
-          <div  div className="rideModal">
+        {openModal &&
+        (
+          <div div className="rideModal">
             <h1 className="rideTitle">Ride Information</h1>
             <form className="rideBox" onSubmit={handleClick}>
               <div className="rideInputContainer">

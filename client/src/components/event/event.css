@@ -1,0 +1,82 @@
+.eventItem{
+    width: 320px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: none;
+    -webkit-box-shadow: -2px 3px 25px -4px rgba(0,0,0,0.8); 
+    box-shadow: -2px 3px 25px -4px rgba(0,0,0,0.8);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s;
+}
+
+.eventTitle{
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+
+}
+
+.subscribe{
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    right:5px;
+    top:5px;
+    cursor: pointer;
+
+}
+
+
+.showImg{
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.9;
+
+}
+
+.showImg:hover{
+    opacity: 0.6;
+}
+
+
+
+
+.eventTitleHover{
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: none;
+   
+
+}
+
+
+
+.eventName , .eventLocation , .eventDate, .eventNameHover{
+    color: white;
+    margin-top: 5px;
+
+    
+}
+.eventName {
+    font-size: 25px;
+    
+}
+.eventLocation{
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+.eventDate{
+    margin-top: 20px;
+    font-size: 20px;
+}

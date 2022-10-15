@@ -1,0 +1,65 @@
+.rideItem{
+    position: relative;
+    border: 3px solid transparent;
+    background-color: rgb(36, 38, 43,0.9);
+    width: 275px;
+    height: 325px;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 7px 9px 2px rgba(0,0,0,0.16); 
+    box-shadow: 3px 7px 9px 2px rgba(0,0,0,0.16);
+    transition: all 0.1s ease-in;
+
+}
+
+.rideItem:hover{
+    border: 3px solid #3498db;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+
+}
+
+.infoItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap:5px;
+    
+}
+
+.profileImg{
+    width: 65px;
+    height:65px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.fixedText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color:gray;
+    
+}
+
+
+.userInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+
+}
