@@ -4,10 +4,10 @@ import PropagateLoader  from "react-spinners/PropagateLoader";
 
 
 
-const Loading = () => {
+const Loading = ({size}) => {
   return (
     <div className="loading">
-        <PropagateLoader  color="#ffff" loading="true" size="30" speedMultiplier="1" />
+        <PropagateLoader  color="#ffff" loading="true" size={size} speedMultiplier="1" />
     </div>
   )
 }

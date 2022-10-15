@@ -9,7 +9,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from "react";
-import Navbar from "../../components/navbar/Navbar";
 
 
 const Myrides = ({user}) => {
@@ -95,11 +94,14 @@ const Myrides = ({user}) => {
 
     const deleteRide = async (rideID) => {
 
+            setIsLoading(true)
         try { 
             await axios.delete(`/rides/${rideID}`);
+            setIsLoading(false);
             toast.success("Ride has been deleted successfully");
-            setTimeout(window.location.reload(),5000);
-            
+            setTimeout(()=>{
+                window.location.reload();
+            },2000);
 
         }catch (error) {
             console.log(error)
@@ -108,11 +110,12 @@ const Myrides = ({user}) => {
     }
 
     const renderRide = (
-        <div className="myRidesWrapper">
+        <div className="myRidesContainer">
+                    <h1 className="myRidesTitle">{user.firstName}  {user.lastName} Rides</h1>
+        <div className="myRideItems">
         {rides.length > 0 ? (rides.map(ride =>
         <div className="myRideItem" key={ride._id}>
             <div className="myRidesInfoContainer">
-             
                 <div className="myRidesInfoItem">
                 <span className="myRideEventName">{ride.eventName}</span>
                 </div>
@@ -147,6 +150,7 @@ const Myrides = ({user}) => {
             </div>
             <button className="myRidesFacebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
         </div>)) : <h3 className="emptyRides">Your dont have any rides yet</h3>}  
+        </div>
      </div>
 
     );
@@ -154,8 +158,10 @@ const Myrides = ({user}) => {
   return (
     <>
     <div className="myrides">
-        <Navbar user={user}/>
-        <h1 className="myRidesTitle">{user.firstName}  {user.lastName} Rides</h1>
+        {/* <Navbar user={user}/> */}
+        <Link to="/">
+              <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
+        </Link>
             {isLoading ? <Loading/> : renderRide }
         {confirmDel &&
             <div className="confirmDel">
@@ -192,7 +198,7 @@ const Myrides = ({user}) => {
                             <option value="22:00">22:00</option>
                             <option value="22:30">22:30</option>
                             <option value="23:00">23:00</option>
-            </select>
+                    </select>
                     </div>
                     {!isLoading && <button className="editRideButton" type="submit">Update</button>}
                         {isLoading && <button className="editRideButton" type="submit"><Loading/></button>}

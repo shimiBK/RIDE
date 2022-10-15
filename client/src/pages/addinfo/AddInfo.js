@@ -9,7 +9,6 @@ import Navbar from "../../components/navbar/Navbar";
 
 const AddInfo = ({user,flagStatus,cities}) => {
 
-  console.log(cities);
 
 
   const [city,setCity] = useState("");
@@ -29,7 +28,7 @@ const AddInfo = ({user,flagStatus,cities}) => {
           const addInfo = {
             city: city,
             gender: gender.current.value,
-            loginFlag:false
+            loginFlag:(city && gender ? false : true)
           };
           try {
             await axios.put(`/user/${user._id}`, addInfo);
@@ -37,6 +36,9 @@ const AddInfo = ({user,flagStatus,cities}) => {
 
           } catch (err) {
             console.log(err);
+          }
+          finally{
+            window.location.reload();
           }
         
       };
@@ -50,7 +52,7 @@ const AddInfo = ({user,flagStatus,cities}) => {
           <form onSubmit={handleSubmit}>
            <div className="addInfoInputsContainer">
             <Searchbar placeholder="Search city" data={cities} getCity={getCity}/>
-            <select className="infoLoginInput" type="text" ref={gender} placeholder="Gender">
+            <select className="infoLoginInput" type="text" ref={gender} placeholder="Gender" required="true">
             <option value="" disabled selected>Choose Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>

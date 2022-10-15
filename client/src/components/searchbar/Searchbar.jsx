@@ -6,11 +6,14 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
-const Searchbar = ({placeholder,data,getCity}) => {
+const Searchbar = ({placeholder,data,getCity,required}) => {
 
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [openData , setOpenData] = useState(true);
+
+
+    console.log(required);
 
 
 
@@ -49,6 +52,7 @@ const Searchbar = ({placeholder,data,getCity}) => {
           value={wordEntered}
           onChange={handleFilter}
           className="searchInput"
+          required={required}
         />
                    {filteredData.length === 0 ? (
             <SearchIcon className="searchIcon" />

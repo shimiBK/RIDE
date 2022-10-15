@@ -1,34 +1,29 @@
 .myrides{
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg");
-    background-size: 100% 100%;
-    margin:0;
+    background-image: linear-gradient(to right top, #24262b, #25272c, #27292e, #282a2f, #2a2c31, #2c2e33, #2e3035, #303237, #33353a, #36383d, #393b40, #3c3e43);    margin:0;
+    display: flex;
+    justify-content: center;
     position: relative;
     
 }
 
 .myRidesTitle{
-    color: white;
+    color:white;
+    font-size: 35px;
+    margin-top: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 50px;
-    margin: 0;
-    padding-top: 2%;
 
 }
 
 .myRidesTitle:after{
-    content: "";
     position: absolute;
+    top:65px;
+    content: "";
     height: 0px;
-    border-bottom: 4px solid #3498db;;
+    border-bottom: 3px solid #3498db;
     border-radius: 100px;
-    width: 1024px;
-    top: 15%;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 1260px;
 
 }
 .myRideEventName{
@@ -37,31 +32,36 @@
     font-size: 16px;
 }
 
-.myRidesWrapper{
+.myRidesContainer{
+    position: relative;
+    justify-content: center;
+    max-width: 1260px;
+    width: 100%;
+    margin-top: 25px;
+
+}
+.myRideItems{
     display: flex;
     flex-wrap: wrap;
-    align-content: space-between;
     justify-content: center;
-    padding: 0px 200px;
-    margin-top: 100px;
+    gap:30px;
+    margin-top: 175px;  
 
 }
 
 .myRideItem{
 
-    width: 300px;
-    height: 350px;
-    background-color: rgb(36, 38, 43,0.9);
-    border: 3px solid transparent;
-    cursor: pointer;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    margin-bottom: 15px;
     position: relative;
-    margin-right: 50px;
-    box-shadow: 0 0 6px rgb(0 0 0 / 65%);
+    border: 3px solid transparent;
+    background-color: rgb(36, 38, 43,0.9);
+    width: 275px;
+    height: 325px;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 7px 9px 2px rgba(0,0,0,0.16); 
+    box-shadow: 3px 7px 9px 2px rgba(0,0,0,0.16);
+    transition: all 0.1s ease-in;
+
 
 }
 
@@ -70,9 +70,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    gap:5px;
+    font-size: 20px;
     margin-top: 10px;
-    gap:10px;
-
 }
 .myRidesFacebookBtn{
     position: absolute;
@@ -220,7 +221,6 @@
     border-color: #3498db;
     position: absolute;
     bottom: 25px;
-
 }
 
 

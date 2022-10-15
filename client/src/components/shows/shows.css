@@ -137,6 +137,7 @@
 
 
 .addRideBtn{
+    position: absolute;
     cursor: pointer;
     border-radius: 50px;
     border: 2px solid #3498db;
@@ -149,8 +150,23 @@
     transition: transform .2s;
     color: white;
     border-color: #3498db;
-    position: absolute;
     bottom: 10px;
+
+}
+.leftChevron{
+    position: absolute;
+    color:white;
+    left:0;
+    bottom: 20px;
+    cursor: pointer;
+
+}s
+.rightChevron{
+    position: absolute;
+    color:white;
+    right:0;
+    bottom: 20px;
+    cursor: pointer;
 
 }
 

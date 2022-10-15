@@ -99,7 +99,7 @@ function App() {
           {!flag ? <Redirect to="/"/> : <AddInfo user={user}  />}
         </Route>
         <Route path="/profile">
-          {user ? <Profile user={user}/> : <Home user={user}/>}
+          {user ? <Profile user={user} cities={cities}/> : <Home user={user}/>}
         </Route>
         <Route path="/myrides">
           {user ? <Myrides user={user}/> : <Home user={user}/>}

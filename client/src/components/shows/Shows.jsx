@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import Searchbar from "../searchbar/Searchbar";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 
@@ -17,11 +19,9 @@ const Shows = ({user,cities}) => {
     const [hardwell,setHardwell] = useState(false);
     const [davidGuetta,setDavidGuetta] = useState(false);
     const [martinGarrix,setMartinGarrix] = useState(false);
-    const [gender, setGender] = useState("");
     const [armin,setArmin] = useState(false);
     const [city,setCity] = useState("");
     const [users,setUsers] = useState({});
-
     
   
     const ename = useRef();
@@ -71,17 +71,13 @@ const Shows = ({user,cities}) => {
         }
         try {
           await axios.put(`/user/${user._id}`,addEvent);
-
           toast.success("Event was successfully added to your followings");
-          
           
         } catch (error) {
           console.log(error);
-          
         }
       }else{
         toast.info("You already follow this event");
-
       }
     };
 
@@ -96,7 +92,7 @@ const Shows = ({user,cities}) => {
             time: time.current.value,
             uID: userId,
             userImg:userImg,
-            userGender:gender,
+            userGender:user.gender,
           };
 
           console.log(ride);
@@ -121,17 +117,6 @@ const Shows = ({user,cities}) => {
           toast.info("Please login in order to add a ride")
         }}
         
-    useEffect(() =>{
-      const updateGender = ()=>{
-        if(user)
-        {
-          setGender(user.gender);
-        }
-      }
-
-      updateGender();
-      
-    },[])
 
 
     useEffect(() =>{
@@ -258,6 +243,8 @@ const Shows = ({user,cities}) => {
               </div>}
           </div>
           </div>
+          {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>
+          <ArrowForwardIosIcon style={{fontSize:"40px"}} className="rightChevron"/> */}
           <button className="addRideBtn" onClick={handleRide}>I WANT TO SHARE A RIDE</button>
 
     {openModal &&
@@ -266,33 +253,52 @@ const Shows = ({user,cities}) => {
             <h1 className="rideTitle">Ride Information</h1>
             <form className="rideBox" onSubmit={handleClick}>
               <div className="rideInputContainer">
-              <select name="events" ref={ename} className="rideSelectInput">
-                <option value="" disabled selected>Choose Event</option>
-                <option value="david-guetta">David Guetta</option>
-                <option value="armin-van-buuren">Armin Van Buuren</option>
-                <option value="martin-garrix">Martin Garrix</option>
-                <option value="hardwell">Hardwell</option>
-                <option value="Tiesto">Tiesto</option>
-                <option value="illenium">ILLENIUM</option>
-              </select>
-                <input type="text"  ref={fname} placeholder="First Name" className="rideInput"/>
-                <input type="text" ref={lname} placeholder="Last Name" className="rideInput"/>
-              <Searchbar placeholder="Search City" data={cities} getCity={getCity} />
-              <input type="text" ref={facebook} placeholder="Facebook Profile Link" className="rideInput"/>
+                <select name="events" ref={ename} className="rideSelectInput">
+                  <option value="" disabled selected>Choose Event</option>
+                  <option value="david-guetta">David Guetta</option>
+                  <option value="armin-van-buuren">Armin Van Buuren</option>
+                  <option value="martin-garrix">Martin Garrix</option>
+                  <option value="hardwell">Hardwell</option>
+                  <option value="Tiesto">Tiesto</option>
+                  <option value="illenium">ILLENIUM</option>
+                </select>
+                <input
+                    type="text"
+                    ref={fname}
+                    placeholder="First Name"
+                    className="rideInput"
+                  />
+                <input
+                    type="text"
+                    ref={lname}
+                    placeholder="Last Name"
+                    className="rideInput"
+                  />
+                <Searchbar placeholder="Search City" data={cities} getCity={getCity} required="true"/>
+                <input
+                    type="text"
+                    ref={facebook}
+                    placeholder="Facebook Profile Link" 
+                    className="rideInput"
+                  />
               <select name="events" ref={time} className="rideSelectInput">
-              <option value="" disabled selected>Leaving Time</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="20:30">20:30</option>
-              <option value="21:00">21:00</option>
-              <option value="21:30">21:30</option>
-              <option value="22:00">22:00</option>
-              <option value="22:30">22:30</option>
-              <option value="23:00">23:00</option>
+                <option value="" disabled selected>Leaving Time</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
               </select>
               </div>
-              <button className="rideButton" type="submit">Add Ride</button>
+              <button
+                className="rideButton" 
+                type="submit">
+                  Add Ride
+              </button>
               </form>
               <span className="close" onClick={() => {setOpenModal(false)}}>X</span>
           </div>
