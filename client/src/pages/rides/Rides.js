@@ -8,6 +8,7 @@ import FemaleIcon from '@mui/icons-material/Female';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../../components/searchbar/Searchbar";
+import Navbar from "../../components/navbar/Navbar";
 
 
 
@@ -27,7 +28,8 @@ export default function Rides({user,cities}) {
     const [filteredRides,setfilteredRides] = useState([{}]);
     const [city,setCity] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [numOfItems,setNumOfItems] = useState(8);
+    const [showAll,setShowAll] = useState(false);
+    const [numOfItems,setNumOfItems] = useState(NUM_OF_ITEMS);
 
 
 
@@ -48,23 +50,23 @@ export default function Rides({user,cities}) {
 
 
 
-    useEffect(() =>{
-        window.addEventListener("scroll", handleScroll);
+    // useEffect(() =>{
+    //     window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener("scroll", handleScroll);
+    //     return () => window.removeEventListener("scroll", handleScroll);
 
-    },[]);
+    // },[]);
 
-    const handleScroll = async () => {
-        if (
-            window.innerHeight + document.documentElement.scrollTop + 1 >=
-            document.documentElement.scrollHeight
-        ) {
+    // const handleScroll = async () => {
+    //     if (
+    //         window.innerHeight + document.documentElement.scrollTop + 1 >=
+    //         document.documentElement.scrollHeight
+    //     ) {
             
-                setNumOfItems((prev) => prev + NUM_OF_ITEMS);
+    //             setNumOfItems((prev) => prev + NUM_OF_ITEMS);
 
-        }
-    };
+    //     }
+    // };
 
     
     useEffect(()=>{
@@ -76,7 +78,6 @@ export default function Rides({user,cities}) {
         setfilteredRides(filtered);
 
     },[city])
-
 
 
     
@@ -92,7 +93,8 @@ export default function Rides({user,cities}) {
                     ? `http://localhost:8800/api/rides?eventName=${ename}`
                     : `http://localhost:8800/api/rides`
                 );
-                setRides(res.data);
+              showAll ? setRides(res.data) : setRides(res.data.slice(0,8));
+                
                 setIsLoading(false);
                 
             }catch(error){
@@ -103,77 +105,55 @@ export default function Rides({user,cities}) {
         };
         getRides();
         
-    },[ename,numOfItems]);
+    },[ename,showAll]);
     
     const renderRide = (
-        <div className="ridesWrapper">
-                    {city ? filteredRides.length > 0 ? (filteredRides.map(ride =>
-        <div className="rideItem" key={ride._id}>
-            <div className="infoContainer">
-                <div className="infoItem">
-                    <img src={ride.userImg ? ride.userImg : "/assests/blank-profile.png"} alt="" className="profileImg" />
-                </div>
-                <div className="infoItem">
-                    <span className="userInfo">{ride.firstName + " " +  ride.lastName}</span>
-                </div>
-                <div className="infoItem">
-                    <span className="fixedText">From →</span>
-                    <span className="userInfo">{ride.city}</span>
-                </div>
-                <div className="infoItem">
-                    <span className="fixedText">Time →</span>
-                    <span className="userInfo">{ride.time}</span>
-                </div>
-                {/* {ride.userID === userId && <span className="deleteRide" onClick={() => {toast("Are You sure you want to delete this ride?");setConfirmDel(true);setRideID(ride._id);}}>X</span>} */}
-                <span className="genderIcon">
-                    {ride.userGender === "Male" && <MaleIcon/>}
-                    {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
-                </span>
-            </div>
-            <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
-        </div>)) : <h3 className="emptyRides">THERE ARE NO RIDES FROM {city}</h3>
-         :
-        rides.length > 0 ? (rides.map(ride =>
-        <div className="rideItem" key={ride._id}>
-            <div className="infoContainer">
-                <div className="infoItem">
-                    <img src={ride.userImg ? ride.userImg : "/assests/blank-profile.png"} alt="" className="profileImg" />
-                </div>
-                <div className="infoItem">
-                    <span className="userInfo">{ride.firstName + " " +  ride.lastName}</span>
-                </div>
-                <div className="infoItem">
-                    <span className="fixedText">From →</span>
-                    <span className="userInfo">{ride.city}</span>
-                </div>
-                <div className="infoItem">
-                    <span className="fixedText">Time →</span>
-                    <span className="userInfo">{ride.time}</span>
-                </div>
-                {/* {ride.userID === userId && <span className="deleteRide" onClick={() => {toast("Are You sure you want to delete this ride?");setConfirmDel(true);setRideID(ride._id);}}>X</span>} */}
-                <span className="genderIcon">
-                    {ride.userGender === "Male" && <MaleIcon/>}
-                    {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
-                </span>
-            </div>
-            <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
-        </div>)) : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>
-    }  
-     </div>
-
-    );
-
-  return (
-    <>
-    <div className="ridesContainer">
-        <h1 className="ridesTitle">RIDES FOR {title}</h1>
-        <div className="searchFilter">
-            <Searchbar placeholder="Filter by city" data={cities} getCity={getCity}/>
-        </div>
+        <div className="ridesContainer">
+            <h1 className="ridesTitle">RIDES FOR {title}</h1>
+            <div className="searchFilter">
+                
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
+            <Searchbar placeholder="Search by city" data={cities} getCity={getCity}/>
+        </div>
+            <div className="rideItems">
+        {rides.length > 0 ?
+             rides.map(ride =>
+        <div className="rideItem" key={ride._id}>
+            <div className="infoContainer">
+                <div className="infoItem">
+                    <img src={ride.userImg ? ride.userImg : "/assests/blank-profile.png"} alt="" className="profileImg" />
+                </div>
+                <div className="infoItem">
+                    <span className="userInfo">{ride.firstName + " " +  ride.lastName}</span>
+                </div>
+                <div className="infoItem">
+                    <span className="fixedText">From →</span>
+                    <span className="userInfo">{ride.city}</span>
+                </div>
+                <div className="infoItem">
+                    <span className="fixedText">Time →</span>
+                    <span className="userInfo">{ride.time}</span>
+                </div>
+                <span className="genderIcon">
+                    {ride.userGender === "Male" && <MaleIcon/>}
+                    {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
+                </span>
+            <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
+            </div>
+      </div>)
+       : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>}
+       </div>
+       </div>)
+
+  return (
+    <>
+    <div className="rides">
+    {/* <Navbar user={user} /> */}
         {isLoading ? <Loading/> : renderRide }
+        {rides.length >=8 && !showAll && <button className="facebookBtn" onClick={()=> setShowAll(true)}>Load More</button>}
+
     </div>
     </>
   );

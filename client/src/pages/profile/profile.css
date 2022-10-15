@@ -3,7 +3,7 @@
     flex-direction: column;
     position: relative;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, #24262b, #2c2e33, #34363b, #3c3e43, #44474c, #4b4e54, #51555c, #585c64, #5e636d, #646976, #6a707f, #707788);
+    background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);    /* background-image: linear-gradient(to right bottom, #24262b, #2c2e33, #34363b, #3c3e43, #44474c, #4b4e54, #51555c, #585c64, #5e636d, #646976, #6a707f, #707788); */
 
 }
 
