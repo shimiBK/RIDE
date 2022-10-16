@@ -99,7 +99,7 @@ router.delete("/delete/:userId", async (req,res)=>{
 
 
 
-// get specific ride
+// delete specific ride
 
 
 router.delete("/:id", async (req, res) => {
@@ -112,6 +112,25 @@ router.delete("/:id", async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+  // get specific ride
+
+
+router.get("/:id", async (req, res) => {
+
+  const path = {...req.query};
+  console.log(path)
+
+  try {
+    const ride = await Ride.findById(req.params.id);
+
+
+    res.status(200).json(ride);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
@@ -134,7 +153,7 @@ router.post("/" , async (req,res) => {
 
     try{
         const savedRide = await newRide.save();
-        res.status(201).json('A ride was created Successfully');
+        res.status(201).json(savedRide);
 
     
     }catch(err)
