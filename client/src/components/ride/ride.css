@@ -63,3 +63,87 @@
     color: white;
 
 }
+
+/*EDIT RIDE*/
+
+
+.editWrapper{
+    width: 90%;
+    position: absolute;
+    background:none;
+    top:20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.editIcon{
+    color: #3498db;
+}
+
+
+.editList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3498db;
+    height: 300px;
+    font-size: 16px;
+    position: absolute;
+    background-color:  rgb(36, 38, 43,1);
+    border-radius: 10px 10px 0 0;
+    top:0%;
+    width: 100%;
+    z-index: 2;
+
+
+
+}
+.editButtonContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:30px;
+    margin-bottom: 25px;
+    
+}
+
+.editListItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap:5px;
+    border-radius: 50px;
+    border: 2px solid #3498db;
+    background-color: #3498db;
+    padding: 8px 50px;
+    color: white;
+    font-size: 16px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
+    transition: all 0.1s ease-in;
+    color: white;
+    border-color: #3498db;
+
+}
+
+.editListItem:hover{
+    background-color: white;
+    color: #3498db;
+
+  }
+
+
+
+
+
+.editListClose{
+    position: absolute;
+    right:5px;
+    top:0;
+    font-size: 16px;
+}
+
+
