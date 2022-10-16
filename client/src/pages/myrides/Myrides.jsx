@@ -1,23 +1,20 @@
 import "./myrides.css"
 import axios from "axios";
 import {useState , useEffect} from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
-import MaleIcon from '@mui/icons-material/Male';
-import FemaleIcon from '@mui/icons-material/Female';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from "react";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 import Searchbar from "../../components/searchbar/Searchbar";
+import Ride from "../../components/ride/Ride";
 
 
 const Myrides = ({user,cities}) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [rides,setRides] = useState([{}]);
-    const [editMenu,setEditMenu] = useState(false);
     const [confirmDel,setConfirmDel] = useState(false);
     const [editRide,setEditRide] = useState(false);
     const [ride,setRide] = useState("");
@@ -32,6 +29,12 @@ const Myrides = ({user,cities}) => {
     const facebook = useRef();
     const time = useRef();
 
+
+
+    const changeEditRide = (value) =>{
+        setEditRide(value);
+    }
+
     
     const cancelDel = (childValue) =>{
         setConfirmDel(childValue);
@@ -42,6 +45,9 @@ const Myrides = ({user,cities}) => {
         setCity(cityFromChild);
       }
 
+      const getRide = (idFromChild) =>{
+        setRide(idFromChild);
+      }
 
 
 
@@ -94,9 +100,8 @@ const Myrides = ({user,cities}) => {
 
     const deleteRide = async (rideID) => {
 
-        console.log("lol");
-
             setIsLoading(true)
+
         try { 
             await axios.delete(`/rides/${rideID}`);
             setIsLoading(false);
@@ -104,7 +109,7 @@ const Myrides = ({user,cities}) => {
             setConfirmDel(false);
             setTimeout(()=>{
                 window.location.reload();
-            },1000);
+            },500);
 
         }catch (error) {
             console.log(error)
@@ -114,50 +119,24 @@ const Myrides = ({user,cities}) => {
 
     const renderRide = (
         <div className="myRidesContainer">
-                    <h1 className="myRidesTitle">{user.firstName}  {user.lastName} Rides</h1>
-        <div className="myRideItems">
-        {rides.length > 0 ? (rides.map(ride =>
-        <div className="myRideItem" key={ride._id}>
-            <div className="myRidesInfoContainer">
-                <div className="myRidesInfoItem">
-                <span className="myRideEventName">{ride.eventName}</span>
-                </div>
-                <div className="myRidesInfoItem">
-                    <img src={ride.userImg ? ride.userImg : "/assests/blank-profile.png"} alt="" className="profileImg" />
-                </div>
-                <div className="myRidesInfoItem">
-                    <span className="userInfo">{ride.firstName + " " +  ride.lastName}</span>
-                </div>
-                <div className="myRidesInfoItem">
-                    <span className="fixedText">From →</span>
-                    <span className="userInfo">{ride.city}</span>
-                </div>
-                <div className="myRidesInfoItem">
-                    <span className="fixedText">Time →</span>
-                    <span className="userInfo">{ride.time}</span>
-                </div>
-                <div className="editWrapper">
-                    <span className="editIcon">
-                        <MoreVertIcon onClick={()=> setEditMenu(!editMenu)}/>
-                    </span>
-                    {editMenu &&
-                    <div className="editList">
-                        <div className="editLisItem" onClick={()=> {setEditRide(true);setRide(ride)}}>Edit</div>
-                        <div className="editLisItem" onClick={()=> {setConfirmDel(true);setRide(ride);}}>Delete</div>
-                    </div> }
-                </div>
-                <span className="genderIcon">
-                    {ride.userGender === "Male" && <MaleIcon/>}
-                    {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
-                </span>
+            <h1 className="myRidesTitle">{user.firstName}  {user.lastName} Rides</h1>
+            <div className="myRideItems">
+                {rides.length > 0 ? (rides.map(ride =>
+                <Ride 
+                    ride={ride} 
+                    myRides="true" 
+                    key={ride._id} 
+                    deleteRide={deleteRide} 
+                    updateRide={updateRide} 
+                    getRide={getRide} 
+                    cancelDel={cancelDel} 
+                    changeEditRide={changeEditRide}  
+                />
+                )) : 
+                <h3 className="emptyRides">Your dont have any rides yet</h3>}  
             </div>
-            <button className="myRidesFacebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
-        </div>)) : <h3 className="emptyRides">Your dont have any rides yet</h3>}  
         </div>
-     </div>
-
     );
-
   return (
     <>
     <div className="myrides">
@@ -173,10 +152,25 @@ const Myrides = ({user,cities}) => {
                 <h1 className="editRideTitle">Edit Ride Info</h1>
                 <form className="updateRide" onSubmit={updateRide}>
                     <div className="editRideContainer">
-                    <input type="text" className="editRideField" placeholder="First Name" ref={fname}/>
-                        <input type="text" className="editRideField" placeholder="Last Name" ref={lname} />
+                        <input 
+                            type="text" 
+                            className="editRideField" 
+                            placeholder="First Name" 
+                            ref={fname}
+                        />
+                        <input 
+                            type="text" 
+                            className="editRideField" 
+                            placeholder="Last Name" 
+                            ref={lname} 
+                        />
                         <Searchbar placeholder="Choose City" data={cities} getCity={getCity} required=""/>
-                        <input type="text" ref={facebook} className="editRideField" placeholder="Facebook Profile"/>
+                        <input 
+                            type="text" 
+                            ref={facebook} 
+                            className="editRideField" 
+                            placeholder="Facebook Profile"
+                        />
                         <select  name="events" ref={time} className="editRideSelectField">
                             <option value="" disabled selected>Time</option>
                             <option value="19:00">19:00</option>
@@ -194,7 +188,7 @@ const Myrides = ({user,cities}) => {
                         {isLoading && <button className="editRideButton" type="submit"><Loading/></button>}
                 </form>
 
-                        <span className="close" onClick={() => {setEditRide(false)}}>X</span>
+                    <span className="close" onClick={() => {setEditRide(false)}}>X</span>
             </div>
             
             
