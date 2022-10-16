@@ -10,6 +10,9 @@ const Addride = ({user,cities,openRide}) => {
   const [city,setCity] = useState("");
   const [users,setUsers] = useState({});
 
+
+
+
     const ename = useRef();
     const fname = useRef();
     const lname = useRef();
@@ -29,12 +32,14 @@ const Addride = ({user,cities,openRide}) => {
 
     const handleEmails = async (ride) => {
 
+      console.log(ride);
+
       for(let dbUser of users){
-        if(dbUser !== user && dbUser.city === ride.city && dbUser.sendMails.includes(ride.ename)){
+        if(dbUser !== user && dbUser.city === ride.city && dbUser.sendMails.includes(ride.eventName)){
           const email = {
             to: dbUser.email,
-            subject: `New ride for ${ride.ename} was uploaded`,
-            message:`${ride.fname} is riding to ${ride.ename} at ${ride.time}`
+            subject: `New ride for ${ride.eventName} was uploaded`,
+            message:`${ride.firstName} is riding to ${ride.eventName} at ${ride.time} heres a link http://localhost:3000/rides/${ride._id}`
           }
           try {
             await axios.post('/email', email);
@@ -61,9 +66,9 @@ const Addride = ({user,cities,openRide}) => {
           userGender:user.gender,
         };
         try {
-          await axios.post("/rides", ride);
+          const res = await axios.post("/rides", ride);
           openRide(false);
-          handleEmails(ride);
+          handleEmails(res.data);
           toast.success("Ride was successfully uploaded");
         } catch (error) {
           console.log(error);

@@ -126,11 +126,10 @@ const Myrides = ({user,cities}) => {
                     ride={ride} 
                     myRides="true" 
                     key={ride._id} 
-                    deleteRide={deleteRide} 
-                    updateRide={updateRide} 
                     getRide={getRide} 
                     cancelDel={cancelDel} 
-                    changeEditRide={changeEditRide}  
+                    changeEditRide={changeEditRide}
+                    containerStyle="myContainer"  
                 />
                 )) : 
                 <h3 className="emptyRides">Your dont have any rides yet</h3>}  
@@ -146,7 +145,10 @@ const Myrides = ({user,cities}) => {
         </Link>
             {isLoading ? <Loading/> : renderRide }
         {confirmDel &&
-            <ConfirmDelete message="Are you sure you want to delete this ride?" handleDelete={()=> deleteRide(ride._id)} cancelDel={cancelDel} />}
+            <ConfirmDelete 
+            message="Are you sure you want to delete this ride?" 
+            handleDelete={()=> deleteRide(ride._id)} cancelDel={cancelDel} 
+        />}
             {editRide && 
             <div className="editRide">
                 <h1 className="editRideTitle">Edit Ride Info</h1>

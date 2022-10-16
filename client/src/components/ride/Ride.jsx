@@ -6,13 +6,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
 
-const Ride = ({ride,myRides,deleteRide,updateRide,getRide,cancelDel,changeEditRide}) => {
+const Ride = ({ride,myRides,getRide,cancelDel,changeEditRide,containerStyle}) => {
 
     const [editMenu,setEditMenu] = useState(false);
 
   return (
     <div className="rideItem" >
-        <div className="infoContainer">
+        <div className={`${containerStyle}`}>
+            {myRides && <div className="infoItem">
+                <div className="myRideEventName">{ride.eventName}</div>
+            </div>}
             <div className="infoItem">
                 <img src={ride.userImg ? ride.userImg : "/assests/blank-profile.png"} alt="" className="profileImg" />
             </div>

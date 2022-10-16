@@ -3,9 +3,6 @@ import axios from "axios";
 import {useState , useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
-import MaleIcon from '@mui/icons-material/Male';
-import FemaleIcon from '@mui/icons-material/Female';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride"
@@ -18,7 +15,7 @@ export default function Rides({user,cities}) {
     const location = useLocation();
     const ename = location.pathname.split("/")[2];
 
-    const NUM_OF_ITEMS = 8;
+
 
     const [rides,setRides] = useState([{}])
     const [filteredRides,setfilteredRides] = useState([{}]);
@@ -27,24 +24,26 @@ export default function Rides({user,cities}) {
     const [showAll,setShowAll] = useState(false);
 
 
+    const hasNumber = (myString) =>{
+        return /\d/.test(myString);
+    }
 
+    function getTitle(ename) {
+        return hasNumber(ename) ? "" : ename.replaceAll("-"," ").toUpperCase();
+    }
 
 
     const title = ename ? getTitle(ename) : "ALL EVENTS";
 
-    const userId = user ? user._id : "";
 
     const getCity = (cityFromChild)=>{
 
         setCity(cityFromChild);
       }
 
-    function getTitle(ename) {
-        return ename.replaceAll("-"," ").toUpperCase();
-    }
 
 
-    
+
     useEffect(()=>{
 
         const filtered = rides.filter((ride)=>{
@@ -64,11 +63,12 @@ export default function Rides({user,cities}) {
             setIsLoading(true);
             
             try{
-                const res = await axios.get(
-                    ename 
-                    ? `http://localhost:8800/api/rides?eventName=${ename}`
-                    : `http://localhost:8800/api/rides`
-                );
+                const res = await axios.get(ename && hasNumber(ename) ? 
+                `http://localhost:8800/api/rides?_id=${ename}`
+                :
+                `http://localhost:8800/api/rides?eventName=${ename}`
+                    );
+                   
               showAll ? setRides(res.data) : setRides(res.data.slice(0,8));
                 
                 setIsLoading(false);
@@ -92,15 +92,18 @@ export default function Rides({user,cities}) {
         {city ?
         <div className="rideItems">     
             {filteredRides.length > 0 ?
-            filteredRides.map(ride =>
-            <Ride ride={ride} key={ride._id} />)
+            (filteredRides.map(ride =>
+            <Ride 
+            ride={ride} 
+            key={ride._id}
+            containerStyle="infoContainer" />))
         : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {city}</h3>}
         </div>
         :
         <div className="rideItems">     
         {rides.length > 0 ?
          rides.map(ride =>
-            <Ride ride={ride} key={ride._id} />)
+            <Ride ride={ride} key={ride._id} containerStyle="infoContainer" />)
             : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>}
             </div>
         }
@@ -109,7 +112,7 @@ export default function Rides({user,cities}) {
   return (
     <>
     <div className="rides">
-    <Link to="/">
+        <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
         {isLoading ? <Loading size="30px"/> : renderRide }

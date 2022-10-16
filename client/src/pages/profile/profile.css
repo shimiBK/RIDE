@@ -55,6 +55,7 @@
     background-color: rgb(36, 38, 43,0.75);
     position: relative;
     padding: 0 20px;
+    border: 1px solid #3498db;
 }
 
 .personalTitle{
@@ -131,6 +132,7 @@
     background-color: rgb(36, 38, 43,0.75);
     position: relative;
     padding: 0 20px;
+    border: 1px solid #3498db;
 }
 
 .prfEventsTitle{
