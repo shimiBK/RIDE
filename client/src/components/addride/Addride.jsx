@@ -4,13 +4,15 @@ import {useState , useRef} from "react";
 import { toast } from 'react-toastify';
 import axios from "axios";
 import Searchbar from '../searchbar/Searchbar';
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
-const Addride = ({user,cities,handleRideModal}) => {
+const Addride = ({handleRideModal}) => {
 
   const [city,setCity] = useState("");
   const [users,setUsers] = useState({});
 
-
+  const {user} = useContext(userContext);
 
     const ename = useRef();
     const fname = useRef();
@@ -121,7 +123,6 @@ const Addride = ({user,cities,handleRideModal}) => {
                   />
                 <Searchbar
                     placeholder="Search City" 
-                    data={cities} 
                     getCity={getCity} 
                     required={true}
                 />

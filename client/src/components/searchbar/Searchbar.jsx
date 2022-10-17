@@ -2,16 +2,17 @@ import "./searchbar.css"
 import React, { useEffect, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import { useContext } from "react";
+import cityContext from "../../context/cityContext";
 
 
-
-
-const Searchbar = ({placeholder,data,getCity,required}) => {
+const Searchbar = ({placeholder,getCity,required}) => {
 
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [openData , setOpenData] = useState(true);
 
+    const { cities } = useContext(cityContext);
 
 
 
@@ -26,7 +27,7 @@ const Searchbar = ({placeholder,data,getCity,required}) => {
     const handleFilter = (event) => {
       const searchWord = event.target.value;
       setWordEntered(searchWord);
-      const newFilter = data.filter((value) => {
+      const newFilter = cities.filter((value) => {
         return value.english_name.toLowerCase().includes(searchWord.toLowerCase());
       });
   

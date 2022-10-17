@@ -12,6 +12,8 @@ import AddInfo from "./pages/addinfo/AddInfo"
 import Profile from "./pages/profile/Profile";
 import Myrides from "./pages/myrides/Myrides";
 import axios from "axios";
+import userContext from "./context/userContext";
+import cityContext from"./context/cityContext";
 
 
 
@@ -20,6 +22,10 @@ function App() {
   const [user,setUser] = useState(null);
   const [flag,setFlag] = useState(false);
   const [cities,setCities] = useState([]);
+
+
+  const userCont = {user,setUser};
+  const cityCont = {cities,setCities};
 
 
   useEffect(() =>{
@@ -45,8 +51,6 @@ function App() {
 
 
   useEffect(() => {
-
-    //to do this fetch with axios - watch https://www.youtube.com/watch?v=NZKUirTtxcg
     const getUser = () => {
       fetch("http://localhost:8800/auth/login/success", {
         method: "GET",
@@ -80,28 +84,32 @@ function App() {
   },[user])
 
   return(
+    <cityContext.Provider value={cityCont}>
+    <userContext.Provider value={userCont}>
     <Router>
       <Switch>
         <Route exact path="/">
-         {!flag ? <Home user={user} cities={cities} /> : <AddInfo user={user} flagStatus={flagStatus} cities={cities} />}
+         {!flag ? <Home /> : <AddInfo flagStatus={flagStatus} />}
         </Route>
         <Route path="/rides" >
-          <Rides user={user} cities={cities}/>
+          <Rides/>
         </Route>
         <Route path="/partners">
-          <Partners user={user}/>
+          <Partners />
         </Route>
         <Route path="/addinfo">
-          {!flag ? <Redirect to="/"/> : <AddInfo user={user}  />}
+          {!flag ? <Redirect to="/"/> : <AddInfo/>}
         </Route>
         <Route path="/profile">
-          {user ? <Profile user={user} cities={cities}/> : <Home user={user}/>}
+          {user ? <Profile /> : <Home />}
         </Route>
         <Route path="/myrides">
-          {user ? <Myrides user={user} cities={cities} /> : <Home user={user}/>}
+          {user ? <Myrides /> : <Home />}
         </Route>
       </Switch>
     </Router>
+    </userContext.Provider>
+    </cityContext.Provider>
   )
 }
 

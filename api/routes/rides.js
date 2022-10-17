@@ -10,7 +10,6 @@ router.get("/" , async (req,res) => {
 
     const artist = {...req.query};
 
-    console.log(artist);
     try {
         const Rides = await Ride.find(artist);
   

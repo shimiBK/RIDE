@@ -1,5 +1,5 @@
 .shows{
-    height: 85vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     background-color: rgb(36, 38, 43);
@@ -44,7 +44,6 @@
     flex-wrap: wrap;
     align-self: center;
     transition: all 1s ease; 
-    margin-top: 130px;
 }
 
 
@@ -69,10 +68,10 @@
     font-size: 18px;
     -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
     box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
-    transition: transform .2s;
+    transition: all 0.2s ease-in;
     color: white;
     border-color: #3498db;
-    bottom: 10px;
+    bottom: 100px;
 
 }
 .leftChevron{

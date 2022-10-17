@@ -2,13 +2,17 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Login from '../login/Login'
+import { ToastContainer , toast } from 'react-toastify';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
-function Navbar({user}) {
+function Navbar() {
 
   const [loginModal,setLoginModal] = useState(false);
   const [open,setOpen] = useState(false);
+  const { user } = useContext(userContext);
 
 
   const googleLogout = () => {
@@ -20,6 +24,7 @@ function Navbar({user}) {
   }
 
   return (
+    <>
     <div className="navbar">
       <div className="navContainer">
           <div className="navLeft">
@@ -54,6 +59,7 @@ function Navbar({user}) {
         </div>
         {loginModal && <Login loginmodal={loginmodal} />}
        </div>
+    </>
   )
 }
 

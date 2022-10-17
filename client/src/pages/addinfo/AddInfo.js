@@ -4,15 +4,18 @@ import {useRef, useState} from 'react';
 import axios from "axios";
 import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
 
-const AddInfo = ({user,flagStatus,cities}) => {
+const AddInfo = ({flagStatus}) => {
 
 
 
   const [city,setCity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const gender = useRef();
+  const {user} = useContext(userContext);
 
 
     const getCity = (cityFromChild)=>{
@@ -55,7 +58,7 @@ const AddInfo = ({user,flagStatus,cities}) => {
           <div className="addInfoContainer">
           <form onSubmit={handleSubmit}>
            <div className="addInfoInputsContainer">
-            <Searchbar placeholder="Search city" data={cities} getCity={getCity}/>
+            <Searchbar placeholder="Search city" getCity={getCity}/>
             <select className="infoLoginInput" type="text" ref={gender} placeholder="Gender" required="true">
             <option value="" disabled selected>Choose Gender</option>
             <option value="Male">Male</option>

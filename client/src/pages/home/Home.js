@@ -4,14 +4,15 @@ import Shows from "../../components/shows/Shows";
 import Festivals from "../../components/festivals/Festivals.jsx";
 
 
-export default function Home({user,cities}) {
+
+export default function Home() {
+
 
   return (
     <>
     <div className="homeContainer">
-    <Tophome user={user}/>
-    <Shows user={user} cities={cities}/>
-    <Festivals user={user}/>
+    <Tophome/>
+    <Shows/>
     </div>
     </>
   );

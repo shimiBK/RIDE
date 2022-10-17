@@ -11,7 +11,7 @@ import { hasNumber , getTitle } from "../../utils/utils";
 
 
 
-export default function Rides({user,cities}) {
+export default function Rides() {
 
     const location = useLocation();
     const ename = location.pathname.split("/")[2];
@@ -22,6 +22,7 @@ export default function Rides({user,cities}) {
     const [city,setCity] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showAll,setShowAll] = useState(false);
+
 
 
     //get city from Searchbar comp'
@@ -78,7 +79,7 @@ export default function Rides({user,cities}) {
         <div className="ridesContainer">
             <h1 className="ridesTitle">RIDES FOR {title}</h1>
             <div className="searchFilter"> 
-                {rides.length >=8 && <Searchbar placeholder="Search by city" data={cities} getCity={getCity}/>}
+                {rides.length >=8 && <Searchbar placeholder="Search by city" getCity={getCity}/>}
             </div>
         {city ?
         <div className="rideItems">     

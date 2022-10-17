@@ -9,9 +9,12 @@ import { useRef } from "react";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride";
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
 
-const Myrides = ({user,cities}) => {
+
+const Myrides = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [rides,setRides] = useState([{}]);
@@ -19,6 +22,7 @@ const Myrides = ({user,cities}) => {
     const [editRide,setEditRide] = useState(false);
     const [ride,setRide] = useState("");
     const [city,setCity] = useState("");
+    const {user} = useContext(userContext);
 
 
     const userId = user ? user._id : "";
@@ -166,7 +170,7 @@ const Myrides = ({user,cities}) => {
                             placeholder="Last Name" 
                             ref={lname} 
                         />
-                        <Searchbar placeholder="Choose City" data={cities} getCity={getCity} required=""/>
+                        <Searchbar placeholder="Choose City" getCity={getCity} required=""/>
                         <input 
                             type="text" 
                             ref={facebook} 

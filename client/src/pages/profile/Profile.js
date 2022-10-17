@@ -8,13 +8,16 @@ import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 import { convertTitle } from "../../utils/utils";
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
-const Profile = ({user,cities}) => {
+const Profile = () => {
 
     const [events , setEvents] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [confirmDel,setConfirmDel] = useState(false);
     const [city,setCity] = useState("");
+    const {user} = useContext(userContext);
 
     const fname = useRef();
     const lname = useRef();
@@ -122,7 +125,7 @@ const Profile = ({user,cities}) => {
                                 placeholder="Last Name" 
                                 ref={lname} 
                             />
-                            <Searchbar placeholder="Choose City" data={cities} getCity={getCity} required=""/>
+                            <Searchbar placeholder="Choose City" getCity={getCity} required=""/>
                             <select 
                                 className="personalSelectField" 
                                 type="text" 

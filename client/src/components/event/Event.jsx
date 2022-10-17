@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { useContext } from "react";
+import userContext from "../../context/userContext";
+
 
 
 const Event = (props) => {
 
     const [isHover,setIsHover] = useState(false);
-    const {user , eventName , eventTitle ,eventLocation , eventDate , ToastCotainer } = props;
+    const {eventName , eventTitle ,eventLocation , eventDate , ToastCotainer } = props;
     const ToastContainer = ToastCotainer;
     const path = `/rides/${eventName}`;
     const imagePath = `assests/${eventName}.jpg`
+    const {user} = useContext(userContext);
 
 
     const handleFollow = async (eventName) =>{
