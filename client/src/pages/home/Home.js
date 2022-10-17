@@ -6,9 +6,6 @@ import Festivals from "../../components/festivals/Festivals.jsx";
 
 export default function Home({user,cities}) {
 
-
-
-
   return (
     <>
     <div className="homeContainer">
