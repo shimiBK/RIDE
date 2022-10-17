@@ -10,7 +10,6 @@ import Partners from "./pages/partners/Partners";
 import { useEffect, useState } from "react";
 import AddInfo from "./pages/addinfo/AddInfo"
 import Profile from "./pages/profile/Profile";
-import Error from "./components/error/Error";
 import Myrides from "./pages/myrides/Myrides";
 import axios from "axios";
 

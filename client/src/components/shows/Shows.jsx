@@ -18,11 +18,14 @@ const Shows = ({user,cities}) => {
     const eventsRef = useRef();
 
 
-    const openRide = (childValue) =>{
+    const handleRideModal = (childValue) =>{
       setOpenModal(childValue);
     }
    
 
+
+    //check if there is user in order to add a ride 
+    
       const handleRide = () => {
 
         if(user){
@@ -50,7 +53,7 @@ const Shows = ({user,cities}) => {
           {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>
           <ArrowForwardIosIcon style={{fontSize:"40px"}} className="rightChevron"/> */}
           <button className="addRideBtn" onClick={handleRide}>I WANT TO SHARE A RIDE</button>
-        {openModal && <Addride user={user} cities={cities} openRide={openRide} />}
+        {openModal && <Addride user={user} cities={cities} handleRideModal={handleRideModal} />}
         <ToastContainer
             position="top-center"
             autoClose={5000}

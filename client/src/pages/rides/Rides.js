@@ -6,6 +6,7 @@ import Loading from "../../components/loading/Loading";
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride"
+import { hasNumber , getTitle } from "../../utils/utils";
 
 
 
@@ -14,8 +15,7 @@ export default function Rides({user,cities}) {
 
     const location = useLocation();
     const ename = location.pathname.split("/")[2];
-
-
+    const title = getTitle(ename);
 
     const [rides,setRides] = useState([{}])
     const [filteredRides,setfilteredRides] = useState([{}]);
@@ -24,23 +24,11 @@ export default function Rides({user,cities}) {
     const [showAll,setShowAll] = useState(false);
 
 
-    const hasNumber = (myString) =>{
-        return /\d/.test(myString);
-    }
-
-    function getTitle(ename) {
-        return hasNumber(ename) ? "" : ename.replaceAll("-"," ").toUpperCase();
-    }
-
-
-    const title = ename ? getTitle(ename) : "ALL EVENTS";
-
-
+    //get city from Searchbar comp'
     const getCity = (cityFromChild)=>{
 
         setCity(cityFromChild);
       }
-
 
 
 
@@ -64,9 +52,12 @@ export default function Rides({user,cities}) {
             
             try{
                 const res = await axios.get(ename && hasNumber(ename) ? 
-                `http://localhost:8800/api/rides?_id=${ename}`
-                :
+                `http://localhost:8800/api/rides?_id=${ename}` 
+                : ename ? 
                 `http://localhost:8800/api/rides?eventName=${ename}`
+                    :
+                `http://localhost:8800/api/rides`
+                    
                     );
                    
               showAll ? setRides(res.data) : setRides(res.data.slice(0,8));
@@ -87,7 +78,7 @@ export default function Rides({user,cities}) {
         <div className="ridesContainer">
             <h1 className="ridesTitle">RIDES FOR {title}</h1>
             <div className="searchFilter"> 
-                {rides.length > 0 && <Searchbar placeholder="Search by city" data={cities} getCity={getCity}/>}
+                {rides.length >=8 && <Searchbar placeholder="Search by city" data={cities} getCity={getCity}/>}
             </div>
         {city ?
         <div className="rideItems">     

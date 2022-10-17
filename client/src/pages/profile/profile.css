@@ -156,14 +156,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 110px;
+    width: 120px;
     height: 25px;
     border: 2px solid gray;
 }
 .prfEventName{
 
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     padding: 0 5px;
 
 }

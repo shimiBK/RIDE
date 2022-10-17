@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
+import { convertTitle } from "../../utils/utils";
 
 const Profile = ({user,cities}) => {
 
@@ -15,12 +16,11 @@ const Profile = ({user,cities}) => {
     const [confirmDel,setConfirmDel] = useState(false);
     const [city,setCity] = useState("");
 
-
-
-
     const fname = useRef();
     const lname = useRef();
     const gender = useRef();
+
+
 
     const getCity = (cityFromChild)=>{
 
@@ -143,7 +143,7 @@ const Profile = ({user,cities}) => {
                      <div className="prfEventsContainer">
                         {events.map((event)=>
                         <div className="prfEventItem">
-                            <span className="prfEventName">{event}</span>
+                            <span className="prfEventName">{convertTitle(event)}</span>
                             <span className="prfRemoveEvent" onClick={()=> handleRemove(event)}>X</span>
                         </div>)}
                     </div> : <h2 className="prfEmptyEvents">You are not following any event</h2>}

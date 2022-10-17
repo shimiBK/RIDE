@@ -26,10 +26,10 @@ const Login = ({loginmodal}) => {
               <img src="./assests/google.png" alt="" className="icon" />
               Google
             </div>
-            <div className="loginButton facebook" onClick={facebook}>
+            {/* <div className="loginButton facebook" onClick={facebook}>
               <img src="./assests/facebook.png" alt="" className="icon" />
               Facebook
-            </div>
+            </div> */}
           </div>
           <div className="center">
             <div className="line" />

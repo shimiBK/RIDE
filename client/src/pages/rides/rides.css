@@ -2,8 +2,8 @@
     min-height: 100vh;
     /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg"); */
     /* background-size: 100% 100%; */
-    background-image: linear-gradient(to right top, #24262b, #25272c, #27292e, #282a2f, #2a2c31, #2c2e33, #2e3035, #303237, #33353a, #36383d, #393b40, #3c3e43);    margin:0;
-    /* position: relative; */
+    /* background-image: linear-gradient(to right top, #24262b, #25272c, #27292e, #282a2f, #2a2c31, #2c2e33, #2e3035, #303237, #33353a, #36383d, #393b40, #3c3e43);    margin:0; */
+    background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);
     display: flex;
     justify-content: center;
     position: relative;

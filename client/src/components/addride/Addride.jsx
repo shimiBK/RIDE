@@ -5,11 +5,10 @@ import { toast } from 'react-toastify';
 import axios from "axios";
 import Searchbar from '../searchbar/Searchbar';
 
-const Addride = ({user,cities,openRide}) => {
+const Addride = ({user,cities,handleRideModal}) => {
 
   const [city,setCity] = useState("");
   const [users,setUsers] = useState({});
-
 
 
 
@@ -31,15 +30,13 @@ const Addride = ({user,cities,openRide}) => {
     
 
     const handleEmails = async (ride) => {
-
-      console.log(ride);
-
       for(let dbUser of users){
         if(dbUser !== user && dbUser.city === ride.city && dbUser.sendMails.includes(ride.eventName)){
           const email = {
             to: dbUser.email,
             subject: `New ride for ${ride.eventName} was uploaded`,
-            message:`${ride.firstName} is riding to ${ride.eventName} at ${ride.time} heres a link http://localhost:3000/rides/${ride._id}`
+            message:`Hello ${user.firstName},\n\n${ride.firstName} is riding to ${ride.eventName} at ${ride.time} \nWatch the ride here link http://localhost:3000/rides/${ride._id}`
+                    
           }
           try {
             await axios.post('/email', email);
@@ -67,7 +64,7 @@ const Addride = ({user,cities,openRide}) => {
         };
         try {
           const res = await axios.post("/rides", ride);
-          openRide(false);
+          handleRideModal(false);
           handleEmails(res.data);
           toast.success("Ride was successfully uploaded");
         } catch (error) {
@@ -95,8 +92,6 @@ const Addride = ({user,cities,openRide}) => {
         },[]);
 
       
-
-
   return (
     <>
             <div div className="rideModal">
@@ -155,7 +150,7 @@ const Addride = ({user,cities,openRide}) => {
                   Add Ride
               </button>
               </form>
-              <span className="close" onClick={() => {openRide(false)}}>X</span>
+              <span className="close" onClick={() => {handleRideModal(false)}}>X</span>
           </div>
     </>
   )

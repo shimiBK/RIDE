@@ -1,10 +1,9 @@
 
 import "./addinfo.css"
-import {useEffect, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import axios from "axios";
 import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
-import Navbar from "../../components/navbar/Navbar";
 
 
 const AddInfo = ({user,flagStatus,cities}) => {
@@ -24,7 +23,10 @@ const AddInfo = ({user,flagStatus,cities}) => {
     
 
       const handleSubmit = async (e) => {
+
         e.preventDefault();
+        setIsLoading(true);
+
           const addInfo = {
             city: city,
             gender: gender.current.value,
@@ -33,6 +35,8 @@ const AddInfo = ({user,flagStatus,cities}) => {
           try {
             await axios.put(`/user/${user._id}`, addInfo);
             flagStatus(false);
+            setIsLoading(false);
+
 
           } catch (err) {
             console.log(err);
@@ -46,7 +50,7 @@ const AddInfo = ({user,flagStatus,cities}) => {
   return (
     <>
     <div className="addInfo">
-      <div className="infoModal">
+       {!isLoading && <div className="infoModal">
           <h1 className="addInfoTitle">One more thing...</h1>
           <div className="addInfoContainer">
           <form onSubmit={handleSubmit}>
@@ -63,7 +67,7 @@ const AddInfo = ({user,flagStatus,cities}) => {
                 <button className="infoLoginSubmit">Submit</button>
          </form>
           </div>
-        </div>
+        </div>}
     </div>
   </>
   );
