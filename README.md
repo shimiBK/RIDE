@@ -1,23 +1,22 @@
 ## Project Name & Pitch
 
-#### Example:
+RIDEDM
 
-TweetWorld 
-
-An application used to filter data form Twitter based on user preference, built with React, Redux, JavaScript, and CSS.
+A Web Application that helps people find and share rides for Electronic Dance Music (EDM) Events , build with Mongo,Express,React and Nodes.js.
 
 ## Project Status
-(only necessary if incomplete)
 
-#### Example:
+Users can find and Share rides, Follow Events and get notified by an email when a ride from their defined hometown is uploaded,  users can also edit and delete rides they uploaded.
 
-This project is currently in development. Users can filter tweets by username and keyword and see visual data representation. Functionality to sort by additional parameters is in progress.
+Currently In Development : 
+
+1) Full Responsiveness
+2) Error Handling
+3) Deployment
 
 ## Project Screen Shot(s)
-
-#### Example:   
-
-[ PRETEND SCREEN SHOT IS HERE ]
+ 
+[](ridedm.gif)
 
 [ PRETEND OTHER SCREEN SHOT IS HERE ]
 
