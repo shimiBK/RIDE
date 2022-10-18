@@ -18,8 +18,8 @@ Currently In Development :
 ## Project Screen Shot(s)
  
 
-![](first.png)
-![](second.png)
+![](first.gif)
+![](second.gif)
 ![](Landing2.png)
 ![](Events.png)
 
