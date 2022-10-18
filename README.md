@@ -12,12 +12,12 @@ Currently In Development :
 
 1)Admin Panel
 2)Full Responsiveness
-2) Error Handling
-3) Deployment
+3) Error Handling
+4) Deployment
 
 ## Project Screen Shot(s)
  
-![](ridedm.gif)
+![Ttitle](ridedm.gif)
 
 
 
