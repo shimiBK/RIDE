@@ -82,7 +82,7 @@ To Visit App:
 ## Reflection
 
 
-This project idea was conveived a few months back and was developed at the same time as my academic studies. Project goals included learning MERN technologies , and bringing this idea to life which will connect and help people out. 
+This project idea was conveived a few months back and was developed at the same time as my academic studies. Project goals included learning MERN technologies , and bringing this idea to life which could connect and help people out. 
 
 As a member of the biggest EDM community on facebook , I always see that people are looking for a ride by posting it to the group , which leaves their chance to find a ride to the grace of facebook's algorithms , which is known for low reach , so I decided to build a platform that ensures they wont miss any possible ride.
 
