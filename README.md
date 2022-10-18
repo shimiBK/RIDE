@@ -41,7 +41,7 @@ Currently In Development :
 <br/>
 <br/>
 <br/>
-![](Events-Rides.png)
+![](EventsRides.png)
 <br/>
 <br/>
 <br/>
@@ -51,7 +51,7 @@ Currently In Development :
 <br/>
 <br/>
 <br/>
-![](My-Rides.png)
+![](MyRides.png)
 
 
 
