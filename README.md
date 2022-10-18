@@ -51,7 +51,7 @@ Currently In Development :
 <br/>
 <br/>
 <br/>
-![](My-RIdes.png)
+![](My-Rides.png)
 
 
 
