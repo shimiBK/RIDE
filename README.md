@@ -23,17 +23,35 @@ Currently In Development :
 
 ![](first.gif)
 <br/>
+<br/>
+<br/>
+<br/>
 ![](second.gif)
+<br/>
+<br/>
+<br/>
 <br/>
 ![](Landing.png)
 <br/>
+<br/>
+<br/>
+<br/>
 ![](Events.png)
 <br/>
-![](Events Rides.png)
+<br/>
+<br/>
+<br/>
+![](Events-Rides.png)
+<br/>
+<br/>
+<br/>
 <br/>
 ![](Profile.png)
 <br/>
-![](My RIdes.png)
+<br/>
+<br/>
+<br/>
+![](My-RIdes.png)
 
 
 
