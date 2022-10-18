@@ -21,45 +21,47 @@ Currently In Development :
 ## Project Screen Shot(s)
  
 
-![](first.gif)
+![](./Readme/first.gif)
 <br/>
 <br/>
 <br/>
 <br/>
-![](second.gif)
+![](./Readme/second.gif)
 <br/>
 <br/>
 <br/>
 <br/>
-![](Landing.png)
+![](./Readme/Landing.png)
 <br/>
 <br/>
 <br/>
 <br/>
-![](Events.png)
+![](./Readme/Events.png)
 <br/>
 <br/>
 <br/>
 <br/>
-![](EventRides.png)
+![](./Readme/EventRides.png)
 <br/>
 <br/>
 <br/>
 <br/>
-![](Profile.png)
+![](./Readme/Profile.png)
 <br/>
 <br/>
 <br/>
 <br/>
-![](MyRides.png)
-
-
+![](./Readme/MyRides.png)
+<br/>
+<br/>
+<br/>
+<br/>
+![](./Readme/Email.png)
 
 
 
 ## Installation and Setup Instructions
 
-#### Example:  
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
 
