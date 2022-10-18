@@ -41,7 +41,7 @@ Currently In Development :
 <br/>
 <br/>
 <br/>
-![](EventsRides.png)
+![](EventRides.png)
 <br/>
 <br/>
 <br/>
