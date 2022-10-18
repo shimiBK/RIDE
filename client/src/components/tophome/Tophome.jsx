@@ -5,12 +5,12 @@ import {Link} from 'react-scroll';
 
 
 
-function Tophome({user}) {
+function Tophome() {
 
   return (
     <>
     <div className="tophome">
-      <Navbar user={user}/>
+      <Navbar />
       <div className="contentContainer">
         <div className="textContainer">
           <h1 className="topSentence">SHARE A RIDE,</h1>
@@ -18,10 +18,7 @@ function Tophome({user}) {
         </div>
         <div className="btnsContainer">
           <Link to="shows" spy={true} smooth={true} offset={-25} duration={500}>
-          <button className="eventsBtn">Events</button>
-          </Link>
-          <Link to="festivals" spy={true} smooth={true} offset={-5} duration={500}>
-          <button className="festivalsBtn">Festivals</button>
+          <button className="eventsBtn">Go To Events</button>
           </Link>
         </div>
       </div>

@@ -25,7 +25,7 @@
 }
 
 .loginBtn{
-  padding: 10px 25px;
+  padding: 8px 30px;
   font-size: 15px;
   color: #3498db;
   border: none;
@@ -35,7 +35,8 @@
   cursor: pointer;
   -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
   box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-in;
+  margin-top: 6px;
 }
 
 
@@ -129,16 +130,18 @@
 
 
   .navLeft{
-    margin-left: 15px;
+    /* margin: 5px; */
     
   }
 
 .logo{
     font-weight: bold;
-    font-size: 40px;
+    font-size: 45px;
     color:white;
     letter-spacing: 5px;
     cursor: pointer;
+    /* margin-top: 10px; */
+    margin-left: 15px;
     
 }
 

@@ -16,7 +16,7 @@ Currently In Development :
 
 ## Project Screen Shot(s)
  
-![](ridedm.gif)
+![](Landing.png)
 
 
 

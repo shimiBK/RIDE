@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
 import "./addride.css";
-import {useState , useRef} from "react";
-import { toast } from 'react-toastify';
 import axios from "axios";
 import Searchbar from '../searchbar/Searchbar';
-import { useContext } from "react";
 import userContext from "../../context/userContext";
+import { convertTitle  } from "../../utils/utils";
+import {useState ,useEffect, useRef} from "react";
+import { toast } from 'react-toastify';
+import { useContext } from "react";
 
 const Addride = ({handleRideModal}) => {
 
@@ -13,6 +13,8 @@ const Addride = ({handleRideModal}) => {
   const [users,setUsers] = useState({});
 
   const {user} = useContext(userContext);
+
+  console.log(user);
 
     const ename = useRef();
     const fname = useRef();
@@ -36,8 +38,8 @@ const Addride = ({handleRideModal}) => {
         if(dbUser !== user && dbUser.city === ride.city && dbUser.sendMails.includes(ride.eventName)){
           const email = {
             to: dbUser.email,
-            subject: `New ride for ${ride.eventName} was uploaded`,
-            message:`Hello ${user.firstName},\n\n${ride.firstName} is riding to ${ride.eventName} at ${ride.time} \nWatch the ride here link http://localhost:3000/rides/${ride._id}`
+            subject: `New ride for ${convertTitle(ride.eventName)} was uploaded`,
+            message:`Hello ${user.firstName},\n\n${ride.firstName} is riding to ${convertTitle(ride.eventName)} at ${ride.time} \nWatch the ride here link http://localhost:3000/rides/${ride._id}`
                     
           }
           try {
