@@ -11,17 +11,31 @@ Users can find and Share rides, Follow Events and get notified by an email when 
 Currently In Development : 
 
 1)Admin Panel
+<br/>
 2)Full Responsiveness
+<br/>
 3) Error Handling
+<br/>
 4) Deployment
 
 ## Project Screen Shot(s)
  
 
 ![](first.gif)
+<br/>
 ![](second.gif)
-![](Landing2.png)
+<br/>
+![](Landing.png)
+<br/>
 ![](Events.png)
+<br/>
+![](Events Rides.png)
+<br/>
+![](Profile.png)
+<br/>
+![](My RIdes.png)
+
+
 
 
 
