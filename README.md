@@ -81,11 +81,10 @@ To Visit App:
 
 ## Reflection
 
+This project idea was conceived a few months back and was developed at the same time as my academic studies. Project goals included learning MERN technologies and bringing this idea to life, which could connect and help people out.
 
-This project idea was conveived a few months back and was developed at the same time as my academic studies. Project goals included learning MERN technologies , and bringing this idea to life which could connect and help people out. 
+As a member of the most prominent Israeli EDM community on Facebook, I have noticed that members are looking for a ride by Facebook posts, which leaves their chance to find one to the grace of Facebook's algorithms, which is known for low reach, so I decided to build a platform that ensures they won't miss any possible ride.
 
-As a member of the biggest EDM community on facebook , I always see that people are looking for a ride by posting it to the group , which leaves their chance to find a ride to the grace of facebook's algorithms , which is known for low reach , so I decided to build a platform that ensures they wont miss any possible ride.
+Building this project has made me run into a lot of challenges since it is my first real-world project that is not a clone of an existing web app, challenges like third-party authentication combined with the need to collect certain information to the DB, designing with CSS and more, challenges that lead me to spend days and nights in research,   and fixing bugs. 
 
-Building this project has made me ran into alot of challenges since it is my first real world project that is not a mockup one , challenges like third party authentication combined with the needd to save the information to Mongo , designing with css and more , challanges that lead me to spend days and night in resarching and fixing bugs. 
-
-All in all it was ( and still ) a fun project to develop , hoping that soon it will be published.
+On the whole, it was (and still is) a fun project to develop, and hopefully soon to be published.
