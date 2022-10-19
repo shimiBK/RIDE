@@ -2,7 +2,7 @@
 
 RIDEDM
 
-A Web Application that connects people by by allowing them to find and share rides for Electronic Dance Music (EDM) Events , built with Mongo, Express, React and Nodes.js.
+A Web Application that connects people by by allowing them to find and share rides for Electronic Dance Music (EDM) Events , built with Mongo, Express, React and Node.js.
 
 ## Project Status
 
