@@ -2,7 +2,7 @@
 
 RIDEDM
 
-A Web Application that connects people by by allowing them to find and share rides for Electronic Dance Music (EDM) Events , built with Mongo, Express, React and Nodes.js.
+A Web Application that connects people by by allowing them to find and share rides for Electronic Dance Music (EDM) Events , built with Mongo, Express, React and Node.js.
 
 ## Project Status
 
@@ -85,8 +85,8 @@ To Visit App:
 
 This project idea was conceived a few months back and was developed at the same time as my academic studies. Project goals included learning MERN technologies and bringing this idea to life, which could connect and help people out.
 
-As a member of the most prominent Israeli EDM community on Facebook, I have noticed that members are looking for a ride by Facebook posts, which leaves their chance to find one to the grace of Facebook's algorithms, which is known for low reach, so I decided to build a platform that ensures they won't miss any possible ride.
+As a member of the most prominent Israeli EDM community on Facebook, I have noticed that members are looking for rides by Facebook posts, which leaves their chances to find one to the grace of Facebook's algorithms, which is known for low reach, so I decided to build a platform that ensures they won't miss any possible ride.
 
-Building this project has made me run into a lot of challenges since it is my first real-world project that is not a clone of an existing web app, challenges like third-party authentication combined with the need to collect certain information to the DB, designing with CSS and more, challenges that lead me to spend days and nights in research,   and fixing bugs. 
+Building this project has made me run into a lot of challenges since it is my first real-world project that is not a clone of an existing web app, challenges like third-party authentication combined with the need to collect certain information and store it in the DB, designing with CSS and more, challenges that lead me to spend days and nights in research and fixing bugs. 
 
 On the whole, it was (and still is) a fun project to develop, and hopefully soon to be published.
