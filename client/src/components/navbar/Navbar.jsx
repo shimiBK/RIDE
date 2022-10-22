@@ -7,12 +7,15 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { useContext } from "react";
 import userContext from "../../context/userContext";
+import AddEvent from "../addEvent/AddEvent";
 
 function Navbar() {
 
   const [loginModal,setLoginModal] = useState(false);
   const [open,setOpen] = useState(false);
+  const [eventModal , setEventModal] = useState(false);
   const { user } = useContext(userContext);
+
 
 
   const googleLogout = () => {
@@ -21,6 +24,10 @@ function Navbar() {
 
   const loginmodal = (logindata) => {
     setLoginModal(logindata);
+  }
+
+  const handleEventModal = (childValue) =>{
+    setEventModal(childValue);
   }
 
   return (
@@ -47,10 +54,15 @@ function Navbar() {
               {open &&
               <div className="listContainer">
                 <Link to="/profile" style={{ textDecoration: 'none' }}>
-                <div className="listItem">Profile</div>
+                  <div className="listItem">Profile</div>
                 </Link>
+                {user.isAdmin &&
+                 <Link to="/" style={{ textDecoration: 'none' }}>
+                  <div className="listItem" onClick={()=> {setEventModal(true);setOpen(false)}}>Post Event</div>
+                  
+                </Link>}
                 <Link to="/myrides" style={{ textDecoration: 'none' }} >
-                <div className="listItem">My Rides</div>
+                  <div className="listItem">My Rides</div>
                 </Link>
                 <div className="listItem" onClick={googleLogout}>Logout</div>
               </div>}
@@ -58,6 +70,7 @@ function Navbar() {
           </div>
         </div>
         {loginModal && <Login loginmodal={loginmodal} />}
+        {eventModal && <AddEvent handleEventModal={handleEventModal}/>}
        </div>
     </>
   )

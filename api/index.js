@@ -14,6 +14,7 @@ const authRoute = require("./routes/auth");
 const cityRoute = require("./routes/cities");
 const userRoute = require("./routes/user");
 const mailRoute = require("./routes/mail");
+const eventRoute = require("./routes/event");
 
 
 dotenv.config();
@@ -49,6 +50,7 @@ app.use("/auth", authRoute);
 app.use("/api/cities", cityRoute);
 app.use("/api/user", userRoute);
 app.use("/api/email", mailRoute);
+app.use("/api/events", eventRoute);
 
 
 app.listen(8800, () => {

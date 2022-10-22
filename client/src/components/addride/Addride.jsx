@@ -14,16 +14,12 @@ const Addride = ({handleRideModal}) => {
 
   const {user} = useContext(userContext);
 
-  console.log(user);
-
     const ename = useRef();
     const fname = useRef();
     const lname = useRef();
     const facebook = useRef();
     const time = useRef();
 
-    const userId = user ? user._id : "";
-    const userImg = user? user.image : "";
 
     const getCity = (cityFromChild)=>{
 
@@ -62,8 +58,8 @@ const Addride = ({handleRideModal}) => {
           city: city,
           facebook: facebook.current.value,
           time: time.current.value,
-          uID: userId,
-          userImg:userImg,
+          uID: user._id,
+          userImg:user.image,
           userGender:user.gender,
         };
         try {
@@ -98,63 +94,63 @@ const Addride = ({handleRideModal}) => {
       
   return (
     <>
-            <div div className="rideModal">
-            <h1 className="rideTitle">Ride Information</h1>
-            <form className="rideBox" onSubmit={handleClick}>
-              <div className="rideInputContainer">
-                <select name="events" ref={ename} className="rideSelectInput">
-                  <option value="" disabled selected>Choose Event</option>
-                  <option value="david-guetta">David Guetta</option>
-                  <option value="armin-van-buuren">Armin Van Buuren</option>
-                  <option value="martin-garrix">Martin Garrix</option>
-                  <option value="hardwell">Hardwell</option>
-                  <option value="Tiesto">Tiesto</option>
-                  <option value="illenium">ILLENIUM</option>
-                </select>
-                <input
-                    type="text"
-                    ref={fname}
-                    placeholder="First Name"
-                    className="rideInput"
-                  />
-                <input
-                    type="text"
-                    ref={lname}
-                    placeholder="Last Name"
-                    className="rideInput"
-                  />
-                <Searchbar
-                    placeholder="Search City" 
-                    getCity={getCity} 
-                    required={true}
-                />
-                <input
-                    type="text"
-                    ref={facebook}
-                    placeholder="Facebook Profile Link" 
-                    className="rideInput"
-                  />
-              <select name="events" ref={time} className="rideSelectInput">
-                <option value="" disabled selected>Leaving Time</option>
-                <option value="19:00">19:00</option>
-                <option value="19:30">19:30</option>
-                <option value="20:00">20:00</option>
-                <option value="20:30">20:30</option>
-                <option value="21:00">21:00</option>
-                <option value="21:30">21:30</option>
-                <option value="22:00">22:00</option>
-                <option value="22:30">22:30</option>
-                <option value="23:00">23:00</option>
-              </select>
-              </div>
-              <button
-                className="rideButton" 
-                type="submit">
-                  Add Ride
-              </button>
-              </form>
-              <span className="close" onClick={() => {handleRideModal(false)}}>X</span>
-          </div>
+    <div className="rideModal">
+      <h1 className="rideTitle">Ride Information</h1>
+      <form className="rideBox" onSubmit={handleClick}>
+        <div className="rideInputContainer">
+          <select name="events" ref={ename} className="rideSelectInput">
+            <option value="" disabled selected>Choose Event</option>
+            <option value="david-guetta">David Guetta</option>
+            <option value="armin-van-buuren">Armin Van Buuren</option>
+            <option value="martin-garrix">Martin Garrix</option>
+            <option value="hardwell">Hardwell</option>
+            <option value="Tiesto">Tiesto</option>
+            <option value="illenium">ILLENIUM</option>
+          </select>
+          <input
+            type="text"
+            ref={fname}
+            placeholder="First Name"
+            className="rideInput"
+          />
+          <input
+            type="text"
+            ref={lname}
+            placeholder="Last Name"
+            className="rideInput"
+            />
+          <Searchbar
+            placeholder="Search City" 
+            getCity={getCity} 
+             required={true}
+          />
+          <input
+            type="text"
+            ref={facebook}
+            placeholder="Facebook Profile Link" 
+            className="rideInput"
+          />
+          <select name="events" ref={time} className="rideSelectInput">
+            <option value="" disabled selected>Leaving Time</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
+            <option value="21:00">21:00</option>
+            <option value="21:30">21:30</option>
+            <option value="22:00">22:00</option>
+            <option value="22:30">22:30</option>
+            <option value="23:00">23:00</option>
+          </select>
+        </div>
+        <button
+          className="rideButton" 
+          type="submit">
+          Add Ride
+        </button>
+      </form>
+      <span className="close" onClick={() => {handleRideModal(false)}}>X</span>
+    </div>
     </>
   )
 }

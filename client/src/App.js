@@ -19,7 +19,7 @@ import cityContext from"./context/cityContext";
 
 function App() {
 
-  const [user,setUser] = useState(null);
+  const [user,setUser] = useState("");
   const [flag,setFlag] = useState(false);
   const [cities,setCities] = useState([]);
 

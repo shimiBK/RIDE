@@ -8,6 +8,9 @@ import Event from "../event/Event";
 import Addride from "../addride/Addride";
 import { useContext } from "react";
 import userContext from "../../context/userContext";
+import axios from "axios";
+
+
 
 
 
@@ -18,12 +21,11 @@ import userContext from "../../context/userContext";
 const Shows = () => {
 
     const [openModal , setOpenModal] = useState(false);
+    const [events,setEvents] = useState([{}]);
     const {user} = useContext(userContext);
-
-
-
-
     const eventsRef = useRef();
+
+
 
 
     const handleRideModal = (childValue) =>{
@@ -42,8 +44,28 @@ const Shows = () => {
         else{
           toast.info("Please login in order to add a ride")
         }}
-        
 
+
+      useEffect(()=>{
+
+
+        const getEvents = async () =>{
+          try {
+
+            const res = await axios.get("http://localhost:8800/api/events");
+            setEvents(res.data);
+  
+            
+          } catch (error) {
+            console.log(error);
+            
+          }
+        }
+
+        getEvents();
+
+        
+      },[user]);
 
 
   return (
@@ -51,12 +73,9 @@ const Shows = () => {
     <div className="showsContainer">
         <h1 className="showsTitle">UPCOMING EVENTS</h1>
         <div className="eventItems" ref={eventsRef}>
-            <Event eventName="armin-van-buuren" eventTitle="Armin Van Buuren" eventLocation="סלינה | אילת" eventDate="16.03.22" ToastContainer={ToastContainer}/>
-            <Event eventName="martin-garrix" eventTitle="Martin Garrix" eventLocation="לייב פארק | ראשון לציון" eventDate="24.05.22"/>
-            <Event eventName="david-guetta" eventTitle="David Guetta" eventLocation="לייב פארק | ראשון לציון" eventDate="30.07.22"/>
-            <Event eventName="hardwell" eventTitle="Hardwell" eventLocation="גני התערוכה | תל אביב" eventDate="26.08.22"/>
-            <Event eventName="tiesto" eventTitle="Tiesto" eventLocation="האנגר 11 | תל אביב" eventDate="20.10.22"/>
-            <Event eventName="illenium" eventTitle="Illenium" eventLocation="האנגר 11 | תל אביב" eventDate="30.10.22"/>
+          {events.map(event=>
+          <Event event={event} key={event._id} />
+          )}
           </div>
           {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>
           <ArrowForwardIosIcon style={{fontSize:"40px"}} className="rightChevron"/> */}

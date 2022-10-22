@@ -157,12 +157,10 @@
 
 
 
-
-
 .editListClose{
     position: absolute;
     right:5px;
-    top:0;
+    top:5px;
     font-size: 16px;
 }
 

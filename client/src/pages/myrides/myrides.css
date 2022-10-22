@@ -1,7 +1,6 @@
 .myrides{
     min-height: 100vh;
     background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);
-    /* background-image: linear-gradient(to bottom, #24262b, #27292e, #2a2c31, #2d2f34, #303237, #34363c, #393b40, #3d3f45, #44464d, #4a4d54, #51555c, #585c64); */
     display: flex;
     justify-content: center;
     position: relative;

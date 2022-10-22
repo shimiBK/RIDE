@@ -26,3 +26,10 @@ export function convertTitle(title){
     return "";
    
 }
+
+
+export function addDash(eventName){
+    if(eventName){
+        return eventName.replaceAll(" ","-").toLowerCase();
+    }
+}
