@@ -1,15 +1,15 @@
 import "./myrides.css"
-import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 import {useState , useEffect} from "react";
 import { Link } from "react-router-dom";
-import Loading from "../../components/loading/Loading";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from "react";
+import axios from "axios";
+import Loading from "../../components/loading/Loading";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride";
-import { useContext } from "react";
 import userContext from "../../context/userContext";
 
 
@@ -24,10 +24,6 @@ const Myrides = () => {
     const [city,setCity] = useState("");
     const {user} = useContext(userContext);
 
-
-    const userId = user ? user._id : "";
-    const rideId = ride ? ride._id : "";
-    
     const fname = useRef();
     const lname = useRef();
     const facebook = useRef();
@@ -62,7 +58,7 @@ const Myrides = () => {
             setIsLoading(true);
             
             try{
-                const result = await axios.get(`/rides/user/${userId}`)
+                const result = await axios.get(`/rides/user/${user._id}`)
 
                 setRides(result.data);
                 setIsLoading(false);
@@ -90,7 +86,7 @@ const Myrides = () => {
             console.log(updatedInfo);
 
             try {
-                await axios.put(`/rides/update/${rideId}`,updatedInfo);
+                await axios.put(`/rides/update/${ride._id}`,updatedInfo);
                 toast.success("ride has been updated");
                 setEditRide(false);
                 window.location.reload();
@@ -143,7 +139,6 @@ const Myrides = () => {
   return (
     <>
     <div className="myrides">
-        {/* <Navbar user={user}/> */}
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
@@ -195,9 +190,7 @@ const Myrides = () => {
                 </form>
 
                     <span className="close" onClick={() => {setEditRide(false)}}>X</span>
-            </div>
-            
-            
+            </div> 
             }   
     </div>
 
