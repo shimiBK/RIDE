@@ -25,9 +25,7 @@ const Event = ({event}) => {
     const [updateEvent,setUpdateEvent] = useState(false);
     const [confirmDel,setConfirmDel] = useState(false);
     const [city,setCity] = useState(false);
-    console.log(event);
 
-    // const {eventName , eventTitle ,eventLocation , eventVenue ,  eventDate} = props;
     const path = `/rides/${event.eventValue}`;
     const imagePath = `assests/${event.eventValue}.jpg`
     const {user} = useContext(userContext);
@@ -132,17 +130,17 @@ const deleteEvent = async (eventID) => {
             <div className="editEventList">
                 <div className="editEventButtonContainer">
                   <button className="editEventListItem" 
-                    onClick={()=> setUpdateEvent(true)}>
+                    onClick={()=> {setUpdateEvent(true);setEditEvent(false)}}>
                     <EditIcon/>
                     Edit
                   </button>
                   <button className="editEventListItem" 
-                    onClick={()=> setConfirmDel(true)}>
+                    onClick={()=> {setConfirmDel(true);setEditEvent(false)}}>
                     <DeleteIcon/> 
                     Delete
                     </button>  
                   <button className="editEventListItem" 
-                    onClick={() => handleFollow(event.eventValue)}>
+                    onClick={() => {handleFollow(event.eventValue);setEditEvent(false)}}>
                     <AddIcon/> 
                     Follow
                   </button>  
