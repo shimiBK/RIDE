@@ -29,6 +29,8 @@ export default function Rides() {
     const getCity = (cityFromChild)=>{
 
         setCity(cityFromChild);
+
+        console.log();
       }
 
 
@@ -36,7 +38,7 @@ export default function Rides() {
     useEffect(()=>{
 
         const filtered = rides.filter((ride)=>{
-            return ride.city === city;
+            return city ? ride.city.includes(city) : "" ;
         });
 
         setfilteredRides(filtered);
