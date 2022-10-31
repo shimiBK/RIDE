@@ -1,5 +1,5 @@
 import "./searchbar.css"
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { useContext } from "react";
@@ -18,14 +18,13 @@ const Searchbar = ({placeholder,getCity,required}) => {
       return cities.filter(city => {
         return city.english_name.toLowerCase().includes(query.toLowerCase())
       })
-    }, [query])
+    }, [query,cities])
 
     
     useEffect(()=>{
 
       getCity(query);
 
-      console.log(query);
     },[query])
 
 
@@ -50,7 +49,7 @@ const Searchbar = ({placeholder,getCity,required}) => {
           ) : (
             <CloseIcon className="searchIcon" id="clearBtn" onClick={clearInput} />
           )}
-      {(query.length != 0 && openData) &&  (
+      {(query.length !== 0 && openData) &&  (
         <div className="dataResult">
           {filteredItems.slice(0, 15).map((value, key) => {
             return (

@@ -58,6 +58,7 @@ const AddEvent = ({handleEventModal}) => {
             ref={eventName}
             placeholder="Artist / Event Name"
             className="addEventInput"
+            required="true"
           />
           <Searchbar
             placeholder="Event Location" 
@@ -69,12 +70,14 @@ const AddEvent = ({handleEventModal}) => {
             ref={eventVenue}
             placeholder="Event Venue" 
             className="addEventInput"
+            required="true"
           />
           <input
             type="text"
             ref={eventDate}
             placeholder="Event Date" 
             className="addEventInput"
+            required="true"
           />
         </div>
         <button

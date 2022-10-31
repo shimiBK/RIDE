@@ -1,12 +1,15 @@
 import "./rides.css"
 import axios from "axios";
-import {useState , useEffect} from "react";
+import {useState , useEffect, useReducer} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride"
 import { hasNumber , getTitle } from "../../utils/utils";
+import { ACTION_TYPES } from "../../reducer/rideActionTypes";
+import { INITIAL_STATE, rideReducer } from "../../reducer/rideReducer";
+
 
 
 
@@ -17,11 +20,11 @@ export default function Rides() {
     const ename = location.pathname.split("/")[2];
     const title = getTitle(ename);
 
-    const [rides,setRides] = useState([{}])
     const [filteredRides,setfilteredRides] = useState([{}]);
     const [city,setCity] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [showAll,setShowAll] = useState(false);
+    const [state, dispatch] = useReducer(rideReducer, INITIAL_STATE);
+
 
 
 
@@ -30,14 +33,12 @@ export default function Rides() {
 
         setCity(cityFromChild);
 
-        console.log();
       }
-
 
 
     useEffect(()=>{
 
-        const filtered = rides.filter((ride)=>{
+        const filtered = state.rides.filter((ride)=>{
             return city ? ride.city.includes(city) : "" ;
         });
 
@@ -51,10 +52,11 @@ export default function Rides() {
 
         const getRides = async () => {
 
-            setIsLoading(true);
+            dispatch({ type: ACTION_TYPES.FETCH_START });
             
             try{
-                const res = await axios.get(ename && hasNumber(ename) ? 
+                const res = await axios.get(
+                ename && hasNumber(ename) ? 
                 `http://localhost:8800/api/rides?_id=${ename}` 
                 : ename ? 
                 `http://localhost:8800/api/rides?eventName=${ename}`
@@ -63,13 +65,13 @@ export default function Rides() {
                     
                     );
                    
-              showAll ? setRides(res.data) : setRides(res.data.slice(0,8));
+              showAll ?  dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: res.data })
+             : dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: res.data.slice(0,8) });
                 
-                setIsLoading(false);
                 
             }catch(error){
+                dispatch({ type: ACTION_TYPES.FETCH_ERROR });
                 console.log(error);
-                setIsLoading(false);
 
             }
         };
@@ -81,7 +83,7 @@ export default function Rides() {
         <div className="ridesContainer">
             <h1 className="ridesTitle">RIDES FOR {title}</h1>
             <div className="searchFilter"> 
-                {rides.length >=8 && <Searchbar placeholder="Search by city" getCity={getCity}/>}
+                {state.rides.length >=8 && <Searchbar placeholder="Search by city" getCity={getCity}/>}
             </div>
         {city ?
         <div className="rideItems">     
@@ -95,8 +97,8 @@ export default function Rides() {
         </div>
         :
         <div className="rideItems">     
-        {rides.length > 0 ?
-         rides.map(ride =>
+        {state.rides.length > 0 ?
+         state.rides.map(ride =>
             <Ride ride={ride} key={ride._id} containerStyle="infoContainer" />)
             : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>}
             </div>
@@ -109,8 +111,8 @@ export default function Rides() {
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
-        {isLoading ? <Loading size="30px"/> : renderRide }
-        {!city && rides.length >=8 && !showAll && <button className="facebookBtn" onClick={()=> setShowAll(true)}>Load More</button>}
+        {state.loading ? <Loading size="30px"/> : renderRide }
+        {!city && state.rides.length >=8 && !showAll && <button className="facebookBtn" onClick={()=> setShowAll(true)}>Load More</button>}
 
     </div>
     </>

@@ -98,7 +98,11 @@ const Addride = ({handleRideModal}) => {
       <h1 className="rideTitle">Ride Information</h1>
       <form className="rideBox" onSubmit={handleClick}>
         <div className="rideInputContainer">
-          <select name="events" ref={ename} className="rideSelectInput">
+          <select name="events" 
+           ref={ename} 
+           className="rideSelectInput" 
+            required="true">
+
             <option value="" disabled selected>Choose Event</option>
             <option value="david-guetta">David Guetta</option>
             <option value="armin-van-buuren">Armin Van Buuren</option>
@@ -112,12 +116,14 @@ const Addride = ({handleRideModal}) => {
             ref={fname}
             placeholder="First Name"
             className="rideInput"
+            required="true"
           />
           <input
             type="text"
             ref={lname}
             placeholder="Last Name"
             className="rideInput"
+            required="true"
             />
           <Searchbar
             placeholder="Search City" 
@@ -129,8 +135,9 @@ const Addride = ({handleRideModal}) => {
             ref={facebook}
             placeholder="Facebook Profile Link" 
             className="rideInput"
+            required="true"
           />
-          <select name="events" ref={time} className="rideSelectInput">
+          <select name="events" ref={time} className="rideSelectInput" required="true"s>
             <option value="" disabled selected>Leaving Time</option>
             <option value="19:00">19:00</option>
             <option value="19:30">19:30</option>

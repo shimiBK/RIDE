@@ -1,6 +1,6 @@
 import "./myrides.css"
 import 'react-toastify/dist/ReactToastify.css';
-import {useState , useEffect} from "react";
+import {useState , useEffect, useReducer} from "react";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,18 +11,19 @@ import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
 import Searchbar from "../../components/searchbar/Searchbar";
 import Ride from "../../components/ride/Ride";
 import userContext from "../../context/userContext";
+import { ACTION_TYPES } from "../../reducer/rideActionTypes";
+import { INITIAL_STATE, rideReducer } from "../../reducer/rideReducer";
 
 
 
 const Myrides = () => {
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [rides,setRides] = useState([{}]);
     const [confirmDel,setConfirmDel] = useState(false);
     const [editRide,setEditRide] = useState(false);
     const [ride,setRide] = useState("");
     const [city,setCity] = useState("");
     const {user} = useContext(userContext);
+    const [state, dispatch] = useReducer(rideReducer, INITIAL_STATE);
 
     const fname = useRef();
     const lname = useRef();
@@ -30,6 +31,7 @@ const Myrides = () => {
     const time = useRef();
 
 
+    console.log(state.loading);
 
     const changeEditRide = (value) =>{
         setEditRide(value);
@@ -55,26 +57,28 @@ const Myrides = () => {
 
         const getRides = async () => {
 
-            setIsLoading(true);
-            
-            try{
-                const result = await axios.get(`/rides/user/${user._id}`)
+            dispatch({ type: ACTION_TYPES.FETCH_START });
 
-                setRides(result.data);
-                setIsLoading(false);
+            try{
+                const res = await axios.get(`/rides/user/${user._id}`)
+
+               dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: res.data })
                 
             }catch(error){
+                dispatch({ type: ACTION_TYPES.FETCH_ERROR });
                 console.log(error);
-                setIsLoading(false);
 
             }
         };
         getRides();
         
-    },[]);
+    },[user._id]);
 
         const updateRide = async (e) =>{
 
+            dispatch({ type: ACTION_TYPES.UPDATE_START})
+
+            
             e.preventDefault();
             const updatedInfo = {
                 firstName: fname.current.value ? fname.current.value : ride.firstName,
@@ -83,16 +87,17 @@ const Myrides = () => {
                 time: time.current.value ? time.current.value : ride.time,
             }
 
-            console.log(updatedInfo);
 
             try {
                 await axios.put(`/rides/update/${ride._id}`,updatedInfo);
                 toast.success("ride has been updated");
+                dispatch({ type: ACTION_TYPES.UPDATE_SUCCESS})
                 setEditRide(false);
                 window.location.reload();
                 //check if city is changed and send a mail.
                 
             } catch (error) {
+                dispatch({ type: ACTION_TYPES.UPDATE_ERROR})
                 console.log(error);
                 
             }
@@ -100,18 +105,16 @@ const Myrides = () => {
 
     const deleteRide = async (rideID) => {
 
-            setIsLoading(true)
+        dispatch({ type: ACTION_TYPES.DELETE_START});
 
         try { 
             await axios.delete(`/rides/${rideID}`);
-            setIsLoading(false);
+            dispatch({ type: ACTION_TYPES.DELETE_SUCCESS, rideID });
             toast.success("Ride has been deleted successfully");
+            window.location.reload();
             setConfirmDel(false);
-            setTimeout(()=>{
-                window.location.reload();
-            },500);
-
         }catch (error) {
+            dispatch({ type: ACTION_TYPES.DELETE_ERROR });
             console.log(error)
             
         }
@@ -121,7 +124,7 @@ const Myrides = () => {
         <div className="myRidesContainer">
             <h1 className="myRidesTitle">{user.firstName}  {user.lastName} Rides</h1>
             <div className="myRideItems">
-                {rides.length > 0 ? (rides.map(ride =>
+                {state.rides.length > 0 ? (state.rides.map(ride =>
                 <Ride 
                     ride={ride} 
                     myRides="true" 
@@ -132,7 +135,7 @@ const Myrides = () => {
                     containerStyle="myContainer"  
                 />
                 )) : 
-                <h3 className="emptyRides">Your dont have any rides yet</h3>}  
+                <h3 className="emptyRides">You dont have any rides yet</h3>}  
             </div>
         </div>
     );
@@ -142,7 +145,7 @@ const Myrides = () => {
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
-            {isLoading ? <Loading/> : renderRide }
+            {state.loading ? <Loading/> : renderRide }
         {confirmDel &&
             <ConfirmDelete 
             message="Are you sure you want to delete this ride?" 
@@ -185,8 +188,8 @@ const Myrides = () => {
                             <option value="23:00">23:00</option>
                     </select>
                     </div>
-                    {!isLoading && <button className="editRideButton" type="submit">Update</button>}
-                        {isLoading && <button className="editRideButton" type="submit"><Loading/></button>}
+                    {!state.loading && <button className="editRideButton" type="submit">Update</button>}
+                        {state.loading && <button className="editRideButton" type="submit"><Loading/></button>}
                 </form>
 
                     <span className="close" onClick={() => {setEditRide(false)}}>X</span>
