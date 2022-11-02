@@ -6,17 +6,16 @@ A Web Application that connects people by by allowing them to find and share rid
 
 ## Project Status
 
-Users can find and Share rides, Follow Events and get notified by an email when a ride from their defined hometown is uploaded,  users can also edit and delete rides they uploaded.
+Users can find and Share rides, Follow Events and get notified by an email when a ride from their defined hometown is uploaded,  users can also edit and delete rides they uploaded,admin can add and edit events.
 
 Currently In Development : 
 
-1)Admin Panel
 <br/>
-2)Full Responsiveness
+1)Full Responsiveness
 <br/>
-3) Error Handling
+2) Error Handling
 <br/>
-4) Deployment
+3) Deployment
 
 ## Project Screen Shot(s)
  
