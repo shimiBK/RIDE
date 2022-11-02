@@ -8,7 +8,6 @@ const cors = require("cors");
 const cookieSession = require("cookie-session")
 const passport = require("passport");
 const rideRoute = require("./routes/rides");
-const partnerRoute = require("./routes/partners");
 const passportSetup = require("./passport");
 const authRoute = require("./routes/auth");
 const cityRoute = require("./routes/cities");
@@ -38,7 +37,6 @@ app.use(
   })
 );
 app.use("/api/rides", rideRoute);
-app.use("/api/partners", partnerRoute);
 app.use(
     cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
   );
@@ -51,6 +49,18 @@ app.use("/api/cities", cityRoute);
 app.use("/api/user", userRoute);
 app.use("/api/email", mailRoute);
 app.use("/api/events", eventRoute);
+
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
 
 
 app.listen(8800, () => {
