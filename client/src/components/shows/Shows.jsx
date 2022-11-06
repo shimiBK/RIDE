@@ -11,13 +11,6 @@ import userContext from "../../context/userContext";
 import axios from "axios";
 
 
-
-
-
-
-
-
-
 const Shows = () => {
 
     const [openModal , setOpenModal] = useState(false);
@@ -73,8 +66,11 @@ const Shows = () => {
     <div className="showsContainer">
         <h1 className="showsTitle">UPCOMING EVENTS</h1>
         <div className="eventItems" ref={eventsRef}>
-          {events.map(event=>
-          <Event event={event} key={event._id} />
+          {events.map((event)=>
+            <Event 
+            event={event}  
+            key={event._id} 
+          />
           )}
           </div>
           {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>

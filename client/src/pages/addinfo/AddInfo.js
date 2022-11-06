@@ -58,8 +58,17 @@ const AddInfo = ({flagStatus}) => {
           <div className="addInfoContainer">
           <form onSubmit={handleSubmit}>
            <div className="addInfoInputsContainer">
-            <Searchbar placeholder="Search city" getCity={getCity}/>
-            <select className="infoLoginInput" type="text" ref={gender} placeholder="Gender" required="true">
+            <Searchbar 
+              placeholder="Search city" 
+              getCity={getCity}
+            />
+            <select 
+              className="infoLoginInput" 
+              type="text" 
+              ref={gender} 
+              placeholder="Gender" 
+              required="true"
+            >
             <option value="" disabled selected>Choose Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>

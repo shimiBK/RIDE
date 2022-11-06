@@ -41,10 +41,10 @@ const Profile = () => {
 
         e.preventDefault();
           const updateInfo = {
-            firstName: fname.current.value ? fname.current.value : user.firstName ,
-            lastName:lname.current.value ? lname.current.value : user.lastName ,
-            city: city ? city : user.city ,
-            gender: gender.current.value ? gender.current.value : user.gender ,
+            firstName:  fname.current.value || user.firstName ,
+            lastName:  lname.current.value || user.lastName ,
+            city: city || user.city ,
+            gender:  gender.current.value || user.gender ,
           };
           try {
             await axios.put(`/user/${user._id}`, updateInfo);

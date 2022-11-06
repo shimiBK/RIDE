@@ -11,6 +11,8 @@ const Addride = ({handleRideModal}) => {
 
   const [city,setCity] = useState("");
   const [users,setUsers] = useState({});
+  const [events,setEvents] = useState([{}]);
+
 
   const {user} = useContext(userContext);
 
@@ -27,7 +29,6 @@ const Addride = ({handleRideModal}) => {
     }
   
 
-    
 
     const handleEmails = async (ride) => {
       for(let dbUser of users){
@@ -91,6 +92,29 @@ const Addride = ({handleRideModal}) => {
     
         },[]);
 
+
+
+      useEffect(()=> {
+
+        const getEvents = async () => {
+        try {
+            const res = await axios.get('http://localhost:8800/api/events');
+            setEvents(res.data);          
+  
+          
+        } catch (error) {
+          console.log(error);
+        }
+
+      }
+        getEvents();
+
+   
+
+
+      },[]);
+
+
       
   return (
     <>
@@ -102,14 +126,10 @@ const Addride = ({handleRideModal}) => {
            ref={ename} 
            className="rideSelectInput" 
             required="true">
-
             <option value="" disabled selected>Choose Event</option>
-            <option value="david-guetta">David Guetta</option>
-            <option value="armin-van-buuren">Armin Van Buuren</option>
-            <option value="martin-garrix">Martin Garrix</option>
-            <option value="hardwell">Hardwell</option>
-            <option value="Tiesto">Tiesto</option>
-            <option value="illenium">ILLENIUM</option>
+            {events.map((event) => 
+            <option key={event._id} value={event.eventValue}>{event.eventName}</option>
+            )}
           </select>
           <input
             type="text"

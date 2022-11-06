@@ -81,10 +81,10 @@ const Myrides = () => {
             
             e.preventDefault();
             const updatedInfo = {
-                firstName: fname.current.value ? fname.current.value : ride.firstName,
-                lastName: lname.current.value ? lname.current.value : ride.lastName,
-                city: city ? city : ride.city,
-                time: time.current.value ? time.current.value : ride.time,
+                firstName:  fname.current.value || ride.firstName,
+                lastName:  lname.current.value || ride.lastName,
+                city: city || ride.city,
+                time: time.current.value || ride.time,
             }
 
 

@@ -71,11 +71,11 @@ const Event = ({event}) => {
 
         e.preventDefault();
         const updatedInfo = {
-            eventName: updatedEventName.current.value ? updatedEventName.current.value : event.eventName,
-            eventValue: updatedEventName.current.value ? addDash(updatedEventName.current.value) : event.eventValue,
-            eventLocation: city ? city : event.eventLocation,
-            eventVenue: updatedEventVenue.current.value ? updatedEventVenue.current.value : event.eventVenue,
-            eventDate: updatedEventDate.current.value ? updatedEventDate.current.value : event.eventDate,
+            eventName: updatedEventName.current.value || event.eventName,
+            eventValue:  addDash(updatedEventName.current.value) || event.eventValue,
+            eventLocation: city || event.eventLocation,
+            eventVenue:  updatedEventVenue.current.value || event.eventVenue,
+            eventDate:  updatedEventDate.current.value || event.eventDate,
         }
 
         try {

@@ -6,7 +6,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Partners from "./pages/partners/Partners";
 import { useEffect, useState } from "react";
 import AddInfo from "./pages/addinfo/AddInfo"
 import Profile from "./pages/profile/Profile";
@@ -93,9 +92,6 @@ function App() {
         </Route>
         <Route path="/rides" >
           <Rides/>
-        </Route>
-        <Route path="/partners">
-          <Partners />
         </Route>
         <Route path="/addinfo">
           {!flag ? <Redirect to="/"/> : <AddInfo/>}

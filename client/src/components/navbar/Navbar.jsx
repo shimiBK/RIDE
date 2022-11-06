@@ -40,9 +40,7 @@ function Navbar() {
             </Link>
           </div>
           <div className="navRight">
-            <Link>
             {!user && <button className="loginBtn" onClick={ () => setLoginModal(true)}>Login</button>}
-            </Link>
             <div className="dropDownWrapper">
             {user && 
               <div className="dropDownMenu" onClick={()=> setOpen(!open)}>
