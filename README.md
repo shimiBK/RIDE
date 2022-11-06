@@ -13,7 +13,6 @@ Currently In Development :
 <br/>
 1)Full Responsiveness
 <br/>
-2) Error Handling
 <br/>
 3) Deployment
 
