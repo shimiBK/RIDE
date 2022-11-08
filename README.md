@@ -18,6 +18,7 @@ Currently In Development :
 
 ## Project Screen Shot(s)
  
+<div align="center">
 
 ![](./Readme/first.gif)
 <br/>
@@ -29,34 +30,52 @@ Currently In Development :
 <br/>
 <br/>
 <br/>
+Main Screen : 
+<br>
+<br>
 ![](./Readme/Landing.png)
 <br/>
 <br/>
 <br/>
 <br/>
+Events Screen : 
+<br>
+<br>
 ![](./Readme/Events.png)
 <br/>
 <br/>
 <br/>
 <br/>
+Rides for a specific artist :
+<br>
+<br>
 ![](./Readme/EventRides.png)
 <br/>
 <br/>
 <br/>
 <br/>
+Profile page, Where a user can update his profile and unfollow events : 
+<br>
+<br>
 ![](./Readme/Profile.png)
 <br/>
 <br/>
 <br/>
 <br/>
+User's rides ( which he uploaded). User can edit/update the info of his rides:
+<br>
+<br>
 ![](./Readme/MyRides.png)
 <br/>
 <br/>
 <br/>
 <br/>
+mail that user receives if a ride from his defined hometown is uploaded (and if he is following that event):
+<br>
+<br>
 ![](./Readme/Email.png)
 
-
+</div>
 
 ## Installation and Setup Instructions
 
