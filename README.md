@@ -11,10 +11,10 @@ Users can find and Share rides, Follow Events and get notified by an email when 
 Currently In Development : 
 
 <br/>
-1)Full Responsiveness
+1)Deployment
 <br/>
 <br/>
-3) Deployment
+
 
 ## Project Screen Shot(s)
  
