@@ -3,9 +3,13 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    background-color: black;
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("../../../public/assests/tomorrowland.jpg");
+    background-color: gray;
      background-repeat: no-repeat;
      background-size: 100% 100%;
+     background-size:cover;
+     
 }
 
 .contentContainer{
@@ -14,6 +18,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
+    
 }
 
 .textContainer{
@@ -75,3 +81,130 @@
 
 
 
+
+
+@media screen and (max-width:750px) {
+
+    .topSentence{
+        font-size: 90px;
+
+
+    }
+
+    .bottomSentence{
+        font-size: 60px;
+    }
+
+    .eventsBtn{
+        padding: 10px 80px;
+    }
+
+ 
+}
+
+
+
+@media screen and (max-width:640px) {
+
+    .topSentence{
+        font-size: 75px;
+
+
+    }
+
+    .bottomSentence{
+        font-size: 50px;
+    }
+
+    .eventsBtn{
+        padding: 10px 60px;
+        font-size: 14px;
+    }
+
+ 
+}
+
+
+@media screen and (max-width:535px) {
+
+    .topSentence{
+        font-size: 60px;
+
+
+    }
+
+    .bottomSentence{
+        font-size: 40px;
+    }
+
+    .btnsContainer{
+
+        margin-top: 35px;
+
+
+    }
+
+    .eventsBtn{
+        padding: 8px 50px;
+        font-size: 13px;
+    }
+
+
+
+}
+
+
+@media screen and (max-width:435px) {
+
+    .topSentence{
+        font-size: 50px;
+
+
+    }
+
+    .bottomSentence{
+        font-size: 30px;
+    }
+
+    .btnsContainer{
+
+        margin-top: 30px;
+
+
+    }
+
+    .eventsBtn{
+        padding: 6px 40px;
+        font-size: 13px;
+    }
+
+
+}
+
+
+@media screen and (max-width:350px) {
+
+    .topSentence{
+        font-size: 40px;
+
+
+    }
+
+    .bottomSentence{
+        font-size: 25px;
+    }
+
+    .btnsContainer{
+
+        margin-top: 25px;
+
+
+    }
+
+    .eventsBtn{
+        padding: 6px 30px;
+        font-size: 11px;
+    }
+
+
+}

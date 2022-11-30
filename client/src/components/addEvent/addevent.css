@@ -102,3 +102,50 @@
     justify-content: center;
     cursor: pointer;
 }
+
+
+
+@media screen and (max-width:600px) {
+
+    .eventModal{
+        width: 350px;
+
+
+    }
+
+  
+}
+
+
+@media screen and (max-width:480px) {
+
+    .eventModal{
+        width: 270px;
+        height: 420px;
+        padding: 10px 10px;
+
+
+    }
+    .eventModalTitle{
+        font-size: 20px;
+
+    }
+
+    .eventModalTitle:after{
+        content: "";
+        position: absolute;
+        border-bottom: 2px solid #3498db;;
+        width: 230px;
+        top: 12%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .close{
+        font-size: 15px;
+
+
+    }
+
+
+  
+}

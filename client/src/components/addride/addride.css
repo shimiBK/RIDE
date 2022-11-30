@@ -1,5 +1,5 @@
 .rideModal{
-    width: 450px;
+    width: 500px;
     height: 550px;
     z-index: 99;
     background-color: rgb(36, 38, 43,1);
@@ -8,7 +8,6 @@
     left:50%;
     transform: translate(-50%,-100%);
     margin: auto;
-    padding: 10px 50px;
     display: flex;
     color: white;
     flex-direction: column;
@@ -24,7 +23,7 @@
     color: white;
     display: flex;
     justify-content: center;
-    margin-bottom: 75px;
+    margin-bottom: 70px;
 
 
 }
@@ -43,9 +42,10 @@
 
 .rideInputContainer{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     gap:30px;
-    padding: 0 20px;
+    padding: 0 30px;
 
 }
 
@@ -78,7 +78,7 @@
 
 .rideButton{
     position: absolute;
-    width: 80%;
+    width: 90%;
     font-size: 15px;
     border-radius: 50px;
     padding: 12px 0;
@@ -112,3 +112,72 @@
     justify-content: center;
     cursor: pointer;
 }
+
+
+
+@media screen and (max-width:600px) {
+
+.rideModal{
+    width: 320px;
+    height: 500px;
+
+
+    }
+
+.rideTitle{
+    font-size: 22px;
+    margin-bottom: 70px;
+    }
+
+.rideTitle:after{
+        content: "";
+        position: absolute;
+        border-bottom: 2px solid #3498db;;
+        width: 200px;
+        top: 14%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+
+.rideInputContainer{
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        padding: 0 20px;
+    
+    }
+
+    .rideButton{
+
+        width: 75%;
+        padding: 10px 0;
+
+    }
+
+    
+}
+
+
+
+/* @media screen and (max-width:550px) {
+
+    .rideModal{
+    
+        width: 350px;
+        height: 400px;
+    
+        }
+    
+        .rideTitle{
+    
+        margin-bottom: 50px;
+        }
+    
+        .rideButton{
+    
+            width: 60%;
+    
+        }
+    
+        
+    } */

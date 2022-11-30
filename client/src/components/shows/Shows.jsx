@@ -63,19 +63,21 @@ const Shows = () => {
 
   return (
     <div className="shows">
-    <div className="showsContainer">
+      <div className="showsContainer">
         <h1 className="showsTitle">UPCOMING EVENTS</h1>
+          <div className="anotherTest">
         <div className="eventItems" ref={eventsRef}>
-          {events.map((event)=>
-            <Event 
-            event={event}  
-            key={event._id} 
-          />
-          )}
+            {events.map((event)=>
+              <Event 
+              event={event}  
+              key={event._id} 
+              />
+              )}
+          <button className="addRideBtn" onClick={handleRide}>I WANT TO SHARE A RIDE</button>
+          </div>
           </div>
           {/* <ArrowBackIosIcon style={{fontSize:"40px"}} className="leftChevron"/>
           <ArrowForwardIosIcon style={{fontSize:"40px"}} className="rightChevron"/> */}
-          <button className="addRideBtn" onClick={handleRide}>I WANT TO SHARE A RIDE</button>
         {openModal && <Addride handleRideModal={handleRideModal} />}
         <ToastContainer
             position="top-center"

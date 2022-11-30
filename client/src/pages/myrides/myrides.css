@@ -8,6 +8,7 @@
 }
 
 .myRidesTitle{
+    width: 100%;
     color:white;
     font-size: 35px;
     margin-top: 10px;
@@ -23,7 +24,7 @@
     height: 0px;
     border-bottom: 3px solid #3498db;
     border-radius: 100px;
-    width: 1260px;
+    width: 95%;
 
 }
 .myRideEventName{
@@ -199,7 +200,28 @@
 
 
 
+@media screen and (max-width:370px) {
 
+    .myRidesTitle{
+        font-size: 27px;
+    
+    }
+
+    .myRidesTitle:after{
+
+        top:60px;
+
+
+
+    }
+
+    .myRideItems{
+        margin-top: 120px;
+    }
+
+
+    
+}
 
 
 

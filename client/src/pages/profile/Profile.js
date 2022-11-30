@@ -107,9 +107,12 @@ const Profile = () => {
     <>
     <div className="profile">
         <Navbar user={user} />
-            <h1 className="profilePageTitle">Account Settings</h1>
+
             {isLoading ? <Loading size="30px"/> :
             <div className="settingsContainer">
+              <div className="test">
+              <h1 className="profilePageTitle">Account Settings</h1>
+              </div>
               <div className="formsWrapper">
                 <div className="personalInfo">
                     <h1 className="personalTitle">Personal Info</h1>

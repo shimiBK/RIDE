@@ -101,8 +101,15 @@ export default function Rides() {
          state.rides.map(ride =>
             <Ride ride={ride} key={ride._id} containerStyle="infoContainer" />)
             : <h3 className="emptyRides">CURRENTLY THERE ARE NO RIDES FOR {title}</h3>}
+
             </div>
+            
         }
+
+        {!city && state.rides.length >=8 && !showAll && 
+        <div className="loadMoreButtonContainer">
+        <button className="loadMoreBtn" onClick={()=> setShowAll(true)}>Load More</button>
+        </div>  }
        </div>)
 
   return (
@@ -112,7 +119,7 @@ export default function Rides() {
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
         {state.loading ? <Loading size="30px"/> : renderRide }
-        {!city && state.rides.length >=8 && !showAll && <button className="facebookBtn" onClick={()=> setShowAll(true)}>Load More</button>}
+
 
     </div>
     </>

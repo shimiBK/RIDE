@@ -1,8 +1,7 @@
 .rides{
-    min-height: 100vh;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../../public/assests/futuristic.jpg"); */
-    /* background-size: 100% 100%; */
-    /* background-image: linear-gradient(to right top, #24262b, #25272c, #27292e, #282a2f, #2a2c31, #2c2e33, #2e3035, #303237, #33353a, #36383d, #393b40, #3c3e43);    margin:0; */
+    height: 100vh;
+    min-height: 800px;
+    overflow: scroll;
     background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);
     display: flex;
     justify-content: center;
@@ -13,9 +12,11 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     max-width: 1260px;
     width: 100%;
     margin-top: 25px;
+    height: 100%;
 }
 
 .searchFilter{
@@ -28,6 +29,7 @@
 
 
 .ridesTitle{
+    width: 100%;
     color:white;
     font-size: 35px;
     margin-top: 10px;
@@ -42,7 +44,7 @@
     height: 0px;
     border-bottom: 3px solid #3498db;
     border-radius: 100px;
-    width: 1260px;
+    width: 98%;
 
 
 }
@@ -52,15 +54,22 @@
      flex-wrap: wrap;
      justify-content: center;
      gap:25px;
-     margin-top: 110px;  
+     margin-top: 105px;
 }
+
+.loadMoreButtonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 
 .previousPage{
     position: absolute;
     width: 80px;
-    top:0;
+    top:12px;
     left:0;
 }
 
@@ -114,6 +123,29 @@
     transition: all 0.3s ease-out;
   
 }
+
+.loadMoreBtn{
+
+    width: 200px;
+    padding: 12px 20px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8); 
+    box-shadow: -2px 3px 15px 0px rgba(52,152,219,0.8);
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor:pointer;
+    border-radius: 50px;
+    margin-top: 15px;
+    transition: all 0.3s ease-out;
+    margin-top: 30px;
+
+}
+
+.loadMoreBtn:hover{
+    background-color: white;
+    color: #3498db;
+
+}
 .facebookBtn:hover{
     background-color: white;
     color: #3498db;
@@ -135,6 +167,99 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+@media screen and (max-width:650px){
+
+    .previousPage{
+
+        display: none;
+ 
+     }
+ 
+}
+
+
+@media screen and (max-width:586px) {
+
+
+    .ridesTitle{
+
+        font-size: 30px;
+        
+    }
+    .ridesTitle:after{
+        top:60px;
+        width: 95%;
+    }
+
+
+
+    
+}
+
+
+
+@media screen and (max-width:480px) {
+
+
+    .ridesTitle{
+
+        font-size: 25px;
+        
+    }
+    .ridesTitle:after{
+        top:55px;
+        width: 95%;
+
+
+    }
+
+
+    
+}
+
+
+
+@media screen and (max-width:380px) {
+
+
+    .ridesTitle{
+
+        font-size: 22px;
+        
+    }
+    .ridesTitle:after{
+        top:45px;
+        width: 95%;
+
+
+    }
+
+    
+}
+
+
+@media screen and (max-width:330px) {
+
+
+    .ridesTitle{
+
+        font-size: 18px;
+        
+    }
+    .ridesTitle:after{
+        top:40px;
+        width: 95%;
+
+
+    }
+
+    
+}
+
+
+
 
 
 

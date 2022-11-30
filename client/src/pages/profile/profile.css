@@ -1,20 +1,33 @@
 .profile{
+    height: 100vh;
+    min-height:780px;
     display: flex;
+    overflow: scroll;
     flex-direction: column;
     position: relative;
-    min-height: 100vh;
     background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);    /* background-image: linear-gradient(to right bottom, #24262b, #2c2e33, #34363b, #3c3e43, #44474c, #4b4e54, #51555c, #585c64, #5e636d, #646976, #6a707f, #707788); */
 
+}
+
+.test{
+    width: 100%;
+    height: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
 }
 
 
 .profilePageTitle{
     color: white;
     font-size: 35px;
-    position: absolute;
-    left: 50%;
-    top:10%;
-    transform: translate(-50%,-50%);
+    position:absolute;
+    margin-top: 70px;
+    align-items: center;
+    white-space: nowrap;
+   
+    
 }
 
 .profilePageTitle:after{
@@ -26,23 +39,24 @@
     height: 0px;
     border-bottom: 2px solid #3498db;
     width: 300px;
-    /* margin-top: 70px; */
+
 }
 
 .settingsContainer{
+    width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    top:40%;
-    transform: translate(-50%,-50%);
-    margin-top: 35px;
-    gap: 30px;
+    margin-top: 30px;
+    gap: 45px;
 }
 
 .formsWrapper{
+    margin-top: 80px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap:15px;
 }
 
@@ -188,13 +202,18 @@
 
 }
 
+.testButton{
+    width: 100%;
+    height: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 
 
 .deleteUserButton{
-    position: absolute;
-    left:50%;
-    bottom:-40%;
-    transform: translate(-50%,-50%);
     border: 1px solid #3498db;
     background-color: #3498db;
     padding: 15px 100px;
@@ -206,6 +225,7 @@
     color: white;
     border-color: #3498db;
     cursor: pointer;
+    margin-top: 30px;
 }
 .deleteUserButton:hover{
     background-color: white;
@@ -216,3 +236,77 @@
 
 
 
+@media screen and (max-width:1024px) {
+
+    .profile{
+        overflow: scroll;
+    }
+
+    .profilePageTitle{
+
+        margin-top: 70px;
+    }
+    .settingsContainer{
+        height:125%
+    }
+
+
+    .deleteUserButton{
+        padding: 15px 50px;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+
+    
+    .formsWrapper{
+        flex-direction: column;
+        margin-top: 50px;
+
+    }
+    
+}
+
+
+@media screen and (max-width:550px) {
+
+    
+
+    
+    .settingsContainer{
+
+        margin-top: 90px;
+    }
+
+
+
+    .profilePageTitle{
+        color: white;
+        font-size: 27px;
+    }
+
+    .profilePageTitle:after{
+        width: 250px;
+
+    }
+
+    .personalInfo{
+        width: 300px;
+
+
+    }
+    .profileEvents{
+        width: 300px;
+    }
+
+    .personalButton{
+        padding: 10px 100px;
+
+    }
+
+    .deleteUserButton{
+        bottom: -10%;
+        padding: 12px 35px;
+    }
+
+}

@@ -60,3 +60,54 @@
     color: #3498db;
 
 }
+
+
+@media screen and (max-width:570px) {
+
+    .delModal{
+
+        width:400px;
+
+    }
+
+    .confirmText{
+        font-size: 18px;
+
+
+    }
+
+    .deletelBtn , .cancelBtn{
+        width: 120px;
+        font-size: 12px;
+
+    }
+
+   
+}
+
+
+@media screen and (max-width:570px) {
+
+    
+    .delModal{
+
+        width:320px;
+
+    }
+
+    .confirmText{
+        font-size: 15px;
+
+
+    }
+
+    .deletelBtn , .cancelBtn{
+        width: 120px;
+        font-size: 11px;
+
+    }
+
+
+
+
+}
