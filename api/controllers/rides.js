@@ -21,9 +21,17 @@ const getRides = async (req,res,next) => {
 const getUserRides = 
 
 async (req,res,next)=> {
+
     try {
       const currentUser = await User.findById(req.params.userId);
       const userRides = await Ride.find({userID: currentUser._id});
+
+      if(!currentUser){
+        return res.status(404).json("User wasn't found");
+      }
+      if(!userRides){
+        return res.status(404).json("User Rides wasn't found");
+      }
   
       res.status(200).json(userRides);
   
@@ -88,8 +96,14 @@ async (req,res,next)=> {
   const deleteRide = async (req, res) => {
     try {
       const ride = await Ride.findById(req.params.id);
-      await ride.deleteOne();
-      res.status(200).json("the ride has been deleted");
+            
+        if(!ride){
+          return res.status(404).json("Ride not found");
+          
+        }
+
+        await ride.deleteOne();
+        res.status(200).json("the ride has been deleted");
 
     } catch (err) {
       res.status(500).json(err);
@@ -98,12 +112,14 @@ async (req,res,next)=> {
 
 
   const getRide = async (req, res) => {
-
-    const path = {...req.query};
-    console.log(path)
   
     try {
       const ride = await Ride.findById(req.params.id);
+
+      if(!ride){
+
+        return res.status(404).json("ride not found")
+      }
   
   
       res.status(200).json(ride);
@@ -116,6 +132,8 @@ async (req,res,next)=> {
 
 
   const postRide = async (req,res) => {
+
+    console.log(req.body);
     
     const newRide = new Ride({
         eventName: req.body.ename,
@@ -140,7 +158,6 @@ async (req,res,next)=> {
     }
     
     };
-
 
 
     module.exports = {getRides , getUserRides , getRideFromCity , updateRide, deleteUserRides,  deleteRide , getRide , postRide };
