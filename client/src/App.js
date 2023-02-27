@@ -14,6 +14,7 @@ import axios from "axios";
 import userContext from "./context/userContext";
 import cityContext from"./context/cityContext";
 
+export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 
 function App() {

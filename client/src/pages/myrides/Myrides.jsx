@@ -31,13 +31,10 @@ const Myrides = () => {
     const time = useRef();
 
 
-    console.log(state.loading);
-
     const changeEditRide = (value) =>{
         setEditRide(value);
     }
 
-    
     const cancelDel = (childValue) =>{
         setConfirmDel(childValue);
     }
@@ -65,6 +62,7 @@ const Myrides = () => {
                dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: res.data })
                 
             }catch(error){
+                
                 dispatch({ type: ACTION_TYPES.FETCH_ERROR });
                 console.log(error);
 

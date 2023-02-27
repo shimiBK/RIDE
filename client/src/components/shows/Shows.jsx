@@ -9,6 +9,7 @@ import Addride from "../addride/Addride";
 import { useContext } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
+import { SERVER_URL } from "../../App";
 
 
 const Shows = () => {
@@ -19,13 +20,10 @@ const Shows = () => {
     const eventsRef = useRef();
 
 
-
-
     const handleRideModal = (childValue) =>{
       setOpenModal(childValue);
     }
    
-
 
     //check if there is user in order to add a ride 
     
@@ -45,7 +43,7 @@ const Shows = () => {
         const getEvents = async () =>{
           try {
 
-            const res = await axios.get("http://localhost:8800/api/events");
+            const res = await axios.get(`${SERVER_URL}/api/events`);
             setEvents(res.data);
   
             

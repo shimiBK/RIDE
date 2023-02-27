@@ -2,8 +2,6 @@ import PropagateLoader  from "react-spinners/PropagateLoader";
 
 
 
-
-
 const Loading = ({size}) => {
   return (
     <div className="loading">

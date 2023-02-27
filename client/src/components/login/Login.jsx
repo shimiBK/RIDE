@@ -1,13 +1,13 @@
-
-
 import "./login.css"
+import { SERVER_URL } from "../../App";
+
 
 const Login = ({loginmodal}) => {
 
 
 
   const google = () => {
-    window.open("http://localhost:8800/auth/google", "_self");
+    window.open(`${SERVER_URL}/auth/google", "_self`);
 
   };
 

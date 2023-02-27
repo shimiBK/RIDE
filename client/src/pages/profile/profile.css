@@ -188,6 +188,8 @@
     top:2px;
     right:5px;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 
 }
 

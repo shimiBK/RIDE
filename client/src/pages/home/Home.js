@@ -6,7 +6,6 @@ import Shows from "../../components/shows/Shows";
 
 export default function Home() {
 
-
   return (
     <>
     <div className="homeContainer">

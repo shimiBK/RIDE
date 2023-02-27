@@ -23,7 +23,6 @@ const AddInfo = ({flagStatus}) => {
       setCity(cityFromChild);
     }
 
-    
 
       const handleSubmit = async (e) => {
 

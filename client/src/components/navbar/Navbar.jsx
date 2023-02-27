@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from "react";
 import userContext from "../../context/userContext";
 import AddEvent from "../addEvent/AddEvent";
+import { SERVER_URL } from "../../App";
 
 
 function Navbar() {
@@ -23,7 +24,7 @@ function Navbar() {
 
 
   const googleLogout = () => {
-    window.open("http://localhost:8800/auth/logout", "_self");
+    window.open(`${SERVER_URL}/auth/logout", "_self`);
   };
 
   const loginmodal = (logindata) => {
@@ -96,8 +97,7 @@ function Navbar() {
                  {!user && <div className="sidebarItem" onClick={ () => {setLoginModal(true);setSidebarMenu(false);setHamburger(true)}}>Login</div>}
                 </div>
                  </div>}
-                
-               
+                      
         {loginModal && <Login loginmodal={loginmodal} />}
         {eventModal && <AddEvent handleEventModal={handleEventModal}/>}
       </div>
