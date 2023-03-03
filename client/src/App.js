@@ -13,6 +13,8 @@ import Myrides from "./pages/myrides/Myrides";
 import axios from "axios";
 import userContext from "./context/userContext";
 import cityContext from"./context/cityContext";
+import chatContext from "./context/chatContext";
+import Message from "./components/message/Message";
 
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -23,16 +25,40 @@ function App() {
   const [flag,setFlag] = useState(false);
   const [cities,setCities] = useState([]);
 
+  const [currentChat, setCurrentChat] = useState(null);
+  const [messages, setMessages] = useState([]);
 
+
+  const chatCont = {currentChat,setCurrentChat};
   const userCont = {user,setUser};
   const cityCont = {cities,setCities};
+
+
+
+  useEffect(()=>{
+
+    const getMessages = async () => {
+
+      try {
+        const res = await axios.get(`${SERVER_URL}/api/messages/${currentChat?._id}`)
+        setMessages(res.data);
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+
+    getMessages();
+
+  },[currentChat])
+
 
 
   useEffect(() =>{
     const getCities = async () => {
         
         try{
-            const res = await axios.get('http://localhost:8800/api/cities');
+            const res = await axios.get(`${SERVER_URL}/api/cities`);
             setCities(res.data);                
         }catch(error){
             console.log(error);
@@ -43,7 +69,6 @@ function App() {
   },[user]);
 
 
-
   
   const flagStatus = (statusFromChild) =>{
     setFlag(statusFromChild);
@@ -52,7 +77,8 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:8800/auth/login/success", {
+
+      fetch(`${SERVER_URL}/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -84,6 +110,7 @@ function App() {
   },[user])
 
   return(
+    <chatContext.Provider value = {chatCont}>
     <cityContext.Provider value={cityCont}>
     <userContext.Provider value={userCont}>
     <Router>
@@ -105,8 +132,18 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    <div className="chatContainer">
+          <div className="chat">
+                {messages.map((m) => (
+                    <div>
+                      <Message message={m} own={m.sender === user._id} />
+                    </div>
+                  ))}
+          </div>
+        </div>
     </userContext.Provider>
     </cityContext.Provider>
+    </chatContext.Provider>
   )
 }
 
