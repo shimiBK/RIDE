@@ -25,7 +25,7 @@ const Shows = () => {
     }
    
 
-    //check if there is user in order to add a ride 
+    //check if there is a user in order to add a ride 
     
       const handleRide = () => {
 

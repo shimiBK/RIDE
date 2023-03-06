@@ -12,6 +12,8 @@ const Conversation = ({conversation , currentUser}) => {
     useEffect(()=>{
 
         const reciverID = conversation.members.find((member)=> member !== currentUser?._id);
+
+        
         const getUser = async () =>{
 
             try {

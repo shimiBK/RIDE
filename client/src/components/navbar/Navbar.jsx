@@ -17,7 +17,7 @@ import chatContext from "../../context/chatContext";
 import axios from 'axios';
 
 
-function Navbar() {
+function Navbar({chatStatus}) {
   const [loginModal, setLoginModal] = useState(false);
   const [hamburger, setHamburger] = useState(true);
   const [sidebarMenu, setSidebarMenu] = useState(false);
@@ -128,7 +128,7 @@ function Navbar() {
               {openMessenger && 
                   <div className="conversationContainer" >
               {conversations.map((c) => (
-                <div onClick={()=> setCurrentChat(c)}>
+                <div onClick={()=> {setCurrentChat(c);setOpenMessenger(false);chatStatus(true);}}>
                 <Conversation key={conversations._id} conversation={c} currentUser={user} />
                 </div>
               ))}

@@ -1,11 +1,9 @@
 const { Server } = require("socket.io");
 
 
-
 const corsOptions = {
     origin: "http://localhost:3000"
   }
-
 
 
 const io = new Server({
@@ -14,6 +12,18 @@ const io = new Server({
       methods: ["GET", "POST"],
     },
   });
+
+
+
+  io.on("connection", (socket) => {
+
+    console.log("a user has connected");
+
+
+
+
+
+  })
 
 
 
