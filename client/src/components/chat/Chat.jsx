@@ -5,16 +5,42 @@ import chatContext from "../../context/chatContext";
 import axios from 'axios';
 import { SERVER_URL } from '../../App';
 
-const Chat = ({chatStatus, currentUser}) => {
+
+const Chat = ({chatStatus, currentUser , socket}) => {
 
 
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const {currentChat} = useContext(chatContext);
   const scrollRef = useRef();
 
-  console.log(currentChat);
+
+
+  useEffect(() => {
+    socket.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, [socket]);
+
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.emit("addUser", currentUser._id);
+  }, [currentUser,socket]);
+
+
+
 
     useEffect(() => {
     const getMessages = async () => {
@@ -39,6 +65,16 @@ const Chat = ({chatStatus, currentUser}) => {
       text: newMessage,
       conversationId: currentChat._id,
     };
+
+    const receiverId = currentChat.members.find(
+      (member) => member !== currentUser._id
+    );
+
+    socket.emit("sendMessage", {
+      senderId: currentUser._id,
+      receiverId,
+      text: newMessage,
+    });
 
     try {
       const res = await axios.post(`${SERVER_URL}/api/messages/`, message);

@@ -112,7 +112,7 @@ function App() {
             </Switch>
           </Router>
           {chat && 
-          <Chat chatStatus={chatStatus} currentUser = {user} />
+          <Chat chatStatus={chatStatus} currentUser = {user} socket={socket} />
           }
         </userContext.Provider>
       </cityContext.Provider>
