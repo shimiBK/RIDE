@@ -4,15 +4,44 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { useState } from "react";
+import userContext from "../../context/userContext";
+import { useState, useContext } from "react";
 import { convertTitle } from "../../utils/utils";
+import chatContext from "../../context/chatContext";
+import { SERVER_URL } from "../../App";
+import axios from 'axios';
 
 
-const Ride = ({ride,myRides,getRide,cancelDel,changeEditRide,containerStyle}) => {
+const Ride = ({ride,myRides,getRide,cancelDel,changeEditRide,containerStyle,chatStatus}) => {
 
     const [editMenu,setEditMenu] = useState(false);
+    const [conversation,setConversation] = useState(null);
+    const [loading,setLoading] = useState(false);
+    const [addresseeId,setAddresseeId] = useState("");
+    const {currentChat,setCurrentChat } = useContext(chatContext);
+    const { user } = useContext(userContext);
 
-    
+
+const handleSendMessage = async (addresseeId) => {
+
+    console.log(addresseeId);
+
+    try {
+        setLoading(true);
+        const res = await axios.get(`${SERVER_URL}/api/conversation/find/${addresseeId}/${user?._id}`);
+        setCurrentChat(res.data);
+        setLoading(false)
+        chatStatus(true);
+
+
+    } catch (error) {
+        console.log(error);
+        setLoading(false);
+        
+    }
+
+}
+
   return (
     <div className="rideItem" >
         <div className={containerStyle}>
@@ -52,7 +81,8 @@ const Ride = ({ride,myRides,getRide,cancelDel,changeEditRide,containerStyle}) =>
             {ride.userGender === "Male" && <MaleIcon/>}
             {ride.userGender === "Female" && <FemaleIcon style={{color:'#f15bb5'}}/> }
          </span>
-        <button className="facebookBtn" onClick={() => {window.open(ride.facebook , "_blank")}}>FACEBOOK PROFILE</button>
+        <button className="facebookBtn" onClick={()=> {handleSendMessage(ride.userID);
+}}>{loading ? "Loading" : "SEND MESSAGE"}</button>
         </div>
 </div>)
 }

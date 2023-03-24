@@ -11,8 +11,10 @@ const Chat = ({chatStatus, currentUser , socket}) => {
 
 
   const [messages, setMessages] = useState([]);
+  const [addressee,setAddressee] = useState("");
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const {currentChat} = useContext(chatContext);
   const scrollRef = useRef();
 
@@ -37,8 +39,27 @@ const Chat = ({chatStatus, currentUser , socket}) => {
 
   useEffect(() => {
     socket.emit("addUser", currentUser._id);
+    socket.on("getUsers" , (users) =>{
+      setOnlineUsers(users);
+    })
   }, [currentUser,socket]);
 
+
+  useEffect(() => {
+    const addresseeId = currentChat.members.find(
+      (member) => member !== currentUser._id
+    );
+
+    const getUser = async () => {
+      try {
+        const res = await axios.get(`${SERVER_URL}/api/user/${addresseeId}`);
+        setAddressee(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, [currentUser,currentChat.members])
 
 
 
@@ -66,15 +87,19 @@ const Chat = ({chatStatus, currentUser , socket}) => {
       conversationId: currentChat._id,
     };
 
-    const receiverId = currentChat.members.find(
-      (member) => member !== currentUser._id
-    );
+    const addresseId = addressee._id;
+
+  //check if the addressee is online
+  if(onlineUsers.some((u) => u.userId === addresseId)){
 
     socket.emit("sendMessage", {
       senderId: currentUser._id,
-      receiverId,
+      addresseId,
       text: newMessage,
     });
+  }
+
+
 
     try {
       const res = await axios.post(`${SERVER_URL}/api/messages/`, message);
@@ -98,10 +123,10 @@ const Chat = ({chatStatus, currentUser , socket}) => {
       <div className="reciverDetails">
       <img
           className="messageImg"
-          src="/assests/blank-profile.png"
-          alt="pic"
+          src={addressee.image ? addressee.image : "/assests/blank-profile.png"}
+          alt="userImage"
         />
-        <div className="reciverName">Joshua Jewish</div>
+        <div className="reciverName">{addressee.firstName} {addressee.lastName}</div>
       </div>
       <div className="exitChat" onClick={()=> chatStatus(false)}>
         X
@@ -110,7 +135,7 @@ const Chat = ({chatStatus, currentUser , socket}) => {
     <div className="chatMiddle">
       {messages.map((m) => (
         <div ref={scrollRef}>
-          <Message message={m} own={m.sender === currentUser._id} />
+          <Message message={m} own={m.sender === currentUser._id} currentUser={currentUser} addressee={addressee} />
         </div>
       ))}
     </div>

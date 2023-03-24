@@ -1,7 +1,6 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState , useContext} from "react";
 import { SERVER_URL } from "../../App";
 import Login from "../login/Login";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -50,7 +49,7 @@ function Navbar({chatStatus}) {
         const res = await axios.get(`${SERVER_URL}/api/conversation/${user?._id
         }`)
         setConversations(res.data);
-        
+
       } catch (error) {
         console.log(error);
       }
@@ -59,6 +58,7 @@ function Navbar({chatStatus}) {
 
 
   },[user._id])
+
 
 
   return (
@@ -93,7 +93,7 @@ function Navbar({chatStatus}) {
                   </div>
                   <img
                     src={user.image ? user.image : "/assests/blank-profile.png"}
-                    alt=""
+                    alt="userImage"
                     className="navbarProfileImg"
                     onClick={() => setOpen(!open)}
                   />
