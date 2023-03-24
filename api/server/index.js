@@ -13,7 +13,8 @@ const cityRoute = require("../routes/cities");
 const userRoute = require("../routes/user");
 const mailRoute = require("../routes/mail");
 const eventRoute = require("../routes/event");
-
+const conversationRoute = require("../routes/conversation");
+const messageRoute = require("../routes/messages");
 
 
 
@@ -53,8 +54,9 @@ app.use(
 app.use("/auth", authRoute);
 app.use("/api/cities", cityRoute);
 app.use("/api/user", userRoute);
-app.use("/api/email", mailRoute);
-app.use("/api/events", eventRoute);
+app.use("/api/conversation", conversationRoute);
+app.use("/api/messages", messageRoute);
+
 
 
 app.use((err, req, res, next) => {

@@ -63,7 +63,7 @@
 
    .dropDownMenu{
     width:200px;
-    height: 35px;
+    height: 40px;
     border-radius: 50px;
     background-color: white;
     display: flex;
@@ -81,14 +81,44 @@
 
 
   .navbarProfileImg{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 2px solid #3498db;
     object-fit: cover;
-    margin-left: 5px;
+    margin-right: 5px;
 
   }
+
+
+  .messagengerWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    color: #3498db;
+    cursor: pointer;
+  }
+
+  
+  .notificationWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    margin-left: 5px;
+    color: #3498db;
+    cursor: pointer;
+
+  }
+
+  
 
   .navbarUserInfo{
     color: #3498db;
@@ -111,6 +141,16 @@
     width: 100%;
 
   }
+  .conversationContainer{
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    top:110%;
+    left:-100%;
+    width: 200%;
+
+  }
+
 
   .dropDownList{
     text-decoration: none;
@@ -137,6 +177,7 @@
     margin-left: 15px;
     
 }
+
 
 .hamburgerMenu{
   display: none;

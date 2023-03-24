@@ -7,7 +7,7 @@ const Login = ({loginmodal}) => {
 
 
   const google = () => {
-    window.open(`${SERVER_URL}/auth/google", "_self`);
+    window.open(`${SERVER_URL}/auth/google`, "_self");
 
   };
 

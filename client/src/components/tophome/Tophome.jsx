@@ -5,12 +5,14 @@ import {Link} from 'react-scroll';
 
 
 
-function Tophome() {
+function Tophome({chatStatus}) {
+
+
 
   return (
     <>
     <div className="tophome">
-      <Navbar />
+      <Navbar chatStatus = {chatStatus} />
       <div className="contentContainer">
         <div className="textContainer">
           <h1 className="topSentence">SHARE A RIDE,</h1>
