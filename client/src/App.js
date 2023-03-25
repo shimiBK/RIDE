@@ -30,6 +30,7 @@ function App() {
   const [chat, setChat] = useState(false);
   const [socket,setSocket] = useState(null);
 
+
   const chatCont = { currentChat, setCurrentChat };
   const userCont = { user, setUser };
   const cityCont = { cities, setCities };
@@ -101,8 +102,8 @@ function App() {
               <Route exact path="/">
                 {!flag ? <Home chatStatus={chatStatus} /> : <AddInfo flagStatus={flagStatus} />}
               </Route>
-              <Route path="/rides">
-                <Rides />
+              <Route path="/rides" >
+                <Rides chatStatus={chatStatus} />
               </Route>
               <Route path="/addinfo">
                 {!flag ? <Redirect to="/" /> : <AddInfo />}

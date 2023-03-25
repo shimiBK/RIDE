@@ -2,6 +2,7 @@
     height: 100vh;
     min-height: 800px;
     overflow: scroll;
+    overflow-x:hidden;
     background-image: linear-gradient(to right bottom, #24262b, #292b32, #2d3138, #32363f, #373c46);
     display: flex;
     justify-content: center;

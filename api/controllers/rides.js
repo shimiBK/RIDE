@@ -140,7 +140,6 @@ async (req,res,next)=> {
         firstName: req.body.fname,
         lastName: req.body.lname,
         city: req.body.city,
-        facebook: req.body.facebook,
         time:req.body.time,
         userID:req.body.uID,
         userImg:req.body.userImg,
