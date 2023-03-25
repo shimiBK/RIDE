@@ -21,6 +21,8 @@
     "react-spinners": "^0.13.4",
     "react-text-animations": "^1.1.10",
     "react-toastify": "^9.0.8",
+    "socket.io-client": "^4.6.1",
+    "timeago.js": "^4.0.0-beta.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

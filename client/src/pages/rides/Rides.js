@@ -11,7 +11,8 @@ import Searchbar from "../../components/searchbar/Searchbar";
 import Loading from "../../components/loading/Loading";
 import Ride from "../../components/ride/Ride";
 
-export default function Rides() {
+export default function Rides({chatStatus}) {
+
   
   const DEFAULT_FILTERED_RIDES = [{}];
 
@@ -80,7 +81,7 @@ export default function Rides() {
         <div className="rideItems">
           {filteredRides.length > 0 ? (
             filteredRides.map((ride) => (
-              <Ride ride={ride} key={ride._id} containerStyle="infoContainer" />
+              <Ride ride={ride} key={ride._id} containerStyle="infoContainer" chatStatus={chatStatus}/>
             ))
           ) : (
             <h3 className="emptyRides">
@@ -92,7 +93,7 @@ export default function Rides() {
         <div className="rideItems">
           {rideState.rides.length > 0 ? (
             rideState.rides.map((ride) => (
-              <Ride ride={ride} key={ride._id} containerStyle="infoContainer" />
+              <Ride ride={ride} key={ride._id} chatStatus={chatStatus} containerStyle="infoContainer" />
             ))
           ) : (
             <h3 className="emptyRides">
@@ -122,7 +123,7 @@ export default function Rides() {
             className="previousPage"
           />
         </Link>
-        {rideState.loading ? <Loading size="30px" /> : renderRide}
+        {rideState.loading ? <Loading size="30px" color="white" /> : renderRide}
       </div>
     </>
   );
