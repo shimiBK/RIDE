@@ -1,4 +1,4 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 
 const RideSchema = new mongoose.Schema(
     {
@@ -6,7 +6,6 @@ const RideSchema = new mongoose.Schema(
     firstName:{type:String , required:true},
     lastName:{type:String, required:true},
     city:{type: String , required:true},
-    facebook:{type: String , required:true},
     time:{type: String , required:true},
     userID:{type:String, required:true},
     userImg:{type:String},

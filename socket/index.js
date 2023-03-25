@@ -34,8 +34,6 @@ const io = new Server({
 
 
 
-
-
   io.on("connection", (socket) => {
     //when ceonnect
     console.log("a user connected.");
@@ -47,9 +45,9 @@ const io = new Server({
     });
   
     //send and get message
-    socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-      const user = getUser(receiverId);
-      io.to(user.socketId).emit("getMessage", {
+    socket.on("sendMessage", ({ senderId, addresseId, text }) => {
+      const user = getUser(addresseId);
+       io.to(user.socketId).emit("getMessage", {
         senderId,
         text,
       });

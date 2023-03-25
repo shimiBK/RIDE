@@ -143,7 +143,7 @@ const Myrides = () => {
         <Link to="/">
               <img src="/assests/chevron_left.png" alt="" className="previousPage"/>
         </Link>
-            {state.loading ? <Loading/> : renderRide }
+            {state.loading ? <Loading size="30px" color="white"/> : renderRide }
         {confirmDel &&
             <ConfirmDelete 
             message="Are you sure you want to delete this ride?" 

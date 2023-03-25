@@ -24,8 +24,6 @@ const Ride = ({ride,myRides,getRide,cancelDel,changeEditRide,containerStyle,chat
 
 const handleSendMessage = async (addresseeId) => {
 
-    console.log(addresseeId);
-
     try {
         setLoading(true);
         const res = await axios.get(`${SERVER_URL}/api/conversation/find/${addresseeId}/${user?._id}`);

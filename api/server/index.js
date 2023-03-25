@@ -56,6 +56,7 @@ app.use("/api/cities", cityRoute);
 app.use("/api/user", userRoute);
 app.use("/api/conversation", conversationRoute);
 app.use("/api/messages", messageRoute);
+app.use("/api/events", eventRoute);
 
 
 

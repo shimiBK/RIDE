@@ -19,7 +19,6 @@ const Addride = ({ handleRideModal }) => {
   const ename = useRef();
   const fname = useRef();
   const lname = useRef();
-  const facebook = useRef();
   const time = useRef();
 
   const getCity = (cityFromChild) => {
@@ -57,7 +56,6 @@ const Addride = ({ handleRideModal }) => {
     const { value: enameValue } = ename.current;
     const { value: fnameValue } = fname.current;
     const { value: lnameValue } = lname.current;
-    const { value: facebookValue } = facebook.current;
     const { value: timeValue } = time.current;
 
     const ride = {
@@ -65,7 +63,6 @@ const Addride = ({ handleRideModal }) => {
       fname: fnameValue,
       lname: lnameValue,
       city: city,
-      facebook: facebookValue,
       time: timeValue,
       uID: user._id,
       userImg: user.image,
@@ -134,13 +131,6 @@ const Addride = ({ handleRideModal }) => {
               placeholder="Search City"
               getCity={getCity}
               required={true}
-            />
-            <input
-              type="text"
-              ref={facebook}
-              placeholder="Facebook Profile Link"
-              className="rideInput"
-              required
             />
             <select
               name="events"
