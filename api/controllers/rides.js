@@ -3,18 +3,15 @@ const User = require("../models/User")
 
 
 
-const getRides = async (req,res,next) => {
+const getRides = async (req, res, next) => {
+  const artist = { ...req.query};
 
-    const artist = {...req.query};
-
-    try {
-        const Rides = await Ride.find(artist);
-  
-      res.status(200).json(Rides);
-    } catch (err) {
-      next(err);
-    }
-   
+  try {
+    const rides = await Ride.find({ ...artist, userID: { $ne: req.query.ownerId_ne } });
+    res.status(200).json(rides);
+  } catch (err) {
+    next(err);
+  }
 };
 
 

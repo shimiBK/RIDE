@@ -2,7 +2,7 @@ import { ACTION_TYPES } from "./rideActionTypes";
 
 export const INITIAL_STATE = {
   loading: false,
-  rides:  [{}],
+  rides:  [],
   error: false,
 };
 
@@ -13,7 +13,7 @@ export const rideReducer = (state, action) => {
       return {
         loading: true,
         error: false,
-        rides: [{}],
+        rides: [],
       };
     case ACTION_TYPES.FETCH_SUCCESS:
       return {
@@ -25,7 +25,7 @@ export const rideReducer = (state, action) => {
       return {
         error: true,
         loading: false,
-        rides:  [{}],
+        rides:  [],
       };
       case ACTION_TYPES.DELETE_START:
         return {

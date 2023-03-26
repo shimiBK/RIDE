@@ -1,24 +1,18 @@
-import React, { useEffect, useRef, useState,useContext } from 'react'
-import "./chat.css"
-import Message from '../message/Message';
+import React, { useEffect, useRef, useState, useContext } from "react";
+import "./chat.css";
+import Message from "../message/Message";
 import chatContext from "../../context/chatContext";
-import axios from 'axios';
-import { SERVER_URL } from '../../App';
+import axios from "axios";
+import { SERVER_URL } from "../../App";
 
-
-const Chat = ({chatStatus, currentUser , socket}) => {
-
-
-
+const Chat = ({ chatStatus, currentUser, socket }) => {
   const [messages, setMessages] = useState([]);
-  const [addressee,setAddressee] = useState("");
+  const [addressee, setAddressee] = useState("");
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const {currentChat} = useContext(chatContext);
+  const { currentChat } = useContext(chatContext);
   const scrollRef = useRef();
-
-
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
@@ -30,7 +24,6 @@ const Chat = ({chatStatus, currentUser , socket}) => {
     });
   }, [socket]);
 
-
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
@@ -39,11 +32,10 @@ const Chat = ({chatStatus, currentUser , socket}) => {
 
   useEffect(() => {
     socket.emit("addUser", currentUser._id);
-    socket.on("getUsers" , (users) =>{
+    socket.on("getUsers", (users) => {
       setOnlineUsers(users);
-    })
-  }, [currentUser,socket]);
-
+    });
+  }, [currentUser, socket]);
 
   useEffect(() => {
     const addresseeId = currentChat.members.find(
@@ -59,11 +51,9 @@ const Chat = ({chatStatus, currentUser , socket}) => {
       }
     };
     getUser();
-  }, [currentUser,currentChat.members])
+  }, [currentUser, currentChat.members]);
 
-
-
-    useEffect(() => {
+  useEffect(() => {
     const getMessages = async () => {
       try {
         const res = await axios.get(
@@ -78,8 +68,7 @@ const Chat = ({chatStatus, currentUser , socket}) => {
     getMessages();
   }, [currentChat]);
 
-
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
       sender: currentUser._id,
@@ -89,17 +78,14 @@ const Chat = ({chatStatus, currentUser , socket}) => {
 
     const addresseId = addressee._id;
 
-  //check if the addressee is online
-  if(onlineUsers.some((u) => u.userId === addresseId)){
-
-    socket.emit("sendMessage", {
-      senderId: currentUser._id,
-      addresseId,
-      text: newMessage,
-    });
-  }
-
-
+    //check if the addressee is online
+    if (onlineUsers.some((u) => u.userId === addresseId)) {
+      socket.emit("sendMessage", {
+        senderId: currentUser._id,
+        addresseId,
+        text: newMessage,
+      });
+    }
 
     try {
       const res = await axios.post(`${SERVER_URL}/api/messages/`, message);
@@ -110,50 +96,56 @@ const Chat = ({chatStatus, currentUser , socket}) => {
     }
   };
 
-
-
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-
   return (
     <div className="chatContainer">
-    <div className="chatHeader">
-      <div className="reciverDetails">
-      <img
-          className="messageImg"
-          src={addressee.image ? addressee.image : "/assests/blank-profile.png"}
-          alt="userImage"
-        />
-        <div className="reciverName">{addressee.firstName} {addressee.lastName}</div>
-      </div>
-      <div className="exitChat" onClick={()=> chatStatus(false)}>
-        X
-      </div>
-    </div>
-    <div className="chatMiddle">
-      {messages.map((m) => (
-        <div ref={scrollRef}>
-          <Message message={m} own={m.sender === currentUser._id} currentUser={currentUser} addressee={addressee} />
+      <div className="chatHeader">
+        <div className="reciverDetails">
+          <img
+            className="messageImg"
+            src={
+              addressee.image ? addressee.image : "/assests/blank-profile.png"
+            }
+            alt="userImage"
+          />
+          <div className="reciverName">
+            {addressee.firstName} {addressee.lastName}
+          </div>
         </div>
-      ))}
+        <div className="exitChat" onClick={() => chatStatus(false)}>
+          X
+        </div>
+      </div>
+      <div className="chatMiddle">
+        {messages.map((m) => (
+          <div ref={scrollRef}>
+            <Message
+              message={m}
+              own={m.sender === currentUser._id}
+              currentUser={currentUser}
+              addressee={addressee}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="chatInput">
+        <input
+          className="chatMessageInput"
+          placeholder="Write Something..."
+          onChange={(e) => setNewMessage(e.target.value)}
+          value={newMessage}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleSubmit(event);
+            }
+          }}
+        ></input>
+      </div>
     </div>
-    <div className="chatInput">
-      <input
-        className="chatMessageInput"
-        placeholder="Write Something..."
-        onChange={(e) => setNewMessage(e.target.value)}
-        value={newMessage}
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            handleSubmit(event);
-          }
-        }}
-      ></input>
-    </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;

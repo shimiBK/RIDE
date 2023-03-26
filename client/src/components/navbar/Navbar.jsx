@@ -1,6 +1,6 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState , useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import { SERVER_URL } from "../../App";
 import Login from "../login/Login";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -13,20 +13,18 @@ import userContext from "../../context/userContext";
 import AddEvent from "../addEvent/AddEvent";
 import Conversation from "../conversation/Conversation";
 import chatContext from "../../context/chatContext";
-import axios from 'axios';
+import axios from "axios";
 
-
-function Navbar({chatStatus}) {
+function Navbar({ chatStatus }) {
   const [loginModal, setLoginModal] = useState(false);
   const [hamburger, setHamburger] = useState(true);
   const [sidebarMenu, setSidebarMenu] = useState(false);
   const [open, setOpen] = useState(false);
   const [openMessenger, setOpenMessenger] = useState(false);
-  const [conversations,setConversations] = useState([]);
+  const [conversations, setConversations] = useState([]);
   const [eventModal, setEventModal] = useState(false);
   const { user } = useContext(userContext);
-  const {setCurrentChat } = useContext(chatContext);
-
+  const { setCurrentChat } = useContext(chatContext);
 
   const googleLogout = () => {
     window.open(`${SERVER_URL}/auth/logout`, "_self");
@@ -40,26 +38,19 @@ function Navbar({chatStatus}) {
     setEventModal(childValue);
   };
 
-
-
-  useEffect(()=>{
-
-    const getConversations = async () =>{
+  useEffect(() => {
+    const getConversations = async () => {
       try {
-        const res = await axios.get(`${SERVER_URL}/api/conversation/${user?._id
-        }`)
+        const res = await axios.get(
+          `${SERVER_URL}/api/conversation/${user?._id}`
+        );
         setConversations(res.data);
-
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     getConversations();
-
-
-  },[user._id])
-
-
+  }, [user._id]);
 
   return (
     <>
@@ -125,15 +116,22 @@ function Navbar({chatStatus}) {
                   </div>
                 </div>
               )}
-              {openMessenger && 
-                  <div className="conversationContainer" >
-              {conversations.map((c) => (
-                <div onClick={()=> {setCurrentChat(c);setOpenMessenger(false);chatStatus(true);}}>
-                <Conversation key={conversations._id} conversation={c} currentUser={user} />
+              {openMessenger && (
+                <div className="conversationContainer">
+                  {conversations.map((c) => (
+                    <div
+                      key={c._id}
+                      onClick={() => {
+                        setCurrentChat(c);
+                        setOpenMessenger(false);
+                        chatStatus(true);
+                      }}
+                    >
+                      <Conversation conversation={c} currentUser={user} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-              }           
+              )}
             </div>
           </div>
         </div>

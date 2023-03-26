@@ -6,7 +6,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import AddInfo from "./pages/addinfo/AddInfo";
 import Profile from "./pages/profile/Profile";
 import Myrides from "./pages/myrides/Myrides";
@@ -15,11 +15,10 @@ import userContext from "./context/userContext";
 import cityContext from "./context/cityContext";
 import chatContext from "./context/chatContext";
 import Chat from "./components/chat/Chat";
-import {io} from "socket.io-client";
+import { io } from "socket.io-client";
 
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
-
 
 function App() {
   const [user, setUser] = useState("");
@@ -28,18 +27,15 @@ function App() {
 
   const [currentChat, setCurrentChat] = useState(null);
   const [chat, setChat] = useState(false);
-  const [socket,setSocket] = useState(null);
-
+  const [socket, setSocket] = useState(null);
 
   const chatCont = { currentChat, setCurrentChat };
   const userCont = { user, setUser };
   const cityCont = { cities, setCities };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     setSocket(io(SOCKET_URL));
-  },[]);
-
+  }, []);
 
   useEffect(() => {
     const getCities = async () => {
@@ -57,12 +53,9 @@ function App() {
     setFlag(statusFromChild);
   };
 
-  const chatStatus = (statusFromChild) =>{
-
+  const chatStatus = (statusFromChild) => {
     setChat(statusFromChild);
-  }
-
-
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -92,7 +85,6 @@ function App() {
     if (user && user.loginFlag) setFlag(true);
   }, [user]);
 
-
   return (
     <chatContext.Provider value={chatCont}>
       <cityContext.Provider value={cityCont}>
@@ -100,9 +92,13 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/">
-                {!flag ? <Home chatStatus={chatStatus} /> : <AddInfo flagStatus={flagStatus} />}
+                {!flag ? (
+                  <Home chatStatus={chatStatus} />
+                ) : (
+                  <AddInfo flagStatus={flagStatus} />
+                )}
               </Route>
-              <Route path="/rides" >
+              <Route path="/rides">
                 <Rides chatStatus={chatStatus} />
               </Route>
               <Route path="/addinfo">
@@ -112,9 +108,9 @@ function App() {
               <Route path="/myrides">{user ? <Myrides /> : <Home />}</Route>
             </Switch>
           </Router>
-          {chat && 
-          <Chat chatStatus={chatStatus} currentUser = {user} socket={socket} />
-          }
+          {chat && (
+            <Chat chatStatus={chatStatus} currentUser={user} socket={socket} />
+          )}
         </userContext.Provider>
       </cityContext.Provider>
     </chatContext.Provider>
