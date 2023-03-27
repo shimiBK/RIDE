@@ -1,10 +1,9 @@
 
 import "./addinfo.css"
-import {useRef, useState} from 'react';
+import {useRef, useState , useContext} from 'react';
+import { toast } from "react-toastify";
 import axios from "axios";
-import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
-import { useContext } from "react";
 import userContext from "../../context/userContext";
 
 
@@ -42,6 +41,7 @@ const AddInfo = ({flagStatus}) => {
 
           } catch (err) {
             console.log(err);
+            toast.error("An error occurred while loading messages");
           }
           finally{
             window.location.reload();

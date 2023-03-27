@@ -1,6 +1,7 @@
 import "./conversation.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SERVER_URL } from "../../App";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Loading from "../loading/Loading";
 
@@ -22,6 +23,7 @@ const Conversation = ({ conversation, currentUser }) => {
       } catch (error) {
         console.log(error);
         setLoading(false);
+        toast.error("An error occurred"); 
       }
     };
     getUser();

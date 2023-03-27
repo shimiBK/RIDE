@@ -1,14 +1,15 @@
 import "./ride.css";
+import { useState, useContext } from "react";
+import { convertTitle } from "../../utils/utils";
+import { SERVER_URL } from "../../App";
+import { toast } from "react-toastify";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import userContext from "../../context/userContext";
-import { useState, useContext } from "react";
-import { convertTitle } from "../../utils/utils";
 import chatContext from "../../context/chatContext";
-import { SERVER_URL } from "../../App";
 import axios from "axios";
 
 const Ride = ({
@@ -36,6 +37,7 @@ const Ride = ({
       chatStatus(true);
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred");
       setLoading(false);
     }
   };

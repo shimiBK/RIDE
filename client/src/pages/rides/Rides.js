@@ -1,5 +1,4 @@
 import "./rides.css";
-import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useState, useEffect, useReducer, useCallback, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -7,6 +6,7 @@ import { hasNumber, getTitle } from "../../utils/utils";
 import { ACTION_TYPES } from "../../reducer/rideActionTypes";
 import { INITIAL_STATE, rideReducer } from "../../reducer/rideReducer";
 import { SERVER_URL } from "../../App";
+import { toast } from "react-toastify";
 import Searchbar from "../../components/searchbar/Searchbar";
 import Loading from "../../components/loading/Loading";
 import Ride from "../../components/ride/Ride";
@@ -67,6 +67,7 @@ export default function Rides({chatStatus}) {
       } catch (error) {
         dispatch({ type: ACTION_TYPES.FETCH_ERROR });
         console.log(error);
+        toast.error("An error occurred"); 
       }
     };
     getRides();

@@ -49,6 +49,7 @@ const Event = ({ event }) => {
         toast.success("Event was successfully added to your followings");
       } catch (error) {
         console.log(error);
+        toast.error("An error occurred"); 
       }
     } else {
       toast.info("You already follow this event");
@@ -79,6 +80,7 @@ const Event = ({ event }) => {
       window.location.reload();
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred while updating the event"); 
     }
   };
 
@@ -91,6 +93,7 @@ const Event = ({ event }) => {
       }, 500);
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred while deleting the event"); 
     }
   };
 

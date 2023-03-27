@@ -3,6 +3,7 @@ import "./chat.css";
 import Message from "../message/Message";
 import chatContext from "../../context/chatContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { SERVER_URL } from "../../App";
 
 const Chat = ({ chatStatus, currentUser, socket }) => {
@@ -48,6 +49,7 @@ const Chat = ({ chatStatus, currentUser, socket }) => {
         setAddressee(res.data);
       } catch (err) {
         console.log(err);
+        toast.error("An error occurred"); 
       }
     };
     getUser();
@@ -62,6 +64,8 @@ const Chat = ({ chatStatus, currentUser, socket }) => {
         setMessages(res.data);
       } catch (error) {
         console.log(error);
+        toast.error("An error occurred while loading messages"); 
+
       }
     };
 
@@ -93,6 +97,7 @@ const Chat = ({ chatStatus, currentUser, socket }) => {
       setNewMessage("");
     } catch (err) {
       console.log(err);
+      toast.error("An error occurred while uploading a ride");
     }
   };
 

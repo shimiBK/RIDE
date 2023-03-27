@@ -2,6 +2,7 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { SERVER_URL } from "../../App";
+import { toast } from "react-toastify";
 import Login from "../login/Login";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 // import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -47,6 +48,7 @@ function Navbar({ chatStatus }) {
         setConversations(res.data);
       } catch (error) {
         console.log(error);
+        toast.error("An error occurred"); 
       }
     };
     getConversations();

@@ -75,6 +75,8 @@ const Addride = ({ handleRideModal }) => {
       toast.success("Ride was successfully uploaded");
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred while uploading a ride");
+
     }
   };
 

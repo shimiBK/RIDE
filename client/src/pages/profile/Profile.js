@@ -1,14 +1,12 @@
 import "./profile.css";
+import { toast } from "react-toastify";
+import { useEffect, useRef, useState, useContext } from "react";
+import { convertTitle } from "../../utils/utils";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useEffect, useRef, useState } from "react";
 import Loading from "../../components/loading/Loading";
 import Searchbar from "../../components/searchbar/Searchbar";
 import ConfirmDelete from "../../components/confirmdelete/ConfirmDelete";
-import { convertTitle } from "../../utils/utils";
-import { useContext } from "react";
 import userContext from "../../context/userContext";
 
 const Profile = () => {
@@ -48,6 +46,7 @@ const Profile = () => {
     } catch (err) {
       console.log(err);
       setIsLoading(false);
+      toast.error("An error occurred while updaing the account"); 
     }
   };
 
@@ -58,6 +57,7 @@ const Profile = () => {
       setConfirmDel(false);
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred while deleting the account"); 
     } finally {
       window.location.reload();
     }
@@ -79,15 +79,15 @@ const Profile = () => {
       setIsLoading(false);
     } catch (err) {
       console.log(err);
+      toast.error("An error occurred while removing an event"); 
     }
   };
 
   useEffect(() => {
-
     const updateEvents = () => {
       if (user) setEvents(user.sendMails);
     };
-    
+
     updateEvents();
   }, [events]);
 
@@ -188,18 +188,6 @@ const Profile = () => {
           />
         )}
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </>
   );
 };
