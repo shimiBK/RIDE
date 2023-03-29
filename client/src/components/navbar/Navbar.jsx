@@ -75,9 +75,9 @@ function Navbar({ chatStatus }) {
                   {/* <span className="navbarUserInfo">{user.firstName + " " + user.lastName}</span> */}
                   {/* {!open && <ArrowDropDownIcon className="arrowIcon" onClick={()=> setOpen(!open)}/>} */}
                   {/* {open && <ArrowDropUpIcon className="arrowIcon" onClick={()=> setOpen(!open)}/>} */}
-                  <div className="notificationWrapper">
+                  {/* <div className="notificationWrapper">
                     <NotificationsIcon />
-                  </div>
+                  </div> */}
                   <div
                     className="messagengerWrapper"
                     onClick={() => setOpenMessenger(!openMessenger)}

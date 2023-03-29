@@ -62,7 +62,7 @@
   }
 
    .dropDownMenu{
-    width:200px;
+    width:100px;
     height: 40px;
     border-radius: 50px;
     background-color: white;
@@ -101,6 +101,7 @@
     border: 2px solid #3498db;
     color: #3498db;
     cursor: pointer;
+    margin-left: 5px;
   }
 
   
