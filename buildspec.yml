@@ -1,37 +1,23 @@
-# This is an appspec.yml template file for use with an EC2/On-Premises deployment in CodeDeploy.
-
-version: 0.0
-# Specify "os: linux" if this revision targets Amazon Linux
-os: linux
-
-files:
-  - source: /
-    destination: /home/ec2-user/server
-
-permissions:
-  - object: /
-    pattern: "**"
-    owner: ec2-user
-    group: ec2-user
-
-hooks:
-  # During the BeforeInstall deployment lifecycle event, run the commands
-  #   in the script specified in "location".
-  BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 1000
-      runas: root
-  # During the AfterInstall deployment lifecycle event, run the commands
-  #   in the script specified in "location".
-  AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 1600
-      runas: root
-
-  # During the ApplicationStart deployment lifecycle event, run the commands
-  #   in the script specified in "location".
-  ApplicationStart:
-    - location: scripts/app_start.sh
-      timeout: 300
-      runas: root
-
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      #installs dependencies into the node_modules/ directory
+      - cd client
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
+artifacts:
+  files:
+    - /client/public/**/*
+    - client/src/**/*
+    - client/package.json
+    - appspec.yml
+    - client/scripts/**/*
