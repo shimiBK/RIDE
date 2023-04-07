@@ -15,10 +15,6 @@ phases:
     commands:
       - cd ../client
       - npm run build
-      - cd ../api
-      - npm start
-      - cd ../socket
-      - npm start
 artifacts:
   files:
     - '**/*'
