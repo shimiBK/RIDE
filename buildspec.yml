@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 17.0.0
+    commands:
+      - cd frontend
+      - npm install
+      - cd ../api
+      - npm install
+      - cd ../socket
+      - npm install
+  build:
+    commands:
+      - cd ../frontend
+      - npm run build
+      - cd ../api
+      - npm start
+      - cd ../socket
+      - npm start
+artifacts:
+  files:
+    - '**/*'
