@@ -13,7 +13,7 @@ phases:
       - npm install
   build:
     commands:
-      - cd ../frontend
+      - cd ../client
       - npm run build
       - cd ../api
       - npm start
