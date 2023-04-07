@@ -1,20 +1,23 @@
 version: 0.2
-
 phases:
-  install:
-    runtime-versions:
-      nodejs: latest
+  pre_build:
     commands:
+      #installs dependencies into the node_modules/ directory
       - cd client
-      - npm install
-      - cd ../api
-      - npm install
-      - cd ../socket
       - npm install
   build:
     commands:
-      - cd ../client
+      - echo Build started on `date`
+      - echo Compiling
       - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
 artifacts:
   files:
-    - '**/*'
+    - public/**/*
+    - src/**/*
+    - package.json
+    - appspec.yml
+    - scripts/**/*
