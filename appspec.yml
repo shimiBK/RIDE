@@ -1,17 +1,35 @@
+
 version: 0.0
 os: linux
+
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /home/ec2-user/server
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
 hooks:
+  # During the BeforeInstall deployment lifecycle event, run the commands
+  #   in the script specified in "location".
   BeforeInstall:
-    - location: install_dependencies
+    - location: client/scripts/before_install.sh
+      timeout: 1000
+      runas: root
+  # During the AfterInstall deployment lifecycle event, run the commands
+  #   in the script specified in "location".
+  AfterInstall:
+    - location: client/scripts/after_install.sh
+      timeout: 1600
+      runas: root
+
+  # During the ApplicationStart deployment lifecycle event, run the commands
+  #   in the script specified in "location".
+  ApplicationStart:
+    - location: client/scripts/app_start.sh
       timeout: 300
       runas: root
-    - location: start_server
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    - location: stop_server
-      timeout: 300
-      runas: root
+
