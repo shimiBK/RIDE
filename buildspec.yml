@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 17.0.0
+      nodejs: 17
     commands:
       - cd frontend
       - npm install
