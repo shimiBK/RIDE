@@ -3,5 +3,6 @@ cd /var/www/html/RIDEDM/client
 sudo npm install
 sudo npm install pm2 -g
 cd ../api
+sudo rm -rf node_modules
 sudo npm install
-npm install forever -g
+sudo npm install forever -g
