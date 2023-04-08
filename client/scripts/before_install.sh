@@ -1,6 +1,5 @@
 #!/bin/bash
-cd /home/ec2-user/server
-sudo yum update
-sudo yum install curl
-curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
-sudo yum install -y nodejs
+sudo apt-get update
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
