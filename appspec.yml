@@ -17,7 +17,7 @@ hooks:
   #   in the script specified in "location".
   BeforeInstall:
     - location: client/scripts/before_install.sh
-      timeout: 1000
+      timeout: 1600
       runas: root
   # During the AfterInstall deployment lifecycle event, run the commands
   #   in the script specified in "location".
