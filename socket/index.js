@@ -2,8 +2,10 @@ const { Server } = require("socket.io");
 
 
 const corsOptions = {
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000,http://54.165.148.188:3000"
   }
+
+const PORT = 5001;
 
 
 const io = new Server({
@@ -64,4 +66,4 @@ const io = new Server({
 
 
 
-  io.listen(5001);
+  io.listen(PORT);
