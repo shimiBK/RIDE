@@ -6,3 +6,7 @@ cd ../api
 sudo rm -rf node_modules
 sudo npm install
 sudo npm install forever -g
+cd ../socket
+sudo rm -rf node_modules
+sudo npm install
+sudo npm install forever -g
