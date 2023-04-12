@@ -4,14 +4,13 @@ os: linux
 
 files:
   - source: /
-    destination: /var/www/html/RIDEDM
+    destination: /var/www/html
 
 permissions:
-- object: /RIDEDM/appspec.yml
+- object: /
   pattern: "**"
   owner: ubuntu
   group: ubuntu
-  exclude: true
 
 hooks:
   # During the BeforeInstall deployment lifecycle event, run the commands
