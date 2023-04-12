@@ -2,8 +2,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      #installs dependencies into the node_modules/ directory
-      - git pull
+      - cd /var/www/html/RIDEDM # Change directory to the Git repository
+      - git pull  # Update the repository with the latest changes
       - cd client
       - npm install
   build:
