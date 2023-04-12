@@ -3,6 +3,7 @@ phases:
   pre_build:
     commands:
       #installs dependencies into the node_modules/ directory
+      - git pull
       - cd client
       - npm install
   build:
