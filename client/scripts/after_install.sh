@@ -1,5 +1,7 @@
 #!/bin/bash
-cd /var/www/html/RIDEDM/client
+cd /var/www/html/
+git pull
+cd /RIDEDM/client
 sudo npm install
 sudo npm install pm2 -g
 cd ../api
