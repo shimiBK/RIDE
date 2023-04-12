@@ -7,10 +7,11 @@ files:
     destination: /var/www/html/RIDEDM
 
 permissions:
-  - object: /
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
+- object: /RIDEDM/appspec.yml
+  pattern: "**"
+  owner: ubuntu
+  group: ubuntu
+  exclude: true
 
 hooks:
   # During the BeforeInstall deployment lifecycle event, run the commands
