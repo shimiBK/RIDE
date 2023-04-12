@@ -1,7 +1,10 @@
 
 const passport = require("passport");
 const {createError} = require("../utils/error.js")
-const CLIENT_URL = "http://localhost:3000/";
+const dotenv = require("dotenv");
+dotenv.config();
+
+const CLIENT_URL = process.env.CLIENT_URL;
 
 
 const loginSuccess = (req, res) => {
