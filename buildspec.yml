@@ -2,7 +2,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - ls
       - cd client
       - npm install
   build:
