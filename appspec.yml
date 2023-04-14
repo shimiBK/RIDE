@@ -7,7 +7,7 @@ files:
     destination: /var/www/html/RIDEDM
 
 permissions:
-- object: /
+- object: /var/www/html/RIDEDM
   pattern: "**"
   owner: ubuntu
   group: ubuntu
