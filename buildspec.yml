@@ -18,5 +18,6 @@ artifacts:
     - client/**
     - api/**
     - socket/**
+    - scripts/**
     - appspec.yml
 
