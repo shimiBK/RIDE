@@ -15,9 +15,9 @@ phases:
 # Include only the files required for your application to run.
 artifacts:
   files:
-    - client/**
-    - api/**
-    - socket/**
-    - scripts/**
+    - client/**/*
+    - api/**/*
+    - socket/**/*
+    - scripts/**/*
     - appspec.yml
 
