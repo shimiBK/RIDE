@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /var/www/html/RIDEDM/client
 sudo npm install
-npm install react-scripts
+sudo npm install react-scripts
 sudo npm install pm2 -g
 cd ../api
 sudo rm -rf node_modules
