@@ -8,7 +8,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling
-      - cd client
       - npm run build
   post_build:
     commands:
