@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get install curl
+cd /home/ec2-user/server/client
+sudo yum update
+sudo yum install curl
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo apt-get install nginx -y
+sudo yum install -y nodejs

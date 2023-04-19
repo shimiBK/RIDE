@@ -4,10 +4,10 @@ os: linux
 
 files:
   - source: /
-    destination: /var/www/html/RIDEDM
+    destination: /home/ec2-user/server
 
 permissions:
-- object: /var/www/html/RIDEDM
+- object: /
   pattern: "**"
   owner: ubuntu
   group: ubuntu
