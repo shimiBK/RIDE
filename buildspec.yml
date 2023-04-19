@@ -4,7 +4,6 @@ phases:
     commands:
       - cd client
       - npm install
-      - npm install react-scripts
   build:
     commands:
       - echo Build started on `date`
